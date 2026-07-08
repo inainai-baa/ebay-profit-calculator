@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>eBay 簡易利益計算</title>
+  <meta name="description" content="eBay輸出の出品価格から想定利益・利益率・損益分岐点を瞬時に計算するモダンな利益計算ツール。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg-glow bg-glow-a"></div>
+    <div class="bg-glow bg-glow-b"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <main class="shell">
+    <header class="hero">
+      <p class="brand">eBay Profit Lab</p>
+      <h1>簡易利益計算</h1>
+      <p class="lede">出品価格・為替・仕入れ・手数料・送料から、想定利益と損益分岐点をすぐに確認。</p>
+    </header>
+
+    <section class="panel" aria-label="利益計算フォーム">
+      <form id="calc-form" class="form" autocomplete="off">
+        <div class="field">
+          <label for="price">出品価格</label>
+          <div class="input-wrap">
+            <input id="price" name="price" type="number" inputmode="decimal" step="any" min="0" placeholder="99.99" required />
+            <span class="suffix">USD</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rate">レート</label>
+          <div class="input-wrap">
+            <input id="rate" name="rate" type="number" inputmode="decimal" step="any" min="0" value="150" required />
+            <span class="suffix">円/ドル</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="cost">仕入れ価格</label>
+          <div class="input-wrap">
+            <input id="cost" name="cost" type="number" inputmode="decimal" step="any" min="0" placeholder="5000" required />
+            <span class="suffix">円</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="fee">手数料</label>
+          <div class="input-wrap">
+            <input id="fee" name="fee" type="number" inputmode="decimal" step="any" min="0" max="100" value="15" required />
+            <span class="suffix">%</span>
+          </div>
+          <p class="hint">FVF・国際手数料・為替コストなどを合算した目安</p>
+        </div>
+
+        <div class="field">
+          <label for="shipping">送料</label>
+          <div class="input-wrap">
+            <input id="shipping" name="shipping" type="number" inputmode="decimal" step="any" min="0" value="0" />
+            <span class="suffix">円</span>
+          </div>
+          <p class="hint">Free Shipping 設定時に負担する送料</p>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-primary">計算する</button>
+          <button type="button" class="btn-ghost" id="reset-btn">リセット</button>
+        </div>
+      </form>
+
+      <div class="results" id="results" aria-live="polite">
+        <article class="result result-main">
+          <p class="result-label">想定利益</p>
+          <p class="result-value" id="profit">—</p>
+        </article>
+        <article class="result">
+          <p class="result-label">利益率</p>
+          <p class="result-value" id="margin">—</p>
+        </article>
+        <article class="result">
+          <p class="result-label">損益分岐</p>
+          <p class="result-value" id="breakeven">—</p>
+          <p class="result-note">利益ゼロになる出品価格</p>
+        </article>
+        <div class="status" id="status" hidden></div>
+      </div>
+    </section>
+
+    <section class="formula">
+      <h2>計算式</h2>
+      <ul>
+        <li><strong>想定利益</strong> = 出品価格 × (1 − 手数料%) × レート − 仕入れ価格 − 送料</li>
+        <li><strong>利益率</strong> = 想定利益 ÷ (出品価格 × レート) × 100</li>
+        <li><strong>損益分岐</strong> = (仕入れ価格 + 送料) ÷ ((1 − 手数料%) × レート)</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
