@@ -1,5 +1,6 @@
 const form = document.getElementById("calc-form");
 const resetBtn = document.getElementById("reset-btn");
+const resultsEl = document.getElementById("results");
 const profitEl = document.getElementById("profit");
 const marginEl = document.getElementById("margin");
 const breakevenEl = document.getElementById("breakeven");
@@ -84,12 +85,28 @@ function validate(values) {
   return null;
 }
 
-function render(values) {
+function flashResults() {
+  resultsEl.classList.remove("is-updated");
+  // restart CSS highlight
+  void resultsEl.offsetWidth;
+  resultsEl.classList.add("is-updated");
+  window.setTimeout(() => resultsEl.classList.remove("is-updated"), 1200);
+}
+
+function revealResults() {
+  if (window.matchMedia("(max-width: 860px)").matches) {
+    resultsEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  flashResults();
+}
+
+function render(values, { reveal = false } = {}) {
   const error = validate(values);
   if (error) {
     clearResults();
     statusEl.hidden = false;
     statusEl.textContent = error;
+    if (reveal) revealResults();
     return;
   }
 
@@ -105,6 +122,8 @@ function render(values) {
 
   statusEl.hidden = true;
   statusEl.textContent = "";
+
+  if (reveal) revealResults();
 }
 
 function syncFromInputs() {
@@ -119,7 +138,11 @@ function syncFromInputs() {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  render(readValues());
+  // スマホのキーボードを閉じて結果を見やすくする
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+  render(readValues(), { reveal: true });
 });
 
 form.addEventListener("input", () => {
