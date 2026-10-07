@@ -40,9 +40,12 @@
     <!-- 1. HERO: live illustration + subtle star motion -->
     <section class="hero" aria-label="ヒーロー">
       <div class="hero__frame">
-        <img class="hero__img" src="./assets/images/hero-illustration.jpg" width="1200" height="600" alt="でてこいランドのログハウスと子どもたちが遊ぶ様子のイラスト" />
+        <img class="hero__img" src="./assets/photos/01-hero-illustration.jpg" width="1200" height="600" alt="でてこいランドのログハウスと子どもたちが遊ぶ様子のイラスト" />
         <canvas class="hero__stars" data-starfield aria-hidden="true"></canvas>
-        <!-- Speech-bubble copy is part of the live hero illustration asset -->
+        <div class="hero__bubbles">
+          <p class="hero__bubble">五感が喜ぶ、</p>
+          <p class="hero__bubble">みんなの秘密基地</p>
+        </div>
         <div class="hero__cta-row">
           <a class="btn btn--green" href="#reserve">Web予約</a>
         </div>
@@ -57,22 +60,22 @@
         <div class="services-track-wrap">
           <div class="services-track" data-services-track tabindex="0" aria-label="体験の一覧">
             <article class="svc-card">
-              <img src="./assets/images/svc-toys.jpg" alt="" width="400" height="300" loading="lazy" />
+              <img src="./assets/photos/08-toys.jpg" alt="" width="400" height="300" loading="lazy" />
               <h3>遊べるおもちゃたち</h3>
               <p>卓球やボードゲーム、ピアノ、夏にはプールで水遊びも！</p>
             </article>
             <article class="svc-card">
-              <img src="./assets/images/svc-bbq.jpg" alt="" width="400" height="300" loading="lazy" />
+              <img src="./assets/photos/09-campfire.jpg" alt="" width="400" height="300" loading="lazy" />
               <h3>BBQやキャンプも</h3>
               <p>山といえばキャンプファイヤーや天体観測。施設内にあるものは何でも使ってOK</p>
             </article>
             <article class="svc-card">
-              <img src="./assets/images/hero-stars.jpg" alt="" width="400" height="300" loading="lazy" />
+              <img src="./assets/photos/14-star-trails.jpg" alt="" width="400" height="300" loading="lazy" />
               <h3>夜には満点の星たち</h3>
               <p>季節の星座を親子で楽しむ星空観察も、「でてこいランド」で過ごす夜の楽しみのひとつです。</p>
             </article>
             <article class="svc-card">
-              <img src="./assets/images/svc-field.jpg" alt="" width="400" height="300" loading="lazy" />
+              <img src="./assets/photos/10-field-scarecrow.jpg" alt="" width="400" height="300" loading="lazy" />
               <h3>土遊びに畑も</h3>
               <p>近くに畑があり、みんなで野菜を育ててみよう！</p>
             </article>
@@ -110,7 +113,7 @@
       <div class="blob blob--br" aria-hidden="true"></div>
       <div class="section__inner about__grid">
         <figure class="photo-round">
-          <img src="./assets/images/intro-fence.jpg" alt="NPO NAGASAKI DETEKOI の木製フェンスとポスト" width="800" height="600" loading="lazy" />
+          <img src="./assets/photos/02-entrance-sign.jpg" alt="NPO NAGASAKI DETEKOI の木製フェンスとポスト" width="800" height="600" loading="lazy" />
         </figure>
         <div class="about__copy">
           <h2 class="section__title section__title--left">さあ、外へ出よう。</h2>
@@ -137,14 +140,23 @@
           でてこいランドには大きなコテージや広場があり、子供たちがそのままでいられることの楽しさを感じられるよう日々整えております。見守り人もすぐ見渡せるよう、開放的なつくりにしています
         </p>
         <figure class="facility-hero photo-round">
-          <img src="./assets/images/facility-carousel.jpg" alt="広々としたコテージの内観" width="1100" height="620" loading="lazy" />
+          <img src="./assets/photos/04-facility-interior.jpg" alt="広々としたコテージの内観" width="1100" height="620" loading="lazy" />
           <figcaption>広々コテージは約50名収容</figcaption>
         </figure>
-        <ul class="facility-caps">
-          <li>テントもたてられる大きな広場</li>
-          <li>お風呂も大浴場があり、洗濯機なども完備</li>
-          <li>夜には満点の星たち</li>
-        </ul>
+        <div class="facility-strip">
+          <figure class="photo-round">
+            <img src="./assets/photos/09-campfire.jpg" alt="テントもたてられる広場まわり" width="600" height="400" loading="lazy" />
+            <figcaption>テントもたてられる大きな広場</figcaption>
+          </figure>
+          <figure class="photo-round">
+            <img src="./assets/photos/07-bath.jpg" alt="大浴場" width="600" height="400" loading="lazy" />
+            <figcaption>お風呂も大浴場があり、洗濯機なども完備</figcaption>
+          </figure>
+          <figure class="photo-round">
+            <img src="./assets/photos/06-guest-room.jpg" alt="和室のお部屋" width="600" height="400" loading="lazy" />
+            <figcaption>お部屋は和洋室、広さもいろいろ</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -162,7 +174,7 @@
           <p>これからも、一人でも多くの人に感動を届け、みんなから愛される長崎でてこいランドを次世代に残し伝えてまいります。</p>
         </div>
         <figure class="photo-round philosophy__photo">
-          <img src="./assets/images/cropped/lodge-day.jpg" alt="緑に囲まれたログハウス外観" width="1000" height="560" loading="lazy" />
+          <img src="./assets/photos/11-lodge-exterior.jpg" alt="緑に囲まれたログハウス外観" width="1000" height="560" loading="lazy" />
         </figure>
       </div>
     </section>
