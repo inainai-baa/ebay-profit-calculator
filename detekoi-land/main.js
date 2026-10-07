@@ -1,7 +1,6 @@
 (() => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Mobile nav
   const toggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector("[data-site-nav]");
   if (toggle && nav) {
@@ -17,7 +16,14 @@
     });
   }
 
-  // Section entrance
+  const form = document.querySelector(".contact-form");
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      window.alert("プロトタイプのため送信は行われません。正式な予約はライブサイトのフォームをご利用ください。");
+    });
+  }
+
   const reveals = document.querySelectorAll("[data-reveal]");
   if (!reduceMotion && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(
@@ -29,17 +35,16 @@
           }
         });
       },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
     );
     reveals.forEach((el) => io.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
-  // Starfield canvas (rotating / trailing night sky)
+  // Subtle star motion over live illustration (soft, not cinematic)
   const canvas = document.querySelector("[data-starfield]");
   if (!canvas || !(canvas instanceof HTMLCanvasElement)) return;
-
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
@@ -48,62 +53,45 @@
   let dpr = 1;
   let stars = [];
   let raf = 0;
-  let angle = 0;
+  let t = 0;
 
   function resize() {
     const parent = canvas.parentElement;
     if (!parent) return;
+    const img = parent.querySelector(".hero__img");
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = parent.clientWidth;
-    height = parent.clientHeight;
+    height = img ? img.clientHeight : parent.clientHeight;
     canvas.width = Math.floor(width * dpr);
     canvas.height = Math.floor(height * dpr);
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    seedStars();
-  }
-
-  function seedStars() {
-    const count = Math.floor((width * height) / 9000);
-    stars = Array.from({ length: count }, () => {
-      const radius = Math.random() * Math.min(width, height) * 0.72;
-      const theta = Math.random() * Math.PI * 2;
-      return {
-        r: radius,
-        t: theta,
-        size: Math.random() * 1.6 + 0.4,
-        alpha: Math.random() * 0.7 + 0.25,
-        trail: Math.random() * 0.035 + 0.01,
-      };
-    });
+    const count = Math.floor((width * height) / 14000);
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height * 0.55,
+      r: Math.random() * 1.3 + 0.3,
+      a: Math.random() * 0.45 + 0.15,
+      s: Math.random() * 0.25 + 0.05,
+      p: Math.random() * Math.PI * 2,
+    }));
   }
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
-    const cx = width * 0.52;
-    const cy = height * 0.58;
-
     for (const star of stars) {
-      const a = star.t + angle;
-      const x = cx + Math.cos(a) * star.r;
-      const y = cy + Math.sin(a) * star.r * 0.78;
-
-      // short arc trail
+      const twinkle = 0.55 + 0.45 * Math.sin(t * star.s + star.p);
       ctx.beginPath();
-      ctx.strokeStyle = `rgba(255,255,255,${star.alpha * 0.35})`;
-      ctx.lineWidth = star.size * 0.55;
-      ctx.arc(cx, cy, star.r, a - star.trail, a);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
-      ctx.arc(x, y, star.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${star.a * twinkle})`;
+      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
       ctx.fill();
+      // gentle drift
+      star.x += 0.015;
+      if (star.x > width + 2) star.x = -2;
     }
-
     if (!reduceMotion) {
-      angle += 0.00055;
+      t += 0.03;
       raf = requestAnimationFrame(draw);
     }
   }
