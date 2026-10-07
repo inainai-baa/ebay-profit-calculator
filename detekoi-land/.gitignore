@@ -7,3 +7,6 @@ assets/images/philosophy-photos.jpg
 assets/images/facility-main.jpg
 
 .netlify/
+assets/images/live-visuals/
+assets/images/live-capture/
+.netlify/
