@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>長崎でてこいランド | NAGASAKI DETEKOI LAND</title>
+  <meta name="description" content="五感が喜ぶ、みんなの秘密基地。長崎県諫早市の自然の中で、キャンプ・宿泊・星空・体験を楽しむNPO法人 長崎でてこいランド。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <header class="site-header" id="top">
+    <div class="site-header__inner">
+      <a class="brand-lockup" href="#top" aria-label="長崎でてこいランド トップへ">
+        <span class="brand-lockup__mark" aria-hidden="true"></span>
+        <span class="brand-lockup__text">
+          <span class="brand-lockup__eyebrow">NPO法人</span>
+          <span class="brand-lockup__name">長崎でてこいランド</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden">メニュー</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-site-nav>
+        <a href="#about">でてこいランドとは</a>
+        <a href="#facilities">施設案内</a>
+        <a href="#services">体験できること</a>
+        <a href="#philosophy">この場所の想い</a>
+        <a class="site-nav__cta" href="#reserve">予約・アクセス</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. HERO -->
+    <section class="hero" aria-label="ヒーロー">
+      <div class="hero__media" aria-hidden="true">
+        <img class="hero__photo" src="./assets/images/hero-stars.jpg" alt="" width="1600" height="1000" />
+        <canvas class="hero__canvas" data-starfield></canvas>
+        <div class="hero__veil"></div>
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__brand">
+          <span class="hero__brand-ja">長崎でてこいランド</span>
+          <span class="hero__brand-en">NAGASAKI DETEKOI LAND</span>
+        </p>
+        <h1 class="hero__headline">
+          五感が喜ぶ、<br />みんなの秘密基地
+        </h1>
+        <p class="hero__support">
+          さあ、外へ出よう。自然の中では、大人も子どもも等しく「自由」です。
+        </p>
+        <div class="hero__cta-group">
+          <a class="btn btn--solid" href="#reserve">Web予約</a>
+          <a class="btn btn--ghost" href="#services">体験できること</a>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#services" aria-label="体験できることへスクロール">
+        <span>scroll</span>
+      </a>
+    </section>
+
+    <!-- 2. SERVICES -->
+    <section class="section services" id="services" data-reveal>
+      <div class="section__inner">
+        <header class="section__head">
+          <p class="section__label">EXPERIENCE</p>
+          <h2 class="section__title">体験できること</h2>
+          <p class="section__lede">
+            山といえばキャンプファイヤーや天体観測。施設内にあるものは何でも使ってOK。
+          </p>
+        </header>
+
+        <div class="services__track-wrap">
+          <div class="services__track" data-services-track tabindex="0" aria-label="体験の一覧（左右にスクロールできます）">
+            <article class="service-item">
+              <div class="service-item__visual service-item__visual--play" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M22 38V26l10 6 10-6v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <h3>遊べるおもちゃたち</h3>
+              <p>卓球やボードゲーム、ピアノ、夏にはプールで水遊びも！</p>
+            </article>
+
+            <article class="service-item">
+              <div class="service-item__visual service-item__visual--fire" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none"><path d="M32 12c4 8 2 12-2 16 8 0 14 6 14 14a14 14 0 1 1-28 0c0-10 8-16 16-30z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </div>
+              <h3>BBQやキャンプも</h3>
+              <p>山といえばキャンプファイヤーや天体観測。施設内にあるものは何でも使ってOK</p>
+            </article>
+
+            <article class="service-item">
+              <div class="service-item__visual service-item__visual--stars" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none"><path d="M32 10l3.5 12.5L48 26l-12.5 3.5L32 42l-3.5-12.5L16 26l12.5-3.5L32 10z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="48" cy="44" r="2" fill="currentColor"/><circle cx="16" cy="46" r="1.5" fill="currentColor"/></svg>
+              </div>
+              <h3>夜には満点の星たち</h3>
+              <p>季節の星座を親子で楽しむ星空観察も、「でてこいランド」で過ごす夜の楽しみのひとつです。</p>
+            </article>
+
+            <article class="service-item">
+              <div class="service-item__visual service-item__visual--field" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none"><path d="M12 44c8-14 14-22 20-30 6 8 12 16 20 30" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10 48h44" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M32 14v34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <h3>土遊びに畑も</h3>
+              <p>近くに畑があり、みんなで野菜を育ててみよう！</p>
+            </article>
+          </div>
+          <div class="services__hint" aria-hidden="true">
+            <span>← スワイプして見る →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MID RESERVATION CTA -->
+    <section class="reserve-cta" id="reserve-mid" data-reveal aria-labelledby="reserve-mid-title">
+      <div class="reserve-cta__inner">
+        <p class="reserve-cta__label">RESERVATION</p>
+        <h2 id="reserve-mid-title">ご予約・アクセス</h2>
+        <p class="reserve-cta__text">ご予約は下記のお問い合わせフォームよりお送りください</p>
+        <div class="reserve-cta__actions">
+          <a class="btn btn--light" href="tel:09052907807">電話予約・ご相談<br /><span class="btn__sub">☎ 090-5290-7807</span></a>
+          <a class="btn btn--solid" href="#reserve">Web予約</a>
+        </div>
+        <p class="reserve-cta__note">※12/25 〜 1/7お休み</p>
+      </div>
+    </section>
+
+    <!-- 4. ABOUT / INTRO (live flow) -->
+    <section class="section about" id="about" data-reveal>
+      <div class="section__inner about__grid">
+        <div class="about__copy">
+          <p class="section__label">ABOUT</p>
+          <h2 class="section__title">さあ、外へ出よう。</h2>
+          <div class="prose">
+            <p>思いきり走ってもいい。大きな声で笑ってもいい。火を起こしてもいい。</p>
+            <p>自然の中では、大人も子どもも等しく「自由」です。</p>
+            <p>「でも、うちの子はみんなと違うから」「みんなに迷惑がかかるから」——そんな思いから、一歩を踏み出せずにいる人へ。私たちは、この場所から届けたい言葉があります。</p>
+            <p class="prose__emphasis">さあ外の世界へ、“でてこい！”</p>
+            <p>長崎でてこいランドという名前には、自然の中へ、人との出会いへ、まだ見ぬ感動へ飛び込もう。そんな願いが込められています。</p>
+          </div>
+        </div>
+        <figure class="about__figure">
+          <img src="./assets/images/cropped/lodge-day.jpg" alt="緑に囲まれた長崎でてこいランドのログハウス外観" width="900" height="700" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- FACILITIES / STAY -->
+    <section class="section facilities" id="facilities" data-reveal>
+      <div class="section__inner">
+        <header class="section__head section__head--left">
+          <p class="section__label">FACILITIES</p>
+          <h2 class="section__title">施設案内</h2>
+          <p class="section__lede">
+            でてこいランドには大きなコテージや広場があり、子供たちがそのままでいられることの楽しさを感じられるよう日々整えております。見守り人もすぐ見渡せるよう、開放的なつくりにしています。
+          </p>
+        </header>
+
+        <div class="facility-showcase">
+          <figure class="facility-showcase__media">
+            <img src="./assets/images/stay-ref.jpg" alt="夜、あたたかな灯りがともるログハウス" width="1100" height="700" loading="lazy" />
+          </figure>
+          <div class="facility-showcase__copy">
+            <p class="section__label">STAY</p>
+            <h3>広々コテージは約50名収容</h3>
+            <p>夜になると、ログハウスにはあたたかな灯りがともります。森の静けさの中で、家族や仲間とゆっくり過ごす時間を。</p>
+            <ul class="facility-list">
+              <li>テントもたてられる大きな広場</li>
+              <li>お風呂も大浴場があり、洗濯機なども完備</li>
+              <li>お部屋は和洋室、広さもいろいろ</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAR GAZING feature -->
+    <section class="section stars-block" data-reveal>
+      <div class="section__inner stars-block__grid">
+        <figure class="stars-block__media">
+          <img src="./assets/images/stargazing.jpg" alt="星の軌跡が描く夜空と森のシルエット" width="1000" height="1200" loading="lazy" />
+        </figure>
+        <div class="stars-block__copy">
+          <p class="section__label">STAR GAZING</p>
+          <h2 class="section__title section__title--on-dark">夜には満点の星たち</h2>
+          <p>山といえばキャンプファイヤーや天体観測。自由の先にある、本物の感動を、ぜひこの場所で見つけてください。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="section philosophy" id="philosophy" data-reveal>
+      <div class="section__inner philosophy__inner">
+        <header class="section__head">
+          <p class="section__label">PHILOSOPHY</p>
+          <h2 class="section__title">この場所への想い</h2>
+          <p class="section__lede">この場所を守り続ける理由。</p>
+        </header>
+        <div class="prose prose--center">
+          <p>長崎でてこいランドは、多くの人の想いが受け継がれながら歩んできた場所です。</p>
+          <p>廃業寸前だったこの場所を引き継いでから、少しずつ手を入れ、草を刈り、木を直し、花を植え、十年という歳月をかけて育んできました。</p>
+          <p>豪華な施設をつくりたかったわけではありません。子どもたちが季節の花に足を止め、火を囲み、星空に感動する。そんな「本物にふれる感動」を届けたかったのです。</p>
+          <p>私が大切にしているのは、「生きていてよかった」と心から思える瞬間。これからも、一人でも多くの人に感動を届け、みんなから愛される長崎でてこいランドを次世代に残し伝えてまいります。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FORM (simplified prototype) -->
+    <section class="section contact" id="contact" data-reveal>
+      <div class="section__inner contact__inner">
+        <header class="section__head">
+          <p class="section__label">Contact</p>
+          <h2 class="section__title">お問い合わせ</h2>
+          <p class="section__lede">
+            ご相談やご質問など、下記フォームよりお気軽にご相談ください。担当よりメールまたはお電話で折り返しご連絡させていただきます。
+          </p>
+        </header>
+
+        <form class="contact-form" action="#reserve" method="get" onsubmit="event.preventDefault(); alert('プロトタイプのため送信は行われません。正式な予約はライブサイトのフォームをご利用ください。');">
+          <label>
+            <span>必須 お名前</span>
+            <input type="text" name="name" placeholder="田中 太郎" required autocomplete="name" />
+          </label>
+          <label>
+            <span>必須 メールアドレス</span>
+            <input type="email" name="email" placeholder="example@abc.com" required autocomplete="email" />
+          </label>
+          <label>
+            <span>必須 電話番号</span>
+            <input type="tel" name="tel" placeholder="000-123-4567" required autocomplete="tel" />
+          </label>
+          <label>
+            <span>必須 お問い合わせ内容</span>
+            <textarea name="message" rows="5" placeholder="お問い合わせ内容や宿泊情報については、こちらに記載ください。" required></textarea>
+          </label>
+          <p class="contact-form__disclaimer">※このプロトタイプのフォームは送信されません。正式なWeb予約は現行サイトをご利用ください。</p>
+          <button class="btn btn--solid" type="submit">送信する</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 5. FINAL RESERVATION CTA -->
+    <section class="reserve-cta reserve-cta--final" id="reserve" data-reveal aria-labelledby="reserve-final-title">
+      <div class="reserve-cta__inner">
+        <p class="reserve-cta__label">RESERVATION</p>
+        <h2 id="reserve-final-title">ご予約・アクセス</h2>
+        <p class="reserve-cta__text">ご予約は下記のお問い合わせフォームよりお送りください</p>
+        <div class="reserve-cta__actions">
+          <a class="btn btn--light" href="tel:09052907807">電話予約・ご相談<br /><span class="btn__sub">☎ 090-5290-7807</span></a>
+          <a class="btn btn--solid" href="#contact">Web予約</a>
+        </div>
+        <address class="reserve-cta__address">
+          〒854-0093 長崎県諫早市本野町１３０３-５<br />
+          諫早駅から車で10分※無料駐車場あり
+        </address>
+        <p class="reserve-cta__note">※12/25 〜 1/7お休み</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <p class="brand-lockup__eyebrow">NPO法人</p>
+        <p class="site-footer__name">長崎でてこいランド</p>
+        <p>〒854-0093<br />長崎県諫早市本野町１３０３−５</p>
+      </div>
+      <div class="site-footer__aside">
+        <p>電話予約・ご相談<br /><a href="tel:09052907807">☎ 090-5290-7807</a></p>
+        <a class="btn btn--solid btn--compact" href="#contact">Web予約</a>
+        <nav class="site-footer__nav" aria-label="フッターナビ">
+          <a href="#about">でてこいランドとは</a>
+          <a href="#facilities">施設案内</a>
+          <a href="#services">体験できること</a>
+          <a href="#philosophy">この場所の想い</a>
+          <a href="#reserve">予約・アクセス</a>
+        </nav>
+      </div>
+    </div>
+    <p class="site-footer__meta">Prototype for Studio handoff · Based on live preview copy</p>
+  </footer>
+
+  <script src="./main.js" defer></script>
+</body>
+</html>
