@@ -37,17 +37,22 @@
   </header>
 
   <main id="main">
-    <!-- 1. HERO: live illustration + subtle star motion -->
-    <section class="hero" aria-label="ヒーロー">
+    <!-- 1. HERO: Drive/client facility photo + Daikanso-like text reveal -->
+    <section class="hero" id="hero" aria-label="ヒーロー">
       <div class="hero__frame">
-        <img class="hero__img" src="./assets/photos/01-hero-illustration.jpg" width="1200" height="600" alt="でてこいランドのログハウスと子どもたちが遊ぶ様子のイラスト" />
+        <img class="hero__img hero__photo" src="./assets/photos/01-hero-illustration.jpg" width="1200" height="600" alt="長崎でてこいランドの星空とあたたかな灯り" />
         <canvas class="hero__stars" data-starfield aria-hidden="true"></canvas>
-        <div class="hero__bubbles">
-          <p class="hero__bubble">五感が喜ぶ、</p>
-          <p class="hero__bubble">みんなの秘密基地</p>
-        </div>
-        <div class="hero__cta-row">
-          <a class="btn btn--green" href="#reserve">Web予約</a>
+        <div class="hero__veil" aria-hidden="true"></div>
+        <div class="hero__content">
+          <p class="hero__brand hero__reveal" data-reveal-delay="0">
+            <span>長崎でてこいランド</span>
+            <span class="hero__en">NAGASAKI DETEKOI LAND</span>
+          </p>
+          <h1 class="hero__catch hero__reveal" data-reveal-delay="1">五感が喜ぶ、<br />みんなの秘密基地</h1>
+          <p class="hero__support hero__reveal" data-reveal-delay="2">さあ、外へ出よう。自然の中では、大人も子どもも等しく「自由」です。</p>
+          <div class="hero__cta-row hero__reveal" data-reveal-delay="3">
+            <a class="btn btn--green" href="#reserve">Web予約</a>
+          </div>
         </div>
       </div>
     </section>
@@ -143,14 +148,27 @@
         <p class="section__lede">
           でてこいランドには大きなコテージや広場があり、子供たちがそのままでいられることの楽しさを感じられるよう日々整えております。見守り人もすぐ見渡せるよう、開放的なつくりにしています
         </p>
-        <figure class="facility-hero photo-round">
-          <img src="./assets/photos/04-facility-interior.jpg" alt="広々としたコテージの内観" width="1100" height="620" loading="lazy" />
-          <figcaption>広々コテージは約50名収容</figcaption>
-        </figure>
+        <div class="facility-slideshow photo-round" data-facility-slideshow aria-roledescription="carousel" aria-label="施設写真スライドショー">
+          <div class="facility-slideshow__viewport">
+            <img class="is-active" src="./assets/photos/slides/slide-01-night-lodge.jpg" alt="夜、あたたかな灯りがともるログハウス" width="1100" height="620" />
+            <img src="./assets/photos/slides/slide-02-genkan.jpg" alt="でてこいランドの玄関" width="1100" height="620" loading="lazy" />
+            <img src="./assets/photos/slides/slide-03-deck.jpg" alt="デッキとDETEKOIのサイン" width="1100" height="620" loading="lazy" />
+            <img src="./assets/photos/slides/slide-04-hall.jpg" alt="円卓のある共用スペース" width="1100" height="620" loading="lazy" />
+            <img src="./assets/photos/slides/slide-05-totoro.jpg" alt="入口のトトロ岩" width="1100" height="620" loading="lazy" />
+            <img src="./assets/photos/slides/slide-06-bath.jpg" alt="大浴場" width="1100" height="620" loading="lazy" />
+            <img src="./assets/photos/slides/slide-07-washitsu.jpg" alt="和室のお部屋" width="1100" height="620" loading="lazy" />
+            <img src="./assets/photos/slides/slide-08-toys.jpg" alt="おもちゃコーナー" width="1100" height="620" loading="lazy" />
+            <img src="./assets/photos/slides/slide-09-field.jpg" alt="大きな広場" width="1100" height="620" loading="lazy" />
+            <img src="./assets/photos/slides/slide-10-entrance.jpg" alt="施設へのアプローチ" width="1100" height="620" loading="lazy" />
+          </div>
+          <div class="facility-slideshow__dots" data-slideshow-dots aria-hidden="true"></div>
+          <button type="button" class="facility-slideshow__btn facility-slideshow__btn--prev" data-slideshow-prev aria-label="前の写真">‹</button>
+          <button type="button" class="facility-slideshow__btn facility-slideshow__btn--next" data-slideshow-next aria-label="次の写真">›</button>
+        </div>
         <div class="facility-strip">
           <figure class="photo-round">
-            <img src="./assets/photos/09-campfire.jpg" alt="テントもたてられる広場まわり" width="600" height="400" loading="lazy" />
-            <figcaption>テントもたてられる大きな広場</figcaption>
+            <img src="./assets/photos/04-facility-interior.jpg" alt="円卓のある共用スペース" width="600" height="400" loading="lazy" />
+            <figcaption>円卓のある共用スペース</figcaption>
           </figure>
           <figure class="photo-round">
             <img src="./assets/photos/07-bath.jpg" alt="大浴場" width="600" height="400" loading="lazy" />

@@ -23,6 +23,12 @@
     });
   }
 
+  // Daikanso-like hero settle → enable Ken Burns after entrance
+  const hero = document.querySelector(".hero");
+  if (hero) {
+    window.setTimeout(() => hero.classList.add("is-settled"), reduceMotion ? 0 : 1600);
+  }
+
   const reveals = document.querySelectorAll("[data-reveal]");
   if (!reduceMotion && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(
@@ -40,6 +46,47 @@
   } else {
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
+
+  // Facility stay-panel slideshow (fade)
+  document.querySelectorAll("[data-facility-slideshow]").forEach((root) => {
+    const slides = Array.from(root.querySelectorAll(".facility-slideshow__viewport img"));
+    if (slides.length < 2) return;
+    const dotsWrap = root.querySelector("[data-slideshow-dots]");
+    let index = Math.max(0, slides.findIndex((img) => img.classList.contains("is-active")));
+    let timer = 0;
+
+    const dots = slides.map((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", `写真 ${i + 1}`);
+      b.addEventListener("click", () => go(i, true));
+      dotsWrap?.appendChild(b);
+      return b;
+    });
+
+    function paint() {
+      slides.forEach((img, i) => img.classList.toggle("is-active", i === index));
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+    }
+
+    function go(next, user) {
+      index = (next + slides.length) % slides.length;
+      paint();
+      if (user) restart();
+    }
+
+    function restart() {
+      window.clearInterval(timer);
+      if (!reduceMotion) timer = window.setInterval(() => go(index + 1, false), 4200);
+    }
+
+    root.querySelector("[data-slideshow-prev]")?.addEventListener("click", () => go(index - 1, true));
+    root.querySelector("[data-slideshow-next]")?.addEventListener("click", () => go(index + 1, true));
+    root.addEventListener("mouseenter", () => window.clearInterval(timer));
+    root.addEventListener("mouseleave", restart);
+    paint();
+    restart();
+  });
 
   const canvas = document.querySelector("[data-starfield]");
   if (!canvas || !(canvas instanceof HTMLCanvasElement)) return;
