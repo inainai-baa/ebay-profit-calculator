@@ -23,10 +23,31 @@
     });
   }
 
-  // Daikanso-like hero settle → enable Ken Burns after entrance
+  // Daikanso-like hero settle → enable Ken Burns after soft text entrance
   const hero = document.querySelector(".hero");
   if (hero) {
-    window.setTimeout(() => hero.classList.add("is-settled"), reduceMotion ? 0 : 1600);
+    window.setTimeout(() => hero.classList.add("is-settled"), reduceMotion ? 0 : 3200);
+  }
+
+  // Soft “ふわっ” reveal for stay catchcopy when section enters view
+  const softs = document.querySelectorAll(".soft-reveal");
+  if (softs.length) {
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      const softIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-shown");
+              softIo.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      softs.forEach((el) => softIo.observe(el));
+    } else {
+      softs.forEach((el) => el.classList.add("is-shown"));
+    }
   }
 
   const reveals = document.querySelectorAll("[data-reveal]");
