@@ -167,7 +167,6 @@
             <img class="is-active" src="./assets/photos/slides/slide-01-night-lodge.jpg" alt="夜、あたたかな灯りがともるログハウス" width="1100" height="620" />
             <img src="./assets/photos/slides/slide-02-genkan.jpg" alt="でてこいランドの玄関" width="1100" height="620" loading="lazy" />
             <img src="./assets/photos/slides/slide-03-deck.jpg" alt="デッキとDETEKOIのサイン" width="1100" height="620" loading="lazy" />
-            <img src="./assets/photos/slides/slide-04-hall.jpg" alt="円卓のある共用スペース" width="1100" height="620" loading="lazy" />
             <img src="./assets/photos/slides/slide-05-totoro.jpg" alt="入口のトトロ岩" width="1100" height="620" loading="lazy" />
             <img src="./assets/photos/slides/slide-06-bath.jpg" alt="大浴場" width="1100" height="620" loading="lazy" />
             <img src="./assets/photos/slides/slide-07-washitsu.jpg" alt="和室のお部屋" width="1100" height="620" loading="lazy" />
@@ -200,18 +199,20 @@
     <section class="section philosophy" id="philosophy" data-reveal>
       <div class="blob blob--tl" aria-hidden="true"></div>
       <div class="section__inner">
-        <h2 class="section__title">この場所への想い</h2>
-        <p class="section__lede">この場所を守り続ける理由。</p>
-        <div class="prose prose--narrow">
-          <p>長崎でてこいランドは、多くの人の想いが受け継がれながら歩んできた場所です。</p>
-          <p>廃業寸前だったこの場所を引き継いでから、少しずつ手を入れ、草を刈り、木を直し、花を植え、十年という歳月をかけて育んできました。</p>
-          <p>豪華な施設をつくりたかったわけではありません。子どもたちが季節の花に足を止め、火を囲み、星空に感動する。そんな「本物にふれる感動」を届けたかったのです。</p>
-          <p>私が大切にしているのは、「生きていてよかった」と心から思える瞬間。自分を育ててくれた先代の教えと、一緒に支えてくれた友人の言葉を胸に、私は生涯をかけてこの場所を守り続けていきたい。</p>
-          <p>これからも、一人でも多くの人に感動を届け、みんなから愛される長崎でてこいランドを次世代に残し伝えてまいります。</p>
+        <h2 class="section__title section__title--left">この場所への想い</h2>
+        <p class="section__lede section__lede--left">この場所を守り続ける理由。</p>
+        <div class="philosophy-grid">
+          <figure class="photo-round philosophy__portrait">
+            <img src="./assets/photos/17-director-illust.jpg" alt="長崎でてこいランド 似顔絵" width="600" height="800" loading="lazy" />
+          </figure>
+          <div class="prose philosophy-copy">
+            <p>長崎でてこいランドは、多くの人の想いが受け継がれながら歩んできた場所です。</p>
+            <p>廃業寸前だったこの場所を引き継いでから、少しずつ手を入れ、草を刈り、木を直し、花を植え、十年という歳月をかけて育んできました。</p>
+            <p>豪華な施設をつくりたかったわけではありません。子どもたちが季節の花に足を止め、火を囲み、星空に感動する。そんな「本物にふれる感動」を届けたかったのです。</p>
+            <p>私が大切にしているのは、「生きていてよかった」と心から思える瞬間。自分を育ててくれた先代の教えと、一緒に支えてくれた友人の言葉を胸に、私は生涯をかけてこの場所を守り続けていきたい。</p>
+            <p>これからも、一人でも多くの人に感動を届け、みんなから愛される長崎でてこいランドを次世代に残し伝えてまいります。</p>
+          </div>
         </div>
-        <figure class="photo-round philosophy__portrait">
-          <img src="./assets/photos/17-director-illust.jpg" alt="長崎でてこいランド 似顔絵" width="600" height="800" loading="lazy" />
-        </figure>
         <figure class="photo-round philosophy__photo">
           <img src="./assets/photos/16-porch-detekoi.jpg" alt="でてこいランドの入口・アプローチ" width="1000" height="560" loading="lazy" />
         </figure>
@@ -273,34 +274,36 @@
 
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <div>
-        <div class="logo logo--footer">
-          <span class="logo__icon" aria-hidden="true"></span>
-          <span class="logo__text">
-            <span class="logo__eyebrow">NPO法人</span>
-            <span class="logo__name">長崎でてこいランド</span>
-          </span>
+      <div class="site-footer__left">
+        <div>
+          <div class="logo logo--footer">
+            <span class="logo__icon" aria-hidden="true"></span>
+            <span class="logo__text">
+              <span class="logo__eyebrow">NPO法人</span>
+              <span class="logo__name">長崎でてこいランド</span>
+            </span>
+          </div>
+          <p class="site-footer__addr">
+            〒854-0093<br />
+            長崎県諫早市本野町１３０３−５
+          </p>
         </div>
-        <p class="site-footer__addr">
-          〒854-0093<br />
-          長崎県諫早市本野町１３０３−５
-        </p>
+        <a
+          class="site-footer__map"
+          href="https://www.google.com/maps/search/?api=1&query=%E9%95%B7%E5%B4%8E%E3%81%A7%E3%81%A6%E3%81%93%E3%81%84%E3%83%A9%E3%83%B3%E3%83%89+%E8%AB%A7%E6%97%A9%E5%B8%82%E6%9C%AC%E9%87%8E%E7%94%BA"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Googleマップで長崎でてこいランドの場所を開く"
+        >
+          <iframe
+            title="長崎でてこいランドの地図"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=%E9%95%B7%E5%B4%8E%E3%81%A7%E3%81%A6%E3%81%93%E3%81%84%E3%83%A9%E3%83%B3%E3%83%89+%E8%AB%A7%E6%97%A9%E5%B8%82%E6%9C%AC%E9%87%8E%E7%94%BA&z=15&output=embed&hl=ja"
+          ></iframe>
+          <span class="site-footer__map-caption">地図を開く</span>
+        </a>
       </div>
-      <a
-        class="site-footer__map"
-        href="https://www.google.com/maps/search/?api=1&query=%E9%95%B7%E5%B4%8E%E3%81%A7%E3%81%A6%E3%81%93%E3%81%84%E3%83%A9%E3%83%B3%E3%83%89+%E8%AB%A7%E6%97%A9%E5%B8%82%E6%9C%AC%E9%87%8E%E7%94%BA"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Googleマップで長崎でてこいランドの場所を開く"
-      >
-        <iframe
-          title="長崎でてこいランドの地図"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://maps.google.com/maps?q=%E9%95%B7%E5%B4%8E%E3%81%A7%E3%81%A6%E3%81%93%E3%81%84%E3%83%A9%E3%83%B3%E3%83%89+%E8%AB%A7%E6%97%A9%E5%B8%82%E6%9C%AC%E9%87%8E%E7%94%BA&z=15&output=embed&hl=ja"
-        ></iframe>
-        <span class="site-footer__map-caption">地図を開く</span>
-      </a>
       <div class="site-footer__aside">
         <p>電話予約・ご相談<br /><a href="tel:09052907807">☎ 090-5290-7807</a></p>
         <a class="btn btn--green" href="#contact">Web予約</a>
