@@ -430,7 +430,6 @@ button, input, textarea { font: inherit; }
   margin: 0;
 }
 
-.section__title--left { text-align: left; }
 .section__lede--left { text-align: left; margin-left: 0; margin-right: 0; }
 
 .reserve-block,
