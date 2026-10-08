@@ -64,13 +64,13 @@ button, input, textarea { font: inherit; }
 .hero__veil {
   position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(7,19,31,.62), rgba(7,19,31,.42) 38%, rgba(7,19,31,.72)),
-    radial-gradient(ellipse at 50% 42%, rgba(0,0,0,.22), transparent 58%);
+    linear-gradient(180deg, rgba(7,19,31,.68), rgba(7,19,31,.52) 36%, rgba(7,19,31,.78)),
+    radial-gradient(ellipse at 50% 48%, rgba(0,0,0,.34), transparent 62%);
 }
 .hero__content {
   position: relative; z-index: 1; text-align: center;
   padding: 4rem 1.25rem 5rem; max-width: 46rem;
-  text-shadow: 0 2px 28px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.4);
+  text-shadow: 0 3px 32px rgba(0,0,0,.65), 0 1px 3px rgba(0,0,0,.55);
 }
 .hero__brand { margin: 0 0 1.15rem; display: grid; gap: .35rem; }
 .hero__brand span:first-child {

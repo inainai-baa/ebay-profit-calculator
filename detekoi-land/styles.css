@@ -192,8 +192,8 @@ button, input, textarea { font: inherit; }
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(12, 36, 28, 0.58), rgba(12, 36, 28, 0.38) 40%, rgba(12, 36, 28, 0.7)),
-    radial-gradient(ellipse at 50% 42%, rgba(0, 0, 0, 0.2), transparent 58%);
+    linear-gradient(180deg, rgba(12, 36, 28, 0.64), rgba(12, 36, 28, 0.48) 40%, rgba(12, 36, 28, 0.76)),
+    radial-gradient(ellipse at 50% 48%, rgba(0, 0, 0, 0.3), transparent 62%);
 }
 
 .hero__content {
@@ -203,7 +203,7 @@ button, input, textarea { font: inherit; }
   color: #fff;
   padding: clamp(2.5rem, 6vw, 4.5rem) 1.25rem;
   max-width: 40rem;
-  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 3px 32px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .hero__brand {
