@@ -218,29 +218,41 @@ button, input, textarea { font: inherit; }
   padding: 0.55rem 0.25rem;
   opacity: 0.92;
 }
-.stay-panel__visual img {
+/* Single-image footprint only — do not style slideshow slides here */
+.stay-panel__visual > img {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: 14px;
 }
 
+/* Same footprint as the previous single photo (16:10), fade inside the box */
 .facility-slideshow {
   position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: min(280px, 42vw);
   border-radius: 14px;
   overflow: hidden;
   background: #040a12;
 }
 .facility-slideshow__viewport {
-  position: relative;
-  aspect-ratio: 16 / 10;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 .facility-slideshow__viewport img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
+  max-height: none;
+  aspect-ratio: auto;
   object-fit: cover;
+  object-position: center;
   border-radius: 0;
   opacity: 0;
   transition: opacity 900ms var(--ease);
