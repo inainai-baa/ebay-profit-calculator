@@ -13,8 +13,7 @@ Active folder: `photos/`. Drop-in inbox: `REPLACE_PHOTOS_HERE/` (same filenames)
 | Stay slide 05 | `slides/slide-05-desks.jpg` | client HQ `hq-desks-chalkboard.jpg` |
 | Bath | `07-bath.jpg` | client `5915bd4f` |
 | Washitsu | `06-guest-room.jpg` | client `a663b795` |
-| Toys | `08-toys.jpg` | client `cf8bd529` |
-| BBQ | `09-campfire.jpg` | Drive `DSCF9590` |
+| BBQ | `09-campfire.jpg` | client shichirin night (kept) |
 | Totoro (experience) | `13-totoro-rocks.jpg` | client `0c3fdd68` (kept; not the overlapping slideshow slot) |
 | Caricature | `17-director-illust.jpg` | Studio CDN (kept) |
 | Facility overview | `facility-overview.jpg` | client HQ `hq-hall-tidied.jpg` |
