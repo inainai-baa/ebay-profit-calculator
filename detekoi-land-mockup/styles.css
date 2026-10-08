@@ -575,8 +575,21 @@ body.nav-open { overflow: hidden; }
     text-align: center;
     justify-content: center;
   }
-  .services { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; }
-  .services article { flex: 0 0 min(78vw, 280px); scroll-snap-align: start; }
+  .services {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    gap: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* % of track (not vw) so snap stays aligned after the first card */
+  .services article {
+    flex: 0 0 min(82%, 18.5rem);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
   .swipe-hint { display: block; margin-top: 1rem; }
   .split, .split--rev { grid-template-columns: 1fr; }
   .stay-panel { grid-template-columns: 1fr; }

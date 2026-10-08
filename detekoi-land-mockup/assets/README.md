@@ -8,6 +8,7 @@ Active folder: `photos/`. Drop-in inbox: `REPLACE_PHOTOS_HERE/` (same filenames)
 | Experience · 星空 | `14-star-trails.jpg` | same HQ star |
 | 玄関 | `16-porch-detekoi.jpg` | client genkan `c59a51b4` |
 | 円卓 strip | `04-facility-interior.jpg` | Drive `IMG_2302.JPG` |
+| Toys card | `08-toys.jpg` | client HQ `piano-keyboard.jpg` |
 | Stay slideshow | `photos/slides/slide-01…10.jpg` | Drive + client facility set |
 | Stay slide 05 | `slides/slide-05-desks.jpg` | client HQ `hq-desks-chalkboard.jpg` |
 | Bath | `07-bath.jpg` | client `5915bd4f` |
