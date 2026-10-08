@@ -1,19 +1,5 @@
-Replace client photos here, then copy into ../photos/ using the same filenames:
+Drop client photos here using the exact filenames listed in
+Project store `docs/detekoi-land-prototype.md` → 「写真受け取り準備」,
+then copy/overwrite into `../photos/`.
 
-01-hero-illustration.jpg
-02-entrance-sign.jpg
-03-butterfly.jpg
-04-facility-interior.jpg
-05-facility-hall.jpg
-06-guest-room.jpg
-07-bath.jpg
-08-toys.jpg
-09-campfire.jpg
-10-field-scarecrow.jpg
-11-lodge-exterior.jpg
-12-maple-leaves.jpg
-13-totoro-rocks.jpg
-14-star-trails.jpg
-15-lodge-night.jpg
-
-Keep JPG (or update HTML src). Prefer ~1600px wide. No UI chrome in the image.
+Prefer JPG ~1200–1600px wide, no UI chrome in the frame.

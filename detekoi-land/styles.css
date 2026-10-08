@@ -305,6 +305,35 @@ button, input, textarea { font: inherit; }
   color: var(--muted);
 }
 
+.section__catch {
+  margin: 0.75rem auto 0;
+  text-align: center;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  color: var(--heading);
+  letter-spacing: 0.04em;
+}
+
+.philosophy__portrait {
+  margin: 2rem auto 0;
+  max-width: 380px;
+}
+
+.philosophy__portrait img {
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.reserve-block,
+.section {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
 .section__eyebrow {
   margin: 0 0 0.4rem;
   text-align: center;
