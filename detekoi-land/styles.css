@@ -60,6 +60,7 @@ button, input, textarea { font: inherit; }
 }
 
 .site-header__inner {
+  position: relative;
   max-width: 1180px;
   margin: 0 auto;
   min-height: var(--header-h);
@@ -140,13 +141,28 @@ button, input, textarea { font: inherit; }
   cursor: pointer;
 }
 
-.nav-toggle span {
+.nav-toggle span:not(.visually-hidden) {
   display: block;
   height: 2px;
   margin: 5px 0;
   background: var(--heading);
   border-radius: 2px;
+  transition: transform 0.25s var(--ease), opacity 0.2s var(--ease);
 }
+
+.nav-toggle[aria-expanded="true"] span:not(.visually-hidden):nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:not(.visually-hidden):nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:not(.visually-hidden):nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+body.nav-open { overflow: hidden; }
 
 /* Hero — facility photo + Daikanso-like staggered text reveal */
 .hero {
@@ -850,11 +866,11 @@ button, input, textarea { font: inherit; }
 .site-footer__inner {
   max-width: var(--max);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(1.4rem, 5vw, 3rem);
-  align-items: end;
-  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: clamp(1.75rem, 4vw, 3.25rem);
 }
 
 .site-footer__left {
@@ -863,6 +879,7 @@ button, input, textarea { font: inherit; }
   align-items: flex-start;
   gap: 1rem;
   max-width: 34rem;
+  flex: 0 1 auto;
 }
 
 .site-footer__map {
@@ -904,6 +921,8 @@ button, input, textarea { font: inherit; }
   display: grid;
   gap: 0.9rem;
   justify-items: start;
+  flex: 0 0 auto;
+  max-width: 18rem;
 }
 
 .site-footer__aside a { color: var(--green); font-weight: 700; }
@@ -999,11 +1018,17 @@ button, input, textarea { font: inherit; }
   .section__lede--left { text-align: center; margin-inline: auto; }
 
   .site-footer__inner {
-    grid-template-columns: 1fr;
-    align-items: start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
   }
 
   .site-footer__left {
+    max-width: none;
+    width: 100%;
+  }
+
+  .site-footer__aside {
     max-width: none;
   }
 

@@ -3,16 +3,21 @@
 
   const toggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector("[data-site-nav]");
+  const setNavOpen = (open) => {
+    if (!toggle || !nav) return;
+    nav.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("nav-open", open);
+  };
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(open));
+      setNavOpen(!nav.classList.contains("is-open"));
     });
     nav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
+      link.addEventListener("click", () => setNavOpen(false));
+    });
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setNavOpen(false);
     });
   }
 

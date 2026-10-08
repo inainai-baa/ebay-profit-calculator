@@ -16,8 +16,19 @@
   <header class="site-header">
     <div class="wrap header__inner">
       <a class="logo" href="#top">NPO法人 長崎でてこいランド</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" data-nav-toggle aria-controls="nav">メニュー</button>
-      <nav id="nav" class="nav" data-site-nav>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav"
+        data-nav-toggle
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span class="visually-hidden">メニュー</span>
+      </button>
+      <nav id="nav" class="nav" data-site-nav aria-label="メインメニュー">
         <a href="#about">でてこいランドとは</a>
         <a href="#facilities">施設案内</a>
         <a href="#services">体験できること</a>
@@ -43,7 +54,7 @@
         <p class="hero__support hero__reveal" data-reveal-delay="2">さあ、外へ出よう。自然の中では、大人も子どもも等しく「自由」です。</p>
         <div class="hero__actions hero__reveal" data-reveal-delay="3">
           <a class="btn btn--solid" href="#reserve">Web予約</a>
-          <a class="btn btn--ghost" href="#services">体験できること</a>
+          <a class="btn btn--hero-secondary" href="#services">体験できること</a>
         </div>
       </div>
     </section>
