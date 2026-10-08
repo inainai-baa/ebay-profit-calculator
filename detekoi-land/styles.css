@@ -408,21 +408,23 @@ button, input, textarea { font: inherit; }
 .philosophy-grid {
   margin-top: 1.75rem;
   display: grid;
-  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
+  gap: clamp(1.4rem, 3.5vw, 2.6rem);
   align-items: start;
 }
 
 .philosophy__portrait {
   margin: 0;
-  max-width: none;
+  max-width: 260px;
 }
 
 .philosophy__portrait img {
   width: 100%;
   min-height: 0;
+  max-height: 340px;
   aspect-ratio: 3 / 4;
   object-fit: cover;
+  object-position: top center;
 }
 
 .philosophy-copy {
@@ -601,9 +603,13 @@ button, input, textarea { font: inherit; }
 /* About */
 .about__grid {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
+  grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: start;
+  align-items: center;
+}
+
+.about__grid > .photo-round {
+  max-width: 420px;
 }
 
 .photo-round img,
@@ -614,9 +620,18 @@ button, input, textarea { font: inherit; }
 
 .photo-round img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 340px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  min-height: 280px;
+  object-position: center;
+}
+
+.philosophy__photo img,
+.facility-overview img,
+.facility-slideshow__viewport img,
+.facility-strip img {
+  max-height: none;
 }
 
 .prose p { margin: 0 0 0.85rem; color: var(--body); }
@@ -975,7 +990,8 @@ button, input, textarea { font: inherit; }
 
   .philosophy-grid { grid-template-columns: 1fr; }
   .philosophy-copy { order: 1; }
-  .philosophy__portrait { order: 2; max-width: 340px; margin: 0 auto; }
+  .philosophy__portrait { order: 2; max-width: 280px; margin: 0 auto; }
+  .about__grid > .photo-round { max-width: none; }
   .section__title--left,
   .section__lede--left { text-align: center; margin-inline: auto; }
 
