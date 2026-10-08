@@ -231,7 +231,6 @@ button, input, textarea { font: inherit; }
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  max-height: min(280px, 42vw);
   border-radius: 14px;
   overflow: hidden;
   background: #040a12;
