@@ -172,7 +172,7 @@ button, input, textarea { font: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center 42%;
   opacity: 0;
   transform: scale(1.08);
   animation: heroBgIn 1500ms var(--ease) forwards;
@@ -182,15 +182,9 @@ button, input, textarea { font: inherit; }
   animation: heroBgIn 1500ms var(--ease) forwards, heroKenBurns 20s ease-in-out 1.5s infinite alternate;
 }
 
+/* Daytime campsite hero — hide night starfield */
 .hero__stars {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.28;
-  mix-blend-mode: soft-light;
-  pointer-events: none;
-  z-index: 1;
+  display: none;
 }
 
 .hero__veil {
@@ -198,7 +192,8 @@ button, input, textarea { font: inherit; }
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(12, 36, 28, 0.45), rgba(12, 36, 28, 0.22) 40%, rgba(12, 36, 28, 0.72));
+    linear-gradient(180deg, rgba(12, 36, 28, 0.58), rgba(12, 36, 28, 0.38) 40%, rgba(12, 36, 28, 0.7)),
+    radial-gradient(ellipse at 50% 42%, rgba(0, 0, 0, 0.2), transparent 58%);
 }
 
 .hero__content {
@@ -208,7 +203,7 @@ button, input, textarea { font: inherit; }
   color: #fff;
   padding: clamp(2.5rem, 6vw, 4.5rem) 1.25rem;
   max-width: 40rem;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.28);
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 .hero__brand {
