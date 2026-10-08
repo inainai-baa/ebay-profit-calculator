@@ -182,18 +182,13 @@ button, input, textarea { font: inherit; }
   animation: heroBgIn 1500ms var(--ease) forwards, heroKenBurns 20s ease-in-out 1.5s infinite alternate;
 }
 
-/* Daytime campsite hero — hide night starfield */
+/* Daytime campsite hero — hide night starfield; keep source image shadows as-is */
 .hero__stars {
   display: none;
 }
 
 .hero__veil {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(12, 36, 28, 0.64), rgba(12, 36, 28, 0.48) 40%, rgba(12, 36, 28, 0.76)),
-    radial-gradient(ellipse at 50% 48%, rgba(0, 0, 0, 0.3), transparent 62%);
+  display: none;
 }
 
 .hero__content {
@@ -203,7 +198,20 @@ button, input, textarea { font: inherit; }
   color: #fff;
   padding: clamp(2.5rem, 6vw, 4.5rem) 1.25rem;
   max-width: 40rem;
-  text-shadow: 0 3px 32px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.5);
+  /* Text-only readability — no full-bleed dim over the art */
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 2px 14px rgba(0, 0, 0, 0.35),
+    0 0 28px rgba(0, 0, 0, 0.22);
+}
+
+.hero__content::before {
+  content: "";
+  position: absolute;
+  inset: 10% 6%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 45%, rgba(0, 0, 0, 0.14), transparent 68%);
 }
 
 .hero__brand {

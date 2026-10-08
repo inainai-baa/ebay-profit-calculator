@@ -59,18 +59,27 @@ button, input, textarea { font: inherit; }
 .hero.is-settled .hero__photo {
   animation: heroBgIn 1500ms var(--ease) forwards, heroKenBurns 20s ease-in-out 1.5s infinite alternate;
 }
-/* Daytime campsite hero — hide night starfield */
+/* Daytime campsite hero — hide night starfield; keep source image shadows as-is */
 .hero__media canvas { display: none; }
 .hero__veil {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(180deg, rgba(7,19,31,.68), rgba(7,19,31,.52) 36%, rgba(7,19,31,.78)),
-    radial-gradient(ellipse at 50% 48%, rgba(0,0,0,.34), transparent 62%);
+  display: none;
 }
 .hero__content {
   position: relative; z-index: 1; text-align: center;
   padding: 4rem 1.25rem 5rem; max-width: 46rem;
-  text-shadow: 0 3px 32px rgba(0,0,0,.65), 0 1px 3px rgba(0,0,0,.55);
+  /* Text-only readability — no full-bleed dim over the art */
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.5),
+    0 2px 14px rgba(0,0,0,.35),
+    0 0 28px rgba(0,0,0,.22);
+}
+.hero__content::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,.16), transparent 68%);
 }
 .hero__brand { margin: 0 0 1.15rem; display: grid; gap: .35rem; }
 .hero__brand span:first-child {
