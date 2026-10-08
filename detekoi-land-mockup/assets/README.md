@@ -15,3 +15,5 @@ Active folder: `photos/`. Drop-in inbox: `REPLACE_PHOTOS_HERE/` (same filenames)
 | BBQ | `09-campfire.jpg` | Drive `DSCF9590` |
 | Totoro | `13-totoro-rocks.jpg` | client `0c3fdd68` |
 | Caricature | `17-director-illust.jpg` | Studio CDN (kept) |
+| Facility overview | `facility-overview.jpg` | Drive `DSCF9552.JPG` |
+| ABOUT outdoor | `16-porch-detekoi.jpg` | Drive `DSCF9507.JPG` |

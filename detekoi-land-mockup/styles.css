@@ -174,8 +174,22 @@ button, input, textarea { font: inherit; }
   overflow: hidden;
 }
 
+.facility-overview {
+  margin: 1.5rem 0 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #dfe8e2;
+}
+.facility-overview img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
 .stay-panel {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 1.5rem;
