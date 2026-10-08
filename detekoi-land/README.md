@@ -1,20 +1,9 @@
-# 長崎でてこいランド — Web Prototype
+# Variant A removed
 
-High-fidelity static prototype for Studio rebuild handoff.
+This path previously hosted prototype Variant A.
 
-## Local preview
+It now **redirects** to the official site:
 
-```bash
-cd detekoi-land
-python3 -m http.server 8765
-# open http://localhost:8765
-```
+https://detekoiland-nagasaki.jp/
 
-## Structure
-
-- `index.html` — full IA (hero → services → mid CTA → storytelling → final CTA)
-- `styles.css` — nature / wood / night-sky design system
-- `main.js` — starfield canvas, mobile nav, reveal motion, services slider
-- `assets/images/` — hero, feature, and reference crops from live preview
-
-Copy source of truth: Studio live preview `https://preview.studio.site/live/bXqz0D5pWD/`
+(Source design / Pages mockup B: `../detekoi-land-mockup/`)
