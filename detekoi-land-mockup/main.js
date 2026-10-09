@@ -20,13 +20,8 @@
     });
   }
 
-  const form = document.querySelector("[data-proto-form]");
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      alert("プロトタイプのため送信は行われません。正式な予約はライブサイトをご利用ください。");
-    });
-  }
+  // Studio form destination: https://detekoiland-nagasaki.jp/#contact
+  // (native Studio form お問い合わせ_04 — no external Google Form URL)
 
   // Daikanso-like hero settle → enable Ken Burns after soft text entrance
   const hero = document.querySelector(".hero");
