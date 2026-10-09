@@ -488,6 +488,8 @@ body.nav-open { overflow: hidden; }
 
 .narrow { max-width: 720px; }
 .wide { margin-top: 2rem; }
+.contact-form-cta { margin: 1.5rem 0 0; }
+.contact-form-cta .btn { display: inline-flex; }
 .form { margin-top: 1.5rem; display: grid; gap: .9rem; }
 .form label { display: grid; gap: .35rem; font-size: .9rem; color: var(--soft); }
 .form input, .form textarea {
