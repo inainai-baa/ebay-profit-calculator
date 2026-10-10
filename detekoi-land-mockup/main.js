@@ -164,4 +164,15 @@
     resize();
     draw();
   });
+
+  // SuperSaaS day-rental embed: activate when data-supersaas-schedule-url is set
+  const booking = document.querySelector("#supersaas-booking");
+  if (booking) {
+    const url = (booking.getAttribute("data-supersaas-schedule-url") || "").trim();
+    const frame = booking.querySelector("[data-supersaas-embed]");
+    if (url && frame) {
+      frame.src = url;
+      booking.classList.add("is-ready");
+    }
+  }
 })();

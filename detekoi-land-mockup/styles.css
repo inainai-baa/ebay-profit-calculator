@@ -490,6 +490,36 @@ body.nav-open { overflow: hidden; }
 .wide { margin-top: 2rem; }
 .contact-form-cta { margin: 1.5rem 0 0; }
 .contact-form-cta .btn { display: inline-flex; }
+
+.booking-calendar {
+  margin: 1.5rem auto 0;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+}
+.booking-calendar__frame {
+  display: none;
+  width: 100%;
+  height: 420px;
+  border: 0;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 28px rgba(31, 61, 50, 0.08);
+}
+.booking-calendar.is-ready .booking-calendar__frame { display: block; }
+.booking-calendar.is-ready .booking-calendar__fallback { display: none; }
+.booking-calendar__fallback {
+  text-align: center;
+  padding: 1.4rem 1.1rem 1.2rem;
+  border-radius: 16px;
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.78), rgba(247, 244, 238, 0.92)),
+    radial-gradient(circle at 20% 0%, rgba(6, 179, 103, 0.12), transparent 55%);
+  border: 1px solid rgba(31, 61, 50, 0.1);
+}
+.booking-calendar__fallback p { margin: 0; color: var(--soft); }
+.booking-calendar__fallback .note { margin-top: 0.7rem; }
+.booking-calendar__fallback .contact-form-cta { margin-top: 1.1rem; }
 .form { margin-top: 1.5rem; display: grid; gap: .9rem; }
 .form label { display: grid; gap: .35rem; font-size: .9rem; color: var(--soft); }
 .form input, .form textarea {

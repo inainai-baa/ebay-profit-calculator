@@ -268,6 +268,42 @@
       </div>
     </section>
 
+    <!-- BOOKING calendar (SuperSaaS day rental) -->
+    <section class="section section--soft" id="booking" data-reveal>
+      <div class="wrap narrow">
+        <p class="label">Booking</p>
+        <h2>空き状況・日貸し予約</h2>
+        <p class="lede">カレンダーから空き日を選んで日貸し予約ができます。予約が入った日は自動で埋まります。ご相談のみの方は下のお問い合わせへ。</p>
+        <div
+          class="booking-calendar"
+          id="supersaas-booking"
+          data-supersaas-account="detekoiland"
+          data-supersaas-schedule-url=""
+        >
+          <!--
+            After SuperSaaS schedule is live, set data-supersaas-schedule-url
+            (e.g. https://www.supersaas.jp/schedule/detekoiland/日貸し)
+            or replace the iframe src below.
+          -->
+          <iframe
+            class="booking-calendar__frame"
+            title="長崎でてこいランド 日貸し予約カレンダー"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src=""
+            data-supersaas-embed
+          ></iframe>
+          <div class="booking-calendar__fallback" data-supersaas-fallback>
+            <p>オンライン予約カレンダーを準備しています。</p>
+            <p class="note">公開後、ここに SuperSaaS の日貸しカレンダーが表示されます。それまでは電話またはお問い合わせフォームをご利用ください。</p>
+            <p class="contact-form-cta">
+              <a class="btn btn--solid" href="#reserve">ご予約・アクセスへ</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT → Studio native form destination (お問い合わせ_04 @ #contact) -->
     <section class="section section--soft" id="contact" data-reveal>
       <div class="wrap narrow">
@@ -283,7 +319,7 @@
             data-studio-form-link
           >お問い合わせフォームへ</a>
         </p>
-        <p class="note">※Studio公開フォーム（お問い合わせ_04）へ移動します。</p>
+        <p class="note">※Studio公開フォーム（お問い合わせ_04）へ移動します。空き日の確保は <a href="#booking">日貸し予約カレンダー</a> をご利用ください。</p>
       </div>
     </section>
 
@@ -292,10 +328,11 @@
       <div class="wrap cta-band__inner">
         <p class="label label--light">RESERVATION</p>
         <h2>ご予約・アクセス</h2>
-        <p>ご予約は下記のお問い合わせフォームよりお送りください</p>
+        <p>空き日の確保はカレンダーから。ご相談はお問い合わせフォームへ</p>
         <div class="cta-band__actions">
           <a class="btn btn--light" href="tel:09052907807">電話予約・ご相談<br /><strong>☎ 090-5290-7807</strong></a>
-          <a class="btn btn--solid" href="https://detekoiland-nagasaki.jp/#contact" target="_top" rel="noopener" data-studio-form-link>Web予約</a>
+          <a class="btn btn--solid" href="#booking">空き状況を見る</a>
+          <a class="btn btn--solid" href="https://detekoiland-nagasaki.jp/#contact" target="_top" rel="noopener" data-studio-form-link>Web予約・相談</a>
         </div>
         <address>
           〒854-0093 長崎県諫早市本野町１３０３<br />
