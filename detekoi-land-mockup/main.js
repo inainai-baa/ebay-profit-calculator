@@ -20,8 +20,8 @@
     });
   }
 
-  // Studio form destination: https://detekoiland-nagasaki.jp/#contact
-  // (native Studio form お問い合わせ_04 — no external Google Form URL)
+  // Variant B is self-contained: Web予約 → #contact (in-page form on this mockup).
+  // Optional SuperSaaS swap: set data-supersaas-schedule-url on #reserve-calendar.
 
   // Daikanso-like hero settle → enable Ken Burns after soft text entrance
   const hero = document.querySelector(".hero");
@@ -165,14 +165,50 @@
     draw();
   });
 
-  // SuperSaaS day-rental embed: activate when data-supersaas-schedule-url is set
-  const booking = document.querySelector("#supersaas-booking");
-  if (booking) {
-    const url = (booking.getAttribute("data-supersaas-schedule-url") || "").trim();
-    const frame = booking.querySelector("[data-supersaas-embed]");
-    if (url && frame) {
-      frame.src = url;
-      booking.classList.add("is-ready");
+  // Calendar: Google month view by default; swap to SuperSaaS when URL is set
+  const calendarBox = document.querySelector("#reserve-calendar");
+  if (calendarBox) {
+    const supersaasUrl = (calendarBox.getAttribute("data-supersaas-schedule-url") || "").trim();
+    const frame = calendarBox.querySelector("[data-calendar-embed]");
+    if (supersaasUrl && frame) {
+      frame.src = supersaasUrl;
+      calendarBox.setAttribute("data-calendar-source", "supersaas");
+      const note = document.querySelector(".reserve-calendar-note");
+      if (note) {
+        note.textContent =
+          "※SuperSaaS 日貸しカレンダーです。空き日を選んで予約できます。";
+      }
     }
+  }
+
+  // In-page contact form (Pages / iframe B) — keep users on Variant B
+  const contactForm = document.querySelector("#contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(contactForm);
+      const name = String(data.get("name") || "").trim();
+      const email = String(data.get("email") || "").trim();
+      const tel = String(data.get("tel") || "").trim();
+      const preferred = String(data.get("preferred_date") || "").trim();
+      const message = String(data.get("message") || "").trim();
+      const body = [
+        `お名前: ${name}`,
+        `メール: ${email}`,
+        tel ? `電話: ${tel}` : "",
+        preferred ? `希望日: ${preferred}` : "",
+        "",
+        message,
+      ]
+        .filter(Boolean)
+        .join("\n");
+      const mailto =
+        "mailto:detekoiland.ngsk@gmail.com" +
+        "?subject=" +
+        encodeURIComponent("ホームページよりお問い合わせです") +
+        "&body=" +
+        encodeURIComponent(body);
+      window.location.href = mailto;
+    });
   }
 })();
