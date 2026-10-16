@@ -273,7 +273,7 @@
       <div class="wrap">
         <p class="label">RESERVATION</p>
         <h2>ご予約・アクセス</h2>
-        <p class="lede">空き確認・日貸し予約は下のカレンダーから。ご相談・お問い合わせは Web予約フォームまたはお電話へ。</p>
+        <p class="lede">空き確認・日帰り／泊まり予約は下のカレンダーから。ご相談・お問い合わせは Web予約フォームまたはお電話へ。</p>
 
         <div class="reserve-grid">
           <div class="reserve-map">
@@ -294,14 +294,15 @@
               電話予約・ご相談<br /><strong>☎ 090-5290-7807</strong>
             </a>
             <a class="btn btn--solid reserve-web" href="#contact">Web予約</a>
-            <p class="note reserve-holiday">※12/25 〜 1/7お休み</p>
+            <p class="note reserve-holiday">※毎週木曜・12/25〜1/7お休み</p>
           </div>
         </div>
 
         <!--
-          Calendar source (2026-10-16): SuperSaaS Resource schedule「日貸し」
+          Calendar source (2026-10-16): SuperSaaS Resource schedule「日貸し」(id 854289)
           https://www.supersaas.jp/schedule/detekoiland/日貸し
-          (day rounding / capacity 1). Map / phone / Web予約→#contact unchanged.
+          One facility resource; guest picks 利用区分 日帰り/泊まり; from–to dates.
+          Thursday weekly closed + 12/25–1/7 special closed. Map / phone / Web予約→#contact unchanged.
         -->
         <div
           class="reserve-calendar is-ready"
@@ -313,7 +314,7 @@
           <iframe
             class="reserve-calendar__frame"
             id="reserve-calendar-frame"
-            title="長崎でてこいランド 日貸し予約カレンダー"
+            title="長崎でてこいランド 日帰り・泊まり予約カレンダー"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             data-calendar-embed
@@ -321,7 +322,7 @@
           ></iframe>
         </div>
         <p class="note reserve-calendar-note" id="booking">
-          ※空き確認・日貸し予約はカレンダーから（取れた日は自動で埋まります）。ご相談のみは Web予約フォームまたはお電話へ。
+          ※カレンダーから日帰り・泊まりとも予約できます（取れた日は自動で埋まります）。日帰りは同じ日〜同じ日、泊まりは複数日。毎週木曜と年末年始（12/25〜1/7）はお休み。ご相談のみは Web予約フォームまたはお電話へ。
         </p>
       </div>
     </section>
