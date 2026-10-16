@@ -177,9 +177,9 @@
       frame.src = supersaasUrl;
       calendarBox.setAttribute("data-calendar-source", "supersaas");
       const note = document.querySelector(".reserve-calendar-note");
-      if (note && !note.textContent.includes("日帰り")) {
+      if (note && !note.textContent.includes("予約不可")) {
         note.textContent =
-          "※カレンダーから日帰り・泊まりとも予約できます（取れた日は自動で埋まります）。日帰りは同じ日〜同じ日、泊まりは複数日。毎週木曜と年末年始（12/25〜1/7）はお休み。ご相談のみは Web予約フォームまたはお電話へ。";
+          "※カレンダーから日帰り・泊まりとも予約できます。赤い「予約不可」は満席、グレーは休業（木曜・年末年始）です。日帰りは同じ日〜同じ日、泊まりは複数日。ご相談のみは Web予約フォームまたはお電話へ。";
       }
       // Grow iframe if SuperSaaS content is taller (same-origin blocked — use generous CSS height)
       frame.setAttribute("scrolling", "no");
