@@ -503,22 +503,25 @@ body.nav-open { overflow: hidden; }
 .reserve-phone strong { font-size: 1.15rem; letter-spacing: 0.02em; }
 .reserve-holiday { margin: 0.2rem 0 0; text-align: center; opacity: 0.85; }
 .reserve-calendar {
-  margin: 2rem auto 0;
-  max-width: 720px;
+  margin: 2rem 0 0;
+  max-width: none;
   width: 100%;
 }
 .reserve-calendar__frame {
   display: block;
   width: 100%;
-  height: min(520px, 70vh);
+  /* Tall enough for SuperSaaS month grid — avoid nested iframe scroll */
+  height: 1320px;
+  max-height: none;
   border: 0;
   border-radius: 16px;
   background: #fff;
   box-shadow: 0 12px 32px rgba(7, 19, 31, 0.08);
+  overflow: hidden;
 }
 .reserve-calendar-note {
-  margin: 0.85rem auto 0;
-  max-width: 720px;
+  margin: 0.85rem 0 0;
+  max-width: none;
   text-align: center;
   opacity: 0.85;
 }
@@ -671,7 +674,8 @@ body.nav-open { overflow: hidden; }
   .split, .split--rev { grid-template-columns: 1fr; }
   .reserve-grid { grid-template-columns: 1fr; }
   .reserve-map iframe { min-height: 240px; height: 260px; }
-  .reserve-calendar__frame { height: min(440px, 65vh); }
+  /* Keep full month readable on phones; page scroll only (no short iframe) */
+  .reserve-calendar__frame { height: 1180px; }
   .stay-panel { grid-template-columns: 1fr; }
   .facility-strip { grid-template-columns: 1fr; }
   .stay-cues { grid-template-columns: repeat(2, minmax(0, 1fr)); }

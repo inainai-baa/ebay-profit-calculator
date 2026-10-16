@@ -165,12 +165,15 @@
     draw();
   });
 
-  // Calendar: SuperSaaS day-rental when data-supersaas-schedule-url is set
+  // Calendar: SuperSaaS day-rental month view (full-width iframe; no inner scroll)
   const calendarBox = document.querySelector("#reserve-calendar");
   if (calendarBox) {
-    const supersaasUrl = (calendarBox.getAttribute("data-supersaas-schedule-url") || "").trim();
+    let supersaasUrl = (calendarBox.getAttribute("data-supersaas-schedule-url") || "").trim();
     const frame = calendarBox.querySelector("[data-calendar-embed]");
     if (supersaasUrl && frame) {
+      if (!/[?&]view=/.test(supersaasUrl)) {
+        supersaasUrl += (supersaasUrl.includes("?") ? "&" : "?") + "view=month";
+      }
       frame.src = supersaasUrl;
       calendarBox.setAttribute("data-calendar-source", "supersaas");
       const note = document.querySelector(".reserve-calendar-note");
@@ -178,6 +181,9 @@
         note.textContent =
           "※空き確認・日貸し予約はカレンダーから（取れた日は自動で埋まります）。ご相談のみは Web予約フォームまたはお電話へ。";
       }
+      // Grow iframe if SuperSaaS content is taller (same-origin blocked — use generous CSS height)
+      frame.setAttribute("scrolling", "no");
+      frame.style.overflow = "hidden";
     }
   }
 
