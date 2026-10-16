@@ -165,7 +165,7 @@
     draw();
   });
 
-  // Calendar: SuperSaaS day-rental month view (full-width iframe; no inner scroll)
+  // Calendar: SuperSaaS day-use / overnight month view (full-width iframe; no inner scroll)
   const calendarBox = document.querySelector("#reserve-calendar");
   if (calendarBox) {
     let supersaasUrl = (calendarBox.getAttribute("data-supersaas-schedule-url") || "").trim();
@@ -177,9 +177,9 @@
       frame.src = supersaasUrl;
       calendarBox.setAttribute("data-calendar-source", "supersaas");
       const note = document.querySelector(".reserve-calendar-note");
-      if (note && !note.textContent.includes("カレンダーから")) {
+      if (note && !note.textContent.includes("日帰り")) {
         note.textContent =
-          "※空き確認・日貸し予約はカレンダーから（取れた日は自動で埋まります）。ご相談のみは Web予約フォームまたはお電話へ。";
+          "※カレンダーから日帰り・泊まりとも予約できます（取れた日は自動で埋まります）。日帰りは同じ日〜同じ日、泊まりは複数日。毎週木曜と年末年始（12/25〜1/7）はお休み。ご相談のみは Web予約フォームまたはお電話へ。";
       }
       // Grow iframe if SuperSaaS content is taller (same-origin blocked — use generous CSS height)
       frame.setAttribute("scrolling", "no");
