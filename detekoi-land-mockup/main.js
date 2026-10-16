@@ -165,7 +165,7 @@
     draw();
   });
 
-  // Calendar: Google month view by default; swap to SuperSaaS when URL is set
+  // Calendar: SuperSaaS day-rental when data-supersaas-schedule-url is set
   const calendarBox = document.querySelector("#reserve-calendar");
   if (calendarBox) {
     const supersaasUrl = (calendarBox.getAttribute("data-supersaas-schedule-url") || "").trim();
@@ -174,9 +174,9 @@
       frame.src = supersaasUrl;
       calendarBox.setAttribute("data-calendar-source", "supersaas");
       const note = document.querySelector(".reserve-calendar-note");
-      if (note) {
+      if (note && !note.textContent.includes("カレンダーから")) {
         note.textContent =
-          "※SuperSaaS 日貸しカレンダーです。空き日を選んで予約できます。";
+          "※空き確認・日貸し予約はカレンダーから（取れた日は自動で埋まります）。ご相談のみは Web予約フォームまたはお電話へ。";
       }
     }
   }
