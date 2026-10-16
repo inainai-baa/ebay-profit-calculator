@@ -273,7 +273,7 @@
       <div class="wrap">
         <p class="label">RESERVATION</p>
         <h2>ご予約・アクセス</h2>
-        <p class="lede">ご予約は下記のお問い合わせフォームよりお送りください</p>
+        <p class="lede">空き確認・日貸し予約は下のカレンダーから。ご相談・お問い合わせは Web予約フォームまたはお電話へ。</p>
 
         <div class="reserve-grid">
           <div class="reserve-map">
@@ -299,29 +299,28 @@
         </div>
 
         <!--
-          Calendar source (2026-10-10): Google Calendar month view for
-          detekoiland.ngsk@gmail.com — same embed as the old Studio
-          「ご予約・アクセス」block. SuperSaaS still awaiting Gmail activation;
-          set data-supersaas-schedule-url on #reserve-calendar when ready to swap.
+          Calendar source (2026-10-16): SuperSaaS Resource schedule「日貸し」
+          https://www.supersaas.jp/schedule/detekoiland/日貸し
+          (day rounding / capacity 1). Map / phone / Web予約→#contact unchanged.
         -->
         <div
           class="reserve-calendar is-ready"
           id="reserve-calendar"
-          data-calendar-source="google"
+          data-calendar-source="supersaas"
           data-supersaas-account="detekoiland"
-          data-supersaas-schedule-url=""
+          data-supersaas-schedule-url="https://www.supersaas.jp/schedule/detekoiland/日貸し"
         >
           <iframe
             class="reserve-calendar__frame"
-            title="長崎でてこいランド カレンダー"
+            title="長崎でてこいランド 日貸し予約カレンダー"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             data-calendar-embed
-            src="https://calendar.google.com/calendar/embed?src=detekoiland.ngsk%40gmail.com&ctz=Asia%2FTokyo&mode=MONTH&hl=ja&showTitle=1&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=1"
+            src="https://www.supersaas.jp/schedule/detekoiland/日貸し"
           ></iframe>
         </div>
         <p class="note reserve-calendar-note" id="booking">
-          ※表示は Google カレンダー（イベント表示）です。日貸しの空き確保は Web予約フォームまたはお電話でご連絡ください。
+          ※空き確認・日貸し予約はカレンダーから（取れた日は自動で埋まります）。ご相談のみは Web予約フォームまたはお電話へ。
         </p>
       </div>
     </section>
