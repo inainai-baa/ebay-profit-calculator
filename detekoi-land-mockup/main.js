@@ -20,8 +20,7 @@
     });
   }
 
-  // Variant B is self-contained: Web予約 → #contact (in-page form on this mockup).
-  // Optional SuperSaaS swap: set data-supersaas-schedule-url on #reserve-calendar.
+  // Variant B: Web予約 → #contact（メールフォーム）。料金表は pricing-data.js。
 
   // Daikanso-like hero settle → enable Ken Burns after soft text entrance
   const hero = document.querySelector(".hero");
@@ -109,6 +108,146 @@
     restart();
   });
 
+  // Pricing accordion (sheet snapshot in pricing-data.js)
+  const pricingRoot = document.querySelector("[data-pricing-root]");
+  const pricing = window.DETEKOI_PRICING;
+  if (pricingRoot && pricing) {
+    const titleEl = pricingRoot.querySelector("[data-pricing-title]");
+    const metaEl = pricingRoot.querySelector("[data-pricing-meta]");
+    const legendEl = pricingRoot.querySelector("[data-pricing-legend]");
+    const accordion = pricingRoot.querySelector("[data-pricing-accordion]");
+    if (titleEl && pricing.title) titleEl.textContent = pricing.title;
+    if (metaEl) {
+      const bits = [pricing.asOf, pricing.syncedAt ? `反映日 ${pricing.syncedAt}` : ""]
+        .filter(Boolean)
+        .join(" · ");
+      metaEl.textContent = bits;
+    }
+    if (legendEl && pricing.facilityNote) legendEl.hidden = false;
+
+    const escapeHtml = (s) =>
+      String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+
+    function facilityTable(rows, note) {
+      const body = rows
+        .map((r) => {
+          const label = [r.item, r.category].filter(Boolean).join(" / ");
+          return `<tr>
+            <th scope="row">${escapeHtml(label)}${r.unit ? `<span class="pricing__unit">${escapeHtml(r.unit)}</span>` : ""}</th>
+            <td class="pricing__yen pricing__yen--green">${escapeHtml(r.green)}</td>
+            <td class="pricing__yen pricing__yen--yellow">${escapeHtml(r.yellow)}</td>
+          </tr>`;
+        })
+        .join("");
+      return `<div class="pricing__table-wrap">
+        <table class="pricing__table">
+          <thead>
+            <tr>
+              <th scope="col">内容</th>
+              <th scope="col">グリーン</th>
+              <th scope="col">イエロー</th>
+            </tr>
+          </thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>
+      ${note ? `<p class="pricing__note">${escapeHtml(note)}</p>` : ""}`;
+    }
+
+    function rentalTable(rows) {
+      const body = rows
+        .map(
+          (r) => `<tr>
+            <th scope="row">${escapeHtml(r.item)}${r.detail ? `<span class="pricing__unit">${escapeHtml(r.detail)}</span>` : ""}</th>
+            <td class="pricing__yen">${escapeHtml(r.price)}</td>
+          </tr>`
+        )
+        .join("");
+      return `<div class="pricing__table-wrap">
+        <table class="pricing__table pricing__table--rental">
+          <thead>
+            <tr>
+              <th scope="col">商品</th>
+              <th scope="col">レンタル価格</th>
+            </tr>
+          </thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>`;
+    }
+
+    function notesList(items) {
+      return `<ul class="pricing__notes">${items
+        .map((t) => `<li>${escapeHtml(t)}</li>`)
+        .join("")}</ul>`;
+    }
+
+    (pricing.sections || []).forEach((section, i) => {
+      const details = document.createElement("details");
+      details.className = "pricing__panel";
+      details.open = i === 0;
+      const summary = document.createElement("summary");
+      summary.className = "pricing__summary";
+      summary.innerHTML = `<span>${escapeHtml(section.title)}</span><span class="pricing__chevron" aria-hidden="true"></span>`;
+      const body = document.createElement("div");
+      body.className = "pricing__body";
+      if (section.kind === "facility") {
+        body.innerHTML = facilityTable(section.rows || [], pricing.facilityNote);
+      } else if (section.kind === "rental") {
+        body.innerHTML = rentalTable(section.rows || []);
+      } else if (section.kind === "notes") {
+        body.innerHTML = notesList(section.items || []);
+      }
+      details.append(summary, body);
+      accordion?.appendChild(details);
+    });
+
+    // Accordion: one open panel at a time (toggle UX on mobile + desktop)
+    accordion?.addEventListener("toggle", (e) => {
+      const t = e.target;
+      if (!(t instanceof HTMLDetailsElement) || !t.open) return;
+      accordion.querySelectorAll("details.pricing__panel").forEach((d) => {
+        if (d !== t) d.open = false;
+      });
+    });
+  }
+
+  // In-page contact form (Pages / iframe B) — keep users on Variant B
+  const contactForm = document.querySelector("#contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(contactForm);
+      const name = String(data.get("name") || "").trim();
+      const email = String(data.get("email") || "").trim();
+      const tel = String(data.get("tel") || "").trim();
+      const preferred = String(data.get("preferred_date") || "").trim();
+      const message = String(data.get("message") || "").trim();
+      const body = [
+        `お名前: ${name}`,
+        `メール: ${email}`,
+        tel ? `電話: ${tel}` : "",
+        preferred ? `希望日: ${preferred}` : "",
+        "",
+        message,
+      ]
+        .filter(Boolean)
+        .join("\n");
+      const mailto =
+        "mailto:detekoiland.ngsk@gmail.com" +
+        "?subject=" +
+        encodeURIComponent("ホームページよりお問い合わせです") +
+        "&body=" +
+        encodeURIComponent(body);
+      window.location.href = mailto;
+    });
+  }
+
+  // Optional starfield canvas (hero no longer uses it; keep for legacy markup)
   const canvas = document.querySelector("[data-starfield]");
   if (!canvas || !(canvas instanceof HTMLCanvasElement)) return;
   const ctx = canvas.getContext("2d");
@@ -164,57 +303,4 @@
     resize();
     draw();
   });
-
-  // Calendar: SuperSaaS day-use / overnight month view (full-width iframe; no inner scroll)
-  const calendarBox = document.querySelector("#reserve-calendar");
-  if (calendarBox) {
-    let supersaasUrl = (calendarBox.getAttribute("data-supersaas-schedule-url") || "").trim();
-    const frame = calendarBox.querySelector("[data-calendar-embed]");
-    if (supersaasUrl && frame) {
-      if (!/[?&]view=/.test(supersaasUrl)) {
-        supersaasUrl += (supersaasUrl.includes("?") ? "&" : "?") + "view=month";
-      }
-      frame.src = supersaasUrl;
-      calendarBox.setAttribute("data-calendar-source", "supersaas");
-      const note = document.querySelector(".reserve-calendar-note");
-      if (note && !note.textContent.includes("予約不可")) {
-        note.textContent =
-          "※カレンダーから日帰り・泊まりとも予約できます。赤い「予約不可」は満席、グレーは休業（木曜・年末年始）です。日帰りは同じ日〜同じ日、泊まりは複数日。ご相談のみは Web予約フォームまたはお電話へ。";
-      }
-      // Grow iframe if SuperSaaS content is taller (same-origin blocked — use generous CSS height)
-      frame.setAttribute("scrolling", "no");
-      frame.style.overflow = "hidden";
-    }
-  }
-
-  // In-page contact form (Pages / iframe B) — keep users on Variant B
-  const contactForm = document.querySelector("#contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const data = new FormData(contactForm);
-      const name = String(data.get("name") || "").trim();
-      const email = String(data.get("email") || "").trim();
-      const tel = String(data.get("tel") || "").trim();
-      const preferred = String(data.get("preferred_date") || "").trim();
-      const message = String(data.get("message") || "").trim();
-      const body = [
-        `お名前: ${name}`,
-        `メール: ${email}`,
-        tel ? `電話: ${tel}` : "",
-        preferred ? `希望日: ${preferred}` : "",
-        "",
-        message,
-      ]
-        .filter(Boolean)
-        .join("\n");
-      const mailto =
-        "mailto:detekoiland.ngsk@gmail.com" +
-        "?subject=" +
-        encodeURIComponent("ホームページよりお問い合わせです") +
-        "&body=" +
-        encodeURIComponent(body);
-      window.location.href = mailto;
-    });
-  }
 })();

@@ -268,12 +268,14 @@
       </div>
     </section>
 
-    <!-- ご予約・アクセス (ported from old Studio reservation block; stays on Variant B) -->
+    <!-- ご予約・アクセス — map / phone / Web予約→#contact + 料金表（スプレッドシート同期） -->
     <section class="section section--soft reserve-section" id="reserve" data-reveal>
       <div class="wrap">
         <p class="label">RESERVATION</p>
         <h2>ご予約・アクセス</h2>
-        <p class="lede">空き確認・日帰り／泊まり予約は下のカレンダーから。ご相談・お問い合わせは Web予約フォームまたはお電話へ。</p>
+        <p class="lede">
+          ご予約は下の<strong>メールフォーム</strong>（Web予約）から。ご相談・空きの確認はお電話でも承ります。料金はカテゴリを開いてご確認ください。
+        </p>
 
         <div class="reserve-grid">
           <div class="reserve-map">
@@ -291,39 +293,30 @@
 
           <div class="reserve-actions">
             <a class="btn btn--outline reserve-phone" href="tel:09052907807">
-              電話予約・ご相談<br /><strong>☎ 090-5290-7807</strong>
+              電話・ご相談<br /><strong>☎ 090-5290-7807</strong>
             </a>
-            <a class="btn btn--solid reserve-web" href="#contact">Web予約</a>
+            <a class="btn btn--solid reserve-web" href="#contact">Web予約（メールフォーム）</a>
             <p class="note reserve-holiday">※毎週木曜・12/25〜1/7お休み</p>
           </div>
         </div>
 
-        <!--
-          Calendar source (2026-10-16): SuperSaaS Resource schedule「日貸し」(id 854289)
-          https://www.supersaas.jp/schedule/detekoiland/日貸し
-          One facility resource; guest picks 利用区分 日帰り/泊まり; from–to dates.
-          Thursday weekly closed + 12/25–1/7 special closed. Map / phone / Web予約→#contact unchanged.
-        -->
-        <div
-          class="reserve-calendar is-ready"
-          id="reserve-calendar"
-          data-calendar-source="supersaas"
-          data-supersaas-account="detekoiland"
-          data-supersaas-schedule-url="https://www.supersaas.jp/schedule/detekoiland/日貸し?view=month"
-        >
-          <iframe
-            class="reserve-calendar__frame"
-            id="reserve-calendar-frame"
-            title="長崎でてこいランド 日帰り・泊まり予約カレンダー"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            data-calendar-embed
-            src="https://www.supersaas.jp/schedule/detekoiland/日貸し?view=month"
-          ></iframe>
+        <div class="pricing" id="pricing" data-pricing-root>
+          <div class="pricing__head">
+            <h3 class="pricing__title" data-pricing-title>料金表</h3>
+            <p class="pricing__meta" data-pricing-meta></p>
+            <p class="pricing__legend" data-pricing-legend hidden>
+              <span class="pricing__swatch pricing__swatch--green">グリーン</span>
+              <span>通常料金</span>
+              <span class="pricing__swatch pricing__swatch--yellow">イエロー</span>
+              <span>土日祝・連休</span>
+            </p>
+          </div>
+          <div class="pricing__accordion" data-pricing-accordion id="booking"></div>
+          <p class="note pricing__foot">
+            ※料金はスプレッドシートの内容を反映しています。ご予約・ご質問は
+            <a href="#contact">メールフォーム</a>またはお電話へ。
+          </p>
         </div>
-        <p class="note reserve-calendar-note" id="booking">
-          ※カレンダーから日帰り・泊まりとも予約できます。赤い「予約不可」は満席、グレーは休業（木曜・年末年始）です。日帰りは同じ日〜同じ日、泊まりは複数日。ご相談のみは Web予約フォームまたはお電話へ。
-        </p>
       </div>
     </section>
 
@@ -332,7 +325,7 @@
       <div class="wrap narrow">
         <p class="label">Contact</p>
         <h2>お問い合わせ</h2>
-        <p class="lede">ご相談やご質問、ご予約希望など、下記フォームよりお気軽にご連絡ください。担当よりメールまたはお電話で折り返しいたします。</p>
+        <p class="lede">ご予約・ご相談・ご質問は下記のメールフォームよりお気軽にどうぞ。担当よりメールまたはお電話で折り返しいたします。</p>
         <form class="form" id="contact-form" name="お問い合わせ_B" action="#contact" method="get">
           <label>
             必須 お名前
@@ -389,6 +382,7 @@
       </div>
     </div>
   </footer>
+  <script src="./pricing-data.js" defer></script>
   <script src="./main.js" defer></script>
 </body>
 </html>
