@@ -449,7 +449,7 @@ body.nav-open { overflow: hidden; }
 .cta-band__actions { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
 .cta-band address, .note { margin: 1rem 0 0; font-style: normal; font-size: .9rem; opacity: .82; }
 
-/* ご予約・アクセス — ported layout (map | actions + calendar) */
+/* ご予約・アクセス — map | actions + pricing accordion */
 .reserve-section .label,
 .reserve-section h2,
 .reserve-section .lede { text-align: center; }
@@ -502,28 +502,180 @@ body.nav-open { overflow: hidden; }
 .btn--outline:hover { background: rgba(0, 60, 26, 0.05); }
 .reserve-phone strong { font-size: 1.15rem; letter-spacing: 0.02em; }
 .reserve-holiday { margin: 0.2rem 0 0; text-align: center; opacity: 0.85; }
-.reserve-calendar {
-  margin: 2rem 0 0;
-  max-width: none;
-  width: 100%;
+
+.pricing {
+  margin: 2.4rem 0 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(31, 61, 50, 0.12);
 }
-.reserve-calendar__frame {
-  display: block;
-  width: 100%;
-  /* Tall enough for SuperSaaS month grid — avoid nested iframe scroll */
-  height: 1320px;
-  max-height: none;
-  border: 0;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 12px 32px rgba(7, 19, 31, 0.08);
-  overflow: hidden;
-}
-.reserve-calendar-note {
-  margin: 0.85rem 0 0;
-  max-width: none;
+.pricing__head {
   text-align: center;
-  opacity: 0.85;
+  margin-bottom: 1.1rem;
+}
+.pricing__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--forest);
+}
+.pricing__meta {
+  margin: 0.45rem 0 0;
+  font-size: 0.86rem;
+  color: var(--soft);
+}
+.pricing__legend {
+  margin: 0.85rem auto 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  color: var(--soft);
+}
+.pricing__swatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.55rem;
+  padding: 0.15rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.pricing__swatch--green {
+  background: rgba(74, 107, 88, 0.18);
+  color: var(--forest);
+  border: 1px solid rgba(31, 61, 50, 0.22);
+}
+.pricing__swatch--yellow {
+  background: rgba(196, 160, 72, 0.22);
+  color: #6b5420;
+  border: 1px solid rgba(166, 124, 82, 0.35);
+}
+.pricing__accordion {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.pricing__panel {
+  background: rgba(251, 252, 251, 0.72);
+  border: 1px solid rgba(31, 61, 50, 0.14);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.pricing__panel[open] {
+  border-color: rgba(31, 61, 50, 0.28);
+  box-shadow: 0 10px 28px rgba(7, 19, 31, 0.06);
+}
+.pricing__summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--forest);
+  user-select: none;
+}
+.pricing__summary::-webkit-details-marker { display: none; }
+.pricing__chevron {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-right: 2px solid var(--moss);
+  border-bottom: 2px solid var(--moss);
+  transform: rotate(45deg);
+  transition: transform 0.25s var(--ease);
+  flex-shrink: 0;
+}
+.pricing__panel[open] .pricing__chevron {
+  transform: rotate(-135deg);
+  margin-top: 0.25rem;
+}
+.pricing__body {
+  padding: 0 1rem 1.15rem;
+  border-top: 1px solid rgba(31, 61, 50, 0.08);
+}
+.pricing__table-wrap {
+  margin-top: 0.85rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.pricing__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 320px;
+}
+.pricing__table th,
+.pricing__table td {
+  padding: 0.7rem 0.55rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(31, 61, 50, 0.1);
+  vertical-align: top;
+}
+.pricing__table thead th {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--soft);
+  font-weight: 700;
+  border-bottom-color: rgba(31, 61, 50, 0.2);
+}
+.pricing__table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+  max-width: 16rem;
+}
+.pricing__unit {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--soft);
+  line-height: 1.45;
+}
+.pricing__yen {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  text-align: right !important;
+}
+.pricing__yen--green { color: var(--forest); }
+.pricing__yen--yellow { color: #7a5f1c; }
+.pricing__table--rental .pricing__yen { color: var(--forest); }
+.pricing__note {
+  margin: 0.85rem 0 0;
+  font-size: 0.84rem;
+  color: var(--soft);
+  line-height: 1.65;
+}
+.pricing__notes {
+  margin: 0.85rem 0 0;
+  padding: 0 0 0 1.1rem;
+  display: grid;
+  gap: 0.55rem;
+  color: var(--soft);
+  font-size: 0.9rem;
+}
+.pricing__foot {
+  margin: 1.15rem auto 0;
+  max-width: 820px;
+  text-align: center;
+}
+.pricing__foot a {
+  color: var(--forest);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .split {
@@ -674,8 +826,11 @@ body.nav-open { overflow: hidden; }
   .split, .split--rev { grid-template-columns: 1fr; }
   .reserve-grid { grid-template-columns: 1fr; }
   .reserve-map iframe { min-height: 240px; height: 260px; }
-  /* Keep full month readable on phones; page scroll only (no short iframe) */
-  .reserve-calendar__frame { height: 1180px; }
+  .pricing__summary { padding: 0.95rem 1rem; font-size: 1rem; }
+  .pricing__body { padding: 0 0.75rem 1rem; }
+  .pricing__table { font-size: 0.84rem; min-width: 0; }
+  .pricing__table th,
+  .pricing__table td { padding: 0.65rem 0.4rem; }
   .stay-panel { grid-template-columns: 1fr; }
   .facility-strip { grid-template-columns: 1fr; }
   .stay-cues { grid-template-columns: repeat(2, minmax(0, 1fr)); }
