@@ -525,37 +525,6 @@ body.nav-open { overflow: hidden; }
   font-size: 0.86rem;
   color: var(--soft);
 }
-.pricing__legend {
-  margin: 0.85rem auto 0;
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.45rem 0.75rem;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.82rem;
-  color: var(--soft);
-}
-.pricing__swatch {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 1.55rem;
-  padding: 0.15rem 0.65rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-.pricing__swatch--green {
-  background: rgba(74, 107, 88, 0.18);
-  color: var(--forest);
-  border: 1px solid rgba(31, 61, 50, 0.22);
-}
-.pricing__swatch--yellow {
-  background: rgba(196, 160, 72, 0.22);
-  color: #6b5420;
-  border: 1px solid rgba(166, 124, 82, 0.35);
-}
 .pricing__accordion {
   display: grid;
   gap: 0.65rem;
@@ -649,15 +618,11 @@ body.nav-open { overflow: hidden; }
   font-variant-numeric: tabular-nums;
   font-weight: 700;
   text-align: right !important;
+  color: var(--forest);
 }
-.pricing__yen--green { color: var(--forest); }
-.pricing__yen--yellow { color: #7a5f1c; }
-.pricing__table--rental .pricing__yen { color: var(--forest); }
-.pricing__note {
-  margin: 0.85rem 0 0;
-  font-size: 0.84rem;
-  color: var(--soft);
-  line-height: 1.65;
+.pricing__table thead th:nth-child(2),
+.pricing__table thead th:nth-child(3) {
+  text-align: right;
 }
 .pricing__notes {
   margin: 0.85rem 0 0;
