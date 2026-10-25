@@ -114,7 +114,6 @@
   if (pricingRoot && pricing) {
     const titleEl = pricingRoot.querySelector("[data-pricing-title]");
     const metaEl = pricingRoot.querySelector("[data-pricing-meta]");
-    const legendEl = pricingRoot.querySelector("[data-pricing-legend]");
     const accordion = pricingRoot.querySelector("[data-pricing-accordion]");
     if (titleEl && pricing.title) titleEl.textContent = pricing.title;
     if (metaEl) {
@@ -123,7 +122,6 @@
         .join(" · ");
       metaEl.textContent = bits;
     }
-    if (legendEl && pricing.facilityNote) legendEl.hidden = false;
 
     const escapeHtml = (s) =>
       String(s || "")
@@ -132,14 +130,15 @@
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
 
-    function facilityTable(rows, note) {
+    function facilityTable(rows) {
       const body = rows
         .map((r) => {
           const label = [r.item, r.category].filter(Boolean).join(" / ");
+          // Sheet columns green/yellow → display as 通常価格 / 土日祝 (no color-chip legend)
           return `<tr>
             <th scope="row">${escapeHtml(label)}${r.unit ? `<span class="pricing__unit">${escapeHtml(r.unit)}</span>` : ""}</th>
-            <td class="pricing__yen pricing__yen--green">${escapeHtml(r.green)}</td>
-            <td class="pricing__yen pricing__yen--yellow">${escapeHtml(r.yellow)}</td>
+            <td class="pricing__yen">${escapeHtml(r.green)}</td>
+            <td class="pricing__yen">${escapeHtml(r.yellow)}</td>
           </tr>`;
         })
         .join("");
@@ -148,14 +147,13 @@
           <thead>
             <tr>
               <th scope="col">内容</th>
-              <th scope="col">グリーン</th>
-              <th scope="col">イエロー</th>
+              <th scope="col">通常価格</th>
+              <th scope="col">土日祝</th>
             </tr>
           </thead>
           <tbody>${body}</tbody>
         </table>
-      </div>
-      ${note ? `<p class="pricing__note">${escapeHtml(note)}</p>` : ""}`;
+      </div>`;
     }
 
     function rentalTable(rows) {
@@ -196,7 +194,7 @@
       const body = document.createElement("div");
       body.className = "pricing__body";
       if (section.kind === "facility") {
-        body.innerHTML = facilityTable(section.rows || [], pricing.facilityNote);
+        body.innerHTML = facilityTable(section.rows || []);
       } else if (section.kind === "rental") {
         body.innerHTML = rentalTable(section.rows || []);
       } else if (section.kind === "notes") {
