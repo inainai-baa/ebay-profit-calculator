@@ -214,34 +214,17 @@
     });
   }
 
-  // In-page contact form (Pages / iframe B) — keep users on Variant B
-  const contactForm = document.querySelector("#contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const data = new FormData(contactForm);
-      const name = String(data.get("name") || "").trim();
-      const email = String(data.get("email") || "").trim();
-      const tel = String(data.get("tel") || "").trim();
-      const preferred = String(data.get("preferred_date") || "").trim();
-      const message = String(data.get("message") || "").trim();
-      const body = [
-        `お名前: ${name}`,
-        `メール: ${email}`,
-        tel ? `電話: ${tel}` : "",
-        preferred ? `希望日: ${preferred}` : "",
-        "",
-        message,
-      ]
-        .filter(Boolean)
-        .join("\n");
-      const mailto =
-        "mailto:detekoiland.ngsk@gmail.com" +
-        "?subject=" +
-        encodeURIComponent("ホームページよりお問い合わせです") +
-        "&body=" +
-        encodeURIComponent(body);
-      window.location.href = mailto;
+  // Contact form uses classic FormSubmit POST (see form[action]). Do not disable the
+  // submit button in the submit handler — that can cancel navigation in some browsers.
+  const contactStatus = document.querySelector("#contact-form-status");
+  const contactSubmit = document.querySelector("#contact-form button[type='submit']");
+  if (contactSubmit && contactStatus) {
+    contactSubmit.addEventListener("click", () => {
+      const form = contactSubmit.form;
+      if (!form || !form.checkValidity()) return;
+      contactStatus.hidden = false;
+      contactStatus.className = "form__status form__status--pending";
+      contactStatus.textContent = "送信中です…";
     });
   }
 
