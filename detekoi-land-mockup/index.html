@@ -320,7 +320,18 @@
         <p class="label">Contact</p>
         <h2>お問い合わせ</h2>
         <p class="lede">ご予約・ご相談・ご質問は下記のメールフォームよりお気軽にどうぞ。担当よりメールまたはお電話で折り返しいたします。</p>
-        <form class="form" id="contact-form" name="お問い合わせ_B" action="#contact" method="get">
+        <form
+          class="form"
+          id="contact-form"
+          name="お問い合わせ_B"
+          action="https://formsubmit.co/detekoiland.ngsk@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="【でてこいランド】ホームページからのお問い合わせ" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/thanks.html" />
+          <input type="text" name="_honey" value="" tabindex="-1" autocomplete="off" class="form__honey" aria-hidden="true" />
           <label>
             必須 お名前
             <input type="text" name="name" placeholder="田中 太郎" required autocomplete="name" />

@@ -214,36 +214,7 @@
     });
   }
 
-  // In-page contact form (Pages / iframe B) — keep users on Variant B
-  const contactForm = document.querySelector("#contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const data = new FormData(contactForm);
-      const name = String(data.get("name") || "").trim();
-      const email = String(data.get("email") || "").trim();
-      const tel = String(data.get("tel") || "").trim();
-      const preferred = String(data.get("preferred_date") || "").trim();
-      const message = String(data.get("message") || "").trim();
-      const body = [
-        `お名前: ${name}`,
-        `メール: ${email}`,
-        tel ? `電話: ${tel}` : "",
-        preferred ? `希望日: ${preferred}` : "",
-        "",
-        message,
-      ]
-        .filter(Boolean)
-        .join("\n");
-      const mailto =
-        "mailto:detekoiland.ngsk@gmail.com" +
-        "?subject=" +
-        encodeURIComponent("ホームページよりお問い合わせです") +
-        "&body=" +
-        encodeURIComponent(body);
-      window.location.href = mailto;
-    });
-  }
+  // Contact form: pure HTML POST to FormSubmit (index.html form[action]). No JS submit hook.
 
   // Optional starfield canvas (hero no longer uses it; keep for legacy markup)
   const canvas = document.querySelector("[data-starfield]");
