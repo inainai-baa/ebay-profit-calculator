@@ -214,19 +214,7 @@
     });
   }
 
-  // Contact form uses classic FormSubmit POST (see form[action]). Do not disable the
-  // submit button in the submit handler — that can cancel navigation in some browsers.
-  const contactStatus = document.querySelector("#contact-form-status");
-  const contactSubmit = document.querySelector("#contact-form button[type='submit']");
-  if (contactSubmit && contactStatus) {
-    contactSubmit.addEventListener("click", () => {
-      const form = contactSubmit.form;
-      if (!form || !form.checkValidity()) return;
-      contactStatus.hidden = false;
-      contactStatus.className = "form__status form__status--pending";
-      contactStatus.textContent = "送信中です…";
-    });
-  }
+  // Contact form: pure HTML POST to FormSubmit (index.html form[action]). No JS submit hook.
 
   // Optional starfield canvas (hero no longer uses it; keep for legacy markup)
   const canvas = document.querySelector("[data-starfield]");
