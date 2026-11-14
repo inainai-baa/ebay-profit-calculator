@@ -1,0 +1,63 @@
+<!--
+  Paste into Studio → サイト → カスタムコード → <head> 内の末尾, then 公開.
+  Fixes direct /#contact loads where Nuxt inserts the mockup iframe AFTER the
+  one-shot hide script has already run (submit button covered / unclickable).
+  Source of truth also: project store docs/studio-contact-form-custom-code.html
+-->
+<style id="detekoi-contact-css">
+body.detekoi-contact-open .frame.fixed.sd:has(iframe[src*="detekoi-land-mockup"]),
+body.detekoi-contact-open .frame.fixed.sd:has(iframe[src*="ebay-profit-calculator"]),
+body:has(#contact:target) .frame.fixed.sd:has(iframe[src*="detekoi-land-mockup"]),
+body:has(#contact:target) .frame.fixed.sd:has(iframe[src*="ebay-profit-calculator"]){
+  display:none!important;visibility:hidden!important;pointer-events:none!important;
+}
+body.detekoi-contact-open #contact,
+#contact:target{
+  position:relative!important;z-index:10050!important;isolation:isolate;background:#fcfaf2;min-height:60vh;padding-top:24px
+}
+body.detekoi-contact-open #contact form,
+#contact:target form{position:relative;z-index:10051}
+</style>
+<script id="detekoi-contact-script">
+(function(){
+function onContact(){return (location.hash||'')==='#contact';}
+function isMockupFrame(f){
+  var src=(f&&f.src)||'';
+  return src.indexOf('detekoi-land-mockup')!==-1 || src.indexOf('ebay-profit-calculator')!==-1;
+}
+function sync(){
+  var open=onContact();
+  if(document.body) document.body.classList.toggle('detekoi-contact-open', open);
+  document.querySelectorAll('.frame.fixed.sd').forEach(function(wrap){
+    var f=wrap.querySelector('iframe');
+    if(!isMockupFrame(f)) return;
+    if(open){
+      wrap.style.setProperty('display','none','important');
+      wrap.style.setProperty('pointer-events','none','important');
+      wrap.style.setProperty('visibility','hidden','important');
+    }else{
+      wrap.style.removeProperty('display');
+      wrap.style.removeProperty('pointer-events');
+      wrap.style.removeProperty('visibility');
+    }
+  });
+  if(open){
+    var c=document.querySelector('#contact');
+    if(c) setTimeout(function(){c.scrollIntoView({block:'start'});},50);
+  }
+}
+window.addEventListener('hashchange',sync);
+window.addEventListener('popstate',sync);
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',sync); else sync();
+var n=0;
+var t=setInterval(function(){
+  sync();
+  n++;
+  if(n>=48) clearInterval(t);
+},250);
+setTimeout(function(){clearInterval(t); sync();},13000);
+try{
+  new MutationObserver(function(){ if(onContact()) sync(); }).observe(document.documentElement,{childList:true,subtree:true});
+}catch(e){}
+})();
+</script>

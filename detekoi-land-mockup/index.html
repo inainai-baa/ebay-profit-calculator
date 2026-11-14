@@ -108,7 +108,7 @@
         <p class="hero__catch hero__reveal" data-reveal-delay="1">五感が喜ぶ、<br />みんなの秘密基地</p>
         <p class="hero__support hero__reveal" data-reveal-delay="2">さあ、外へ出よう。自然の中では、大人も子どもも等しく「自由」です。</p>
         <div class="hero__actions hero__reveal" data-reveal-delay="3">
-          <a class="btn btn--solid" href="#contact">Web予約</a>
+          <a class="btn btn--solid" href="https://detekoiland-nagasaki.jp/#contact" target="_top" rel="noopener" data-studio-form-link>Web予約</a>
           <a class="btn btn--hero-secondary" href="#services">体験できること</a>
         </div>
       </div>
@@ -295,7 +295,7 @@
             <a class="btn btn--outline reserve-phone" href="tel:09052907807">
               電話・ご相談<br /><strong>☎ 090-5290-7807</strong>
             </a>
-            <a class="btn btn--solid reserve-web" href="#contact">Web予約（メールフォーム）</a>
+            <a class="btn btn--solid reserve-web" href="https://detekoiland-nagasaki.jp/#contact" target="_top" rel="noopener" data-studio-form-link>Web予約（メールフォーム）</a>
             <p class="note reserve-holiday">※毎週木曜・12/25〜1/7お休み</p>
           </div>
         </div>
@@ -308,19 +308,30 @@
           <div class="pricing__accordion" data-pricing-accordion id="booking"></div>
           <p class="note pricing__foot">
             ※ご予約・ご質問は
-            <a href="#contact">メールフォーム</a>またはお電話へ。
+            <a href="https://detekoiland-nagasaki.jp/#contact" target="_top" rel="noopener" data-studio-form-link>メールフォーム</a>またはお電話へ。
           </p>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT (in-page on Variant B — Web予約 stays on B) -->
+    <!-- CONTACT → Studio native form (お問い合わせ_04) on parent #contact -->
     <section class="section" id="contact" data-reveal>
       <div class="wrap narrow">
         <p class="label">Contact</p>
         <h2>お問い合わせ</h2>
-        <p class="lede">ご予約・ご相談・ご質問は下記のメールフォームよりお気軽にどうぞ。担当よりメールまたはお電話で折り返しいたします。</p>
-        <form class="form" id="contact-form" name="お問い合わせ_B" action="#contact" method="get">
+        <p class="lede">ご予約・ご相談・ご質問は公式サイトのお問い合わせフォームよりお気軽にどうぞ。担当よりメールまたはお電話で折り返しいたします。</p>
+        <p class="contact-form-cta">
+          <a
+            class="btn btn--solid"
+            href="https://detekoiland-nagasaki.jp/#contact"
+            target="_top"
+            rel="noopener"
+            data-studio-form-link
+          >お問い合わせフォームへ</a>
+        </p>
+        <p class="note">※Studio公開フォーム（お問い合わせ_04）へ移動します。電話: <a href="tel:09052907807">090-5290-7807</a></p>
+        <!-- Standalone Pages fallback (only used when not embedded) -->
+        <form class="form" id="contact-form" name="お問い合わせ_B" action="#contact" method="get" hidden data-pages-only-form>
           <label>
             必須 お名前
             <input type="text" name="name" placeholder="田中 太郎" required autocomplete="name" />
@@ -372,7 +383,7 @@
       </div>
       <div class="footer__contact">
         <p>電話予約・ご相談<br /><a href="tel:09052907807">☎ 090-5290-7807</a></p>
-        <a class="btn btn--solid" href="#contact">Web予約</a>
+        <a class="btn btn--solid" href="https://detekoiland-nagasaki.jp/#contact" target="_top" rel="noopener" data-studio-form-link>Web予約</a>
       </div>
     </div>
   </footer>
