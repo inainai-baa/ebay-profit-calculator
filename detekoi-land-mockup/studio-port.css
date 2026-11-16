@@ -66,9 +66,14 @@ body.detekoi-port-on #reserve-legacy{
   margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
   gap:.65rem;font-size:.78rem;letter-spacing:.1em;text-align:center;color:#f7f4ee;line-height:1.5
 }
-#detekoi-port .dk-cues li,#detekoi-port .dk-cues span{
+/* Outer card only — no nested border on inner <span> */
+#detekoi-port .dk-cues li{
   color:#f7f4ee!important;border:1px solid rgba(247,244,238,.45);border-radius:12px;padding:.65rem .3rem;
   line-height:1.5!important;letter-spacing:.08em
+}
+#detekoi-port .dk-cues span{
+  color:inherit!important;border:0!important;border-radius:0!important;padding:0!important;
+  background:transparent!important;box-shadow:none!important;display:inline;line-height:inherit!important
 }
 #detekoi-port .dk-slideshow{position:relative;width:100%;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#040a12}
 #detekoi-port .dk-slideshow__vp{position:absolute;inset:0}
