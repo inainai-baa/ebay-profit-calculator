@@ -88,8 +88,20 @@ function resolveNavTarget(a){
 }
 function closeMobileMenu(){
   try{
-    var close=document.querySelector('button[aria-label="メニューを閉じる"]');
+    var close=document.querySelector('button[aria-label="メニューを閉じる"]')
+      || document.querySelector('button[aria-label="閉じる"]')
+      || document.querySelector('button[aria-label*="閉じる"]');
     if(close){ close.click(); return; }
+    /* Studio mobile drawer X often has short/empty label — click top-right control */
+    var btns=document.querySelectorAll('button');
+    for(var i=0;i<btns.length;i++){
+      var b=btns[i], r=b.getBoundingClientRect();
+      if(r.top>=0 && r.top<90 && r.right>window.innerWidth-90 && r.width>18 && r.height>18){
+        var t=(b.getAttribute('aria-label')||'')+(b.textContent||'');
+        if(/開く/.test(t)) continue;
+        b.click(); return;
+      }
+    }
   }catch(e){}
 }
 function goSection(hash){
