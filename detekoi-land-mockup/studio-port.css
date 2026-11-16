@@ -40,16 +40,20 @@ body.detekoi-port-on #yoyaku{
   background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 16px 40px rgba(7,19,31,.08)
 }
 #detekoi-port .dk-stay__visual{
-  background:var(--dk-night);color:#fff;padding:1.5rem;display:grid;gap:1rem;align-content:start
+  background:var(--dk-night);color:#f7f4ee;padding:1.5rem;display:grid;gap:1rem;align-content:start
 }
 #detekoi-port .dk-stay__catch{
-  margin:0;font-family:var(--dk-display);font-size:clamp(1.4rem,2.8vw,1.9rem);letter-spacing:.04em;line-height:1.4
+  margin:0;font-family:var(--dk-display);font-size:clamp(1.4rem,2.8vw,1.9rem);letter-spacing:.04em;line-height:1.4;
+  color:#f7f4ee!important
 }
 #detekoi-port .dk-cues{
   margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:.5rem;font-size:.78rem;letter-spacing:.08em;text-align:center
+  gap:.5rem;font-size:.78rem;letter-spacing:.08em;text-align:center;color:#f7f4ee
 }
-#detekoi-port .dk-cues li{border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:.55rem .25rem}
+#detekoi-port .dk-cues li,#detekoi-port .dk-cues span{
+  color:#f7f4ee!important;border:1px solid rgba(247,244,238,.45);border-radius:12px;padding:.55rem .25rem
+}
+#detekoi-port .dk-cues li{border:1px solid rgba(247,244,238,.45);border-radius:12px;padding:.55rem .25rem}
 #detekoi-port .dk-slideshow{position:relative;width:100%;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#040a12}
 #detekoi-port .dk-slideshow__vp{position:absolute;inset:0}
 #detekoi-port .dk-slideshow__vp img{
