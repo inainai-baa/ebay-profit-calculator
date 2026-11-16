@@ -58,7 +58,8 @@ var NAV_HASH={
   '#philosophy':'#dk-philosophy','#reserve':'#dk-reserve','#yoyaku':'#contact','#contact':'#contact'
 };
 var NAV_TEXT={
-  'でてこいランドとは':'#dk-about','でてこいランドについて':'#dk-about','施設案内':'#dk-facilities',
+  'でてこいランドとは':'#dk-about','でてこいランドについて':'#dk-about',
+  '施設案内':'#dk-facilities','施設紹介':'#dk-facilities',
   '体験できること':'#dk-services','この場所の想い':'#dk-philosophy',
   '予約・アクセス':'#dk-reserve','予約ホーム・アクセス':'#dk-reserve','ご予約・アクセス':'#dk-reserve'
 };
