@@ -1,9 +1,10 @@
-/* Hide Studio lower sections replaced by mockup port (keep hero + #contact form) */
-body.detekoi-port-on #about,
-body.detekoi-port-on #annai,
-body.detekoi-port-on #taiken,
-body.detekoi-port-on #omoi,
-body.detekoi-port-on #yoyaku{
+/* Hide ONLY renamed legacy Studio blocks (IDs moved onto visible port/form) */
+body.detekoi-port-on #about-legacy,
+body.detekoi-port-on #annai-legacy,
+body.detekoi-port-on #taiken-legacy,
+body.detekoi-port-on #omoi-legacy,
+body.detekoi-port-on #yoyaku-legacy,
+body.detekoi-port-on #reserve-legacy{
   display:none!important;
 }
 #detekoi-port{
