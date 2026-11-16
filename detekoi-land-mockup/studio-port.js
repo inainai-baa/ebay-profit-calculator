@@ -51,51 +51,77 @@ function wireSlideshow(root){
   setInterval(function(){ show(i+1); }, 5000);
 }
 /* Studio Link click handlers ignore rewritten href and jump to hidden
-   legacy sections (#annai etc.). Resolve + capture-click to port IDs. */
+   legacy sections (#annai etc.). Mobile drawer uses different labels + /#hash. */
 var NAV_HASH={
   '#about':'#dk-about','#annai':'#dk-facilities','#taiken':'#dk-services','#omoi':'#dk-philosophy',
   '#facilities':'#dk-facilities','#services':'#dk-services',
-  '#philosophy':'#dk-philosophy','#reserve':'#dk-reserve'
+  '#philosophy':'#dk-philosophy','#reserve':'#dk-reserve','#yoyaku':'#contact','#contact':'#contact'
 };
 var NAV_TEXT={
-  'でてこいランドとは':'#dk-about','施設案内':'#dk-facilities','体験できること':'#dk-services',
-  'この場所の想い':'#dk-philosophy','予約・アクセス':'#dk-reserve'
+  'でてこいランドとは':'#dk-about','でてこいランドについて':'#dk-about','施設案内':'#dk-facilities',
+  '体験できること':'#dk-services','この場所の想い':'#dk-philosophy',
+  '予約・アクセス':'#dk-reserve','予約ホーム・アクセス':'#dk-reserve','ご予約・アクセス':'#dk-reserve'
 };
+function hashOnly(href){
+  href=String(href||'');
+  var i=href.indexOf('#');
+  if(i===-1) return '';
+  /* "/#about", "/index.html#annai", "#dk-services" → "#…" */
+  return href.slice(i);
+}
 function resolveNavTarget(a){
   if(!a) return '';
   var t=(a.textContent||'').replace(/\s+/g,' ').trim();
-  var h=a.getAttribute('href')||'';
-  if(t.indexOf('Web予約')===0 || t.indexOf('お問い合わせ')===0) return '#contact';
-  if(h==='#yoyaku' || h==='#contact' || h==='#reserve'){
-    /* booking CTAs → live Studio form */
-    if(t.indexOf('Web予約')===0 || t==='お問い合わせ' || h==='#yoyaku' || h==='#contact') return '#contact';
-  }
+  var href=a.getAttribute('href')||'';
+  var h=hashOnly(href)||href;
+  if(t.indexOf('Web予約')===0) return '#contact';
+  if(t.indexOf('お問い合わせ')===0) return ''; /* leave /inquiry alone */
   if(NAV_TEXT[t]) return NAV_TEXT[t];
+  if(t.indexOf('予約ホーム')===0 || t.indexOf('予約・アクセス')===0) return '#dk-reserve';
+  if(t.indexOf('でてこいランドについて')===0 || t.indexOf('でてこいランドとは')===0) return '#dk-about';
   if(NAV_HASH[h]) return NAV_HASH[h];
   if(/^#dk-/.test(h)) return h;
   return '';
 }
+function closeMobileMenu(){
+  try{
+    var close=document.querySelector('button[aria-label="メニューを閉じる"]');
+    if(close){ close.click(); return; }
+  }catch(e){}
+}
 function goSection(hash){
   if(!hash) return;
-  var id=hash.slice(1);
-  var el=document.getElementById(id);
+  closeMobileMenu();
+  var el=null;
   if(hash==='#contact' || hash==='#yoyaku'){
-    el=document.getElementById('contact')||document.querySelector('form[name="お問い合わせ_04"]')||el;
+    el=document.getElementById('contact')||document.querySelector('form[name="お問い合わせ_04"]');
+    hash='#yoyaku';
+  } else {
+    el=document.getElementById(hash.slice(1));
   }
-  try{ history.pushState(null,'',hash==='#contact'?'#yoyaku':hash); }catch(e){}
-  if(el){
-    try{ el.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e2){
-      try{ window.scrollTo(0, el.getBoundingClientRect().top+window.scrollY-80); }catch(e3){}
-    }
+  try{ history.pushState(null,'',hash); }catch(e){}
+  function scroll(){
+    if(!el) return;
+    try{ el.scrollIntoView({behavior:'auto',block:'start'}); }catch(e2){}
+    try{
+      var y=el.getBoundingClientRect().top+window.scrollY-72;
+      window.scrollTo(0, y<0?0:y);
+    }catch(e3){}
   }
+  scroll();
+  setTimeout(scroll, 50);
+  setTimeout(scroll, 300);
 }
 function rewriteNav(){
   document.querySelectorAll('a[href]').forEach(function(a){
     var t=(a.textContent||'').replace(/\s+/g,' ').trim();
-    var h=a.getAttribute('href')||'';
+    var href=a.getAttribute('href')||'';
     if(t.indexOf('Web予約')===0){ a.setAttribute('href','#yoyaku'); return; }
-    if(t.indexOf('お問い合わせ')===0 && (h==='#'||h==='#contact'||h==='#yoyaku'||!h)){ a.setAttribute('href','/inquiry'); return; }
+    if(t.indexOf('お問い合わせ')===0 && !/^https?:/i.test(href) && href.indexOf('/inquiry')!==0){
+      a.setAttribute('href','/inquiry'); return;
+    }
     var target=resolveNavTarget(a);
+    if(target==='#contact'){ a.setAttribute('href','#yoyaku'); return; }
     if(target && target.indexOf('#dk-')===0) a.setAttribute('href', target);
   });
 }
@@ -105,15 +131,15 @@ function wireNavClicks(){
   document.addEventListener('click', function(ev){
     var a=ev.target && ev.target.closest && ev.target.closest('a');
     if(!a) return;
-    var t=(a.textContent||'').replace(/\s+/g,' ').trim();
-    /* external / tel / mailto / real paths — leave alone */
     var href=a.getAttribute('href')||'';
     if(/^(https?:|mailto:|tel:)/i.test(href)) return;
+    /* real multi-page paths without hash — leave */
     if(href.indexOf('/inquiry')===0 || href.indexOf('/rule')===0) return;
+    if(href.charAt(0)==='/' && href.indexOf('#')===-1 && href!=='/' && href!=='/index.html') return;
     var target=resolveNavTarget(a);
     if(!target){
-      /* plain #dk-* already on href */
-      if(/^#dk-/.test(href)) target=href;
+      var h=hashOnly(href);
+      if(/^#dk-/.test(h)) target=h;
       else return;
     }
     ev.preventDefault();
@@ -123,13 +149,8 @@ function wireNavClicks(){
   }, true);
   window.addEventListener('hashchange', function(){
     var h=location.hash||'';
-    if(NAV_HASH[h]){
-      var t=NAV_HASH[h];
-      try{ history.replaceState(null,'',t); }catch(e){}
-      goSection(t);
-      return;
-    }
-    if(h==='#yoyaku' || h==='#contact' || h==='#reserve') goSection('#contact');
+    if(NAV_HASH[h]){ goSection(NAV_HASH[h]); return; }
+    if(/^#dk-/.test(h)) goSection(h);
   });
 }
 function placePort(port){
