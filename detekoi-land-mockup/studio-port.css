@@ -1,0 +1,144 @@
+/* Hide ONLY renamed legacy Studio blocks (IDs moved onto visible port/form) */
+body.detekoi-port-on #about-legacy,
+body.detekoi-port-on #annai-legacy,
+body.detekoi-port-on #taiken-legacy,
+body.detekoi-port-on #omoi-legacy,
+body.detekoi-port-on #yoyaku-legacy,
+body.detekoi-port-on #reserve-legacy{
+  display:none!important;
+}
+#detekoi-port{
+  --dk-forest:#1f3d32;--dk-moss:#4a6b58;--dk-ink:#1a2420;--dk-soft:#4a5750;
+  --dk-mist:#f3f1ec;--dk-sand:#ebe4d6;--dk-night:#07131f;
+  --dk-display:"Shippori Mincho","Hiragino Mincho ProN",serif;
+  --dk-body:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;
+  font-family:var(--dk-body);color:var(--dk-ink);line-height:1.9;
+  letter-spacing:.02em;
+  background:linear-gradient(180deg,var(--dk-mist),var(--dk-sand));
+}
+#detekoi-port *{box-sizing:border-box}
+#detekoi-port img{max-width:100%;display:block;height:auto}
+#detekoi-port a{color:inherit;text-decoration:none}
+#detekoi-port p,#detekoi-port li,#detekoi-port h3,#detekoi-port figcaption{
+  line-height:1.85!important;letter-spacing:.03em
+}
+#detekoi-port .dk-wrap{width:min(1120px,calc(100% - 2.5rem));margin:0 auto}
+#detekoi-port .dk-section{padding:clamp(3.4rem,6.5vw,5.6rem) 0;background:var(--dk-mist)}
+#detekoi-port .dk-section--soft{background:#f7f4ee}
+#detekoi-port .dk-label{
+  margin:0 0 .85rem;font-size:.75rem;letter-spacing:.22em;color:var(--dk-moss);text-align:center;
+  line-height:1.55!important
+}
+#detekoi-port .dk-section h2{
+  margin:0;text-align:center;font-family:var(--dk-display);font-weight:600;
+  font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:.06em;line-height:1.5!important
+}
+#detekoi-port .dk-lede{
+  margin:1.1rem auto 0;max-width:38rem;text-align:center;color:var(--dk-soft);
+  line-height:1.9!important;letter-spacing:.04em
+}
+#detekoi-port .dk-services{
+  margin-top:2.4rem;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem
+}
+#detekoi-port .dk-services article{margin:0}
+#detekoi-port .dk-services img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px}
+#detekoi-port .dk-services h3{
+  margin:1rem 0 .45rem;font-family:var(--dk-display);font-size:1.15rem;
+  line-height:1.5!important;letter-spacing:.04em
+}
+#detekoi-port .dk-services p{
+  margin:0;color:var(--dk-soft);font-size:.95rem;line-height:1.8!important;letter-spacing:.03em
+}
+#detekoi-port .dk-facility-overview{margin:1.5rem 0 0;border-radius:18px;overflow:hidden;background:#dfe8e2}
+#detekoi-port .dk-facility-overview img{width:100%;aspect-ratio:21/9;object-fit:cover;object-position:center 45%}
+#detekoi-port .dk-stay{
+  margin-top:1.5rem;display:grid;grid-template-columns:.95fr 1.05fr;gap:1.5rem;
+  background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 16px 40px rgba(7,19,31,.08)
+}
+#detekoi-port .dk-stay__visual{
+  background:var(--dk-night);color:#f7f4ee;padding:1.5rem;display:grid;gap:1rem;align-content:start
+}
+#detekoi-port .dk-stay__catch{
+  margin:0;font-family:var(--dk-display);font-size:clamp(1.4rem,2.8vw,1.9rem);letter-spacing:.06em;line-height:1.55!important;
+  color:#f7f4ee!important
+}
+#detekoi-port .dk-cues{
+  margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:.65rem;font-size:.78rem;letter-spacing:.1em;text-align:center;color:#f7f4ee;line-height:1.5
+}
+/* Outer card only — no nested border on inner <span> */
+#detekoi-port .dk-cues li{
+  color:#f7f4ee!important;border:1px solid rgba(247,244,238,.45);border-radius:12px;padding:.65rem .3rem;
+  line-height:1.5!important;letter-spacing:.08em
+}
+#detekoi-port .dk-cues span{
+  color:inherit!important;border:0!important;border-radius:0!important;padding:0!important;
+  background:transparent!important;box-shadow:none!important;display:inline;line-height:inherit!important
+}
+#detekoi-port .dk-slideshow{position:relative;width:100%;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#040a12}
+#detekoi-port .dk-slideshow__vp{position:absolute;inset:0}
+#detekoi-port .dk-slideshow__vp img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease;pointer-events:none
+}
+#detekoi-port .dk-slideshow__vp img.is-active{opacity:1;z-index:1}
+#detekoi-port .dk-slideshow__btn{
+  position:absolute;top:50%;z-index:2;transform:translateY(-50%);width:2rem;height:2rem;border:0;border-radius:50%;
+  background:rgba(7,19,31,.55);color:#fff;font-size:1.25rem;cursor:pointer
+}
+#detekoi-port .dk-slideshow__btn--prev{left:.5rem}
+#detekoi-port .dk-slideshow__btn--next{right:.5rem}
+#detekoi-port .dk-slideshow__dots{
+  position:absolute;left:0;right:0;bottom:.65rem;z-index:2;display:flex;justify-content:center;gap:.4rem
+}
+#detekoi-port .dk-slideshow__dots button{
+  width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer
+}
+#detekoi-port .dk-slideshow__dots button.is-active{background:#fff}
+#detekoi-port .dk-stay__copy{padding:clamp(1.4rem,3vw,2.2rem)}
+#detekoi-port .dk-stay__copy h3{
+  margin:0 0 1rem;font-family:var(--dk-display);font-size:clamp(1.35rem,2.6vw,1.85rem);
+  line-height:1.5!important;letter-spacing:.04em
+}
+#detekoi-port .dk-stay__copy>p{margin:0 0 1.15rem;color:var(--dk-soft);line-height:1.9!important}
+#detekoi-port .dk-bullets{margin:0;padding:0;list-style:none;display:grid;gap:.85rem}
+#detekoi-port .dk-bullets li{
+  display:flex;gap:.65rem;align-items:flex-start;color:var(--dk-ink);line-height:1.75!important
+}
+#detekoi-port .dk-bullets li::before{content:"•";color:var(--dk-moss);font-weight:700}
+#detekoi-port .dk-strip{margin-top:1.5rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+#detekoi-port .dk-strip figure{margin:0}
+#detekoi-port .dk-strip img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px}
+#detekoi-port .dk-strip figcaption{
+  margin:.7rem 0 0;text-align:center;font-size:.88rem;color:var(--dk-soft);line-height:1.6!important
+}
+#detekoi-port .dk-split{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:center;margin-top:1.6rem}
+#detekoi-port .dk-split .dk-label,#detekoi-port .dk-split h2{text-align:left}
+#detekoi-port .dk-prose p{margin:0 0 1.15rem;color:var(--dk-soft);line-height:1.95!important;letter-spacing:.035em}
+#detekoi-port .dk-prose .dk-em{color:var(--dk-forest);font-weight:700;line-height:1.9!important}
+#detekoi-port .dk-split figure{margin:0;border-radius:18px;overflow:hidden}
+#detekoi-port .dk-philo{margin-top:1.4rem;display:grid;grid-template-columns:.8fr 1.2fr;gap:1.6rem;align-items:start}
+#detekoi-port .dk-philo .dk-label,#detekoi-port .dk-philo h2,#detekoi-port .dk-philo .dk-lede{text-align:left}
+#detekoi-port .dk-portrait{margin:0;border-radius:18px;overflow:hidden;background:#e8e2d8}
+#detekoi-port .dk-portrait img{width:100%}
+#detekoi-port .dk-portrait figcaption{padding:.6rem .8rem;text-align:center;font-size:.9rem;color:var(--dk-soft)}
+#detekoi-port .dk-reserve-grid{margin-top:2rem;display:grid;grid-template-columns:1.2fr .8fr;gap:1.4rem}
+#detekoi-port .dk-map iframe{width:100%;min-height:280px;border:0;border-radius:16px}
+#detekoi-port .dk-address{margin:.8rem 0 0;font-style:normal;color:var(--dk-soft);font-size:.95rem;line-height:1.8!important;letter-spacing:.03em}
+#detekoi-port .dk-actions{display:grid;gap:.8rem;align-content:start}
+#detekoi-port .dk-btn{
+  display:block;text-align:center;padding:1rem 1.2rem;border-radius:14px;font-weight:700;border:2px solid var(--dk-forest)
+}
+#detekoi-port .dk-btn--solid{background:var(--dk-forest);color:#fff!important;border-color:var(--dk-forest)}
+#detekoi-port .dk-btn--outline{background:#fff;color:var(--dk-forest)!important}
+#detekoi-port .dk-note{
+  margin:.35rem 0 0;text-align:center;opacity:.85;font-size:.88rem;color:var(--dk-soft);
+  line-height:1.7!important;letter-spacing:.03em
+}
+@media (max-width:900px){
+  #detekoi-port .dk-services{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #detekoi-port .dk-stay,#detekoi-port .dk-split,#detekoi-port .dk-philo,#detekoi-port .dk-reserve-grid,#detekoi-port .dk-strip{grid-template-columns:1fr}
+  #detekoi-port .dk-cues{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  #detekoi-port .dk-services{grid-template-columns:1fr}
+}
