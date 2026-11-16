@@ -51,16 +51,19 @@ function wireSlideshow(root){
   setInterval(function(){ show(i+1); }, 5000);
 }
 function rewriteNav(){
+  /* Do NOT remap #yoyaku/#contact — those open the Studio booking form */
   var map={
     '#about':'#dk-about','#annai':'#dk-facilities','#taiken':'#dk-services','#omoi':'#dk-philosophy',
-    '#yoyaku':'#dk-reserve','#facilities':'#dk-facilities','#services':'#dk-services',
+    '#facilities':'#dk-facilities','#services':'#dk-services',
     '#philosophy':'#dk-philosophy','#reserve':'#dk-reserve'
   };
   document.querySelectorAll('a[href]').forEach(function(a){
     var h=a.getAttribute('href')||'';
-    if(map[h]) a.setAttribute('href', map[h]);
-    // text-based Studio nav
     var t=(a.textContent||'').replace(/\s+/g,' ').trim();
+    /* Web予約 CTAs must keep #yoyaku → form */
+    if(t.indexOf('Web予約')===0 || h==='#yoyaku' || h==='#contact') return;
+    if(map[h]) a.setAttribute('href', map[h]);
+    // text-based Studio nav → port sections (not the booking form)
     if(t==='でてこいランドとは') a.setAttribute('href','#dk-about');
     if(t==='施設案内') a.setAttribute('href','#dk-facilities');
     if(t==='体験できること') a.setAttribute('href','#dk-services');
