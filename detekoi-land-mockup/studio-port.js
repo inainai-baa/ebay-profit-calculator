@@ -50,18 +50,20 @@ function wireSlideshow(root){
   if(next) next.addEventListener('click',function(){ show(i+1); });
   setInterval(function(){ show(i+1); }, 5000);
 }
-/* Studio Link click handlers ignore rewritten href and jump to hidden
-   legacy sections (#annai etc.). Mobile drawer uses different labels + /#hash. */
+/* Studio-native section hashes (IDs live on visible port/form via adoptLegacyIds).
+   Keep #dk-* as aliases only — never rewrite native hashes away. */
 var NAV_HASH={
-  '#about':'#dk-about','#annai':'#dk-facilities','#taiken':'#dk-services','#omoi':'#dk-philosophy',
-  '#facilities':'#dk-facilities','#services':'#dk-services',
-  '#philosophy':'#dk-philosophy','#reserve':'#dk-reserve','#yoyaku':'#contact','#contact':'#contact'
+  '#about':'#about','#annai':'#annai','#taiken':'#taiken','#omoi':'#omoi',
+  '#facilities':'#annai','#services':'#taiken','#philosophy':'#omoi',
+  '#reserve':'#reserve','#yoyaku':'#yoyaku','#contact':'#yoyaku',
+  '#dk-about':'#about','#dk-facilities':'#annai','#dk-services':'#taiken',
+  '#dk-philosophy':'#omoi','#dk-reserve':'#reserve'
 };
 var NAV_TEXT={
-  'でてこいランドとは':'#dk-about','でてこいランドについて':'#dk-about',
-  '施設案内':'#dk-facilities','施設紹介':'#dk-facilities',
-  '体験できること':'#dk-services','この場所の想い':'#dk-philosophy',
-  '予約・アクセス':'#dk-reserve','予約ホーム・アクセス':'#dk-reserve','ご予約・アクセス':'#dk-reserve'
+  'でてこいランドとは':'#about','でてこいランドについて':'#about',
+  '施設案内':'#annai','施設紹介':'#annai',
+  '体験できること':'#taiken','この場所の想い':'#omoi',
+  '予約・アクセス':'#reserve','予約ホーム・アクセス':'#reserve','ご予約・アクセス':'#reserve'
 };
 function hashOnly(href){
   href=String(href||'');
@@ -75,13 +77,13 @@ function resolveNavTarget(a){
   var t=(a.textContent||'').replace(/\s+/g,' ').trim();
   var href=a.getAttribute('href')||'';
   var h=hashOnly(href)||href;
-  if(t.indexOf('Web予約')===0) return '#contact';
+  if(t.indexOf('Web予約')===0) return '#yoyaku';
   if(t.indexOf('お問い合わせ')===0) return ''; /* leave /inquiry alone */
   if(NAV_TEXT[t]) return NAV_TEXT[t];
-  if(t.indexOf('予約ホーム')===0 || t.indexOf('予約・アクセス')===0) return '#dk-reserve';
-  if(t.indexOf('でてこいランドについて')===0 || t.indexOf('でてこいランドとは')===0) return '#dk-about';
+  if(t.indexOf('予約ホーム')===0 || t.indexOf('予約・アクセス')===0) return '#reserve';
+  if(t.indexOf('でてこいランドについて')===0 || t.indexOf('でてこいランドとは')===0) return '#about';
   if(NAV_HASH[h]) return NAV_HASH[h];
-  if(/^#dk-/.test(h)) return h;
+  if(/^#dk-/.test(h)) return NAV_HASH[h]||h;
   return '';
 }
 function closeMobileMenu(){
@@ -93,15 +95,17 @@ function closeMobileMenu(){
 function goSection(hash){
   if(!hash) return;
   closeMobileMenu();
+  if(NAV_HASH[hash]) hash=NAV_HASH[hash];
   var el=null;
   if(hash==='#contact' || hash==='#yoyaku'){
-    el=document.getElementById('contact')||document.querySelector('form[name="お問い合わせ_04"]');
+    el=document.getElementById('yoyaku')||document.getElementById('contact')||document.querySelector('form[name="お問い合わせ_04"]');
     hash='#yoyaku';
   } else {
     el=document.getElementById(hash.slice(1));
   }
   try{ history.pushState(null,'',hash); }catch(e){}
   function scroll(){
+    if(!el) el=document.getElementById(hash.slice(1));
     if(!el) return;
     try{ el.scrollIntoView({behavior:'auto',block:'start'}); }catch(e2){}
     try{
@@ -158,8 +162,9 @@ function wireNavClicks(){
   }, true);
   window.addEventListener('hashchange', function(){
     var h=location.hash||'';
-    if(NAV_HASH[h]){ goSection(NAV_HASH[h]); return; }
-    if(/^#dk-/.test(h)) goSection(h);
+    if(!h || h==='#') return;
+    /* Scroll to native (or aliased) id — do not rewrite URL to #dk-* */
+    if(NAV_HASH[h] || document.getElementById(h.slice(1))) goSection(h);
   });
 }
 function placePort(port){
@@ -185,19 +190,35 @@ function adoptLegacyIds(port){
     if(el.getAttribute('data-dk-anchor')==='1') return;
     el.id=id+'-legacy';
   });
-  function ensureAnchor(id, host){
-    if(!host || document.getElementById(id)) return;
-    var s=document.createElement('span');
-    s.id=id; s.setAttribute('data-dk-anchor','1'); s.setAttribute('aria-hidden','true');
-    host.insertBefore(s, host.firstChild);
+  /* Prefer putting Studio-native IDs on the section hosts themselves.
+     Keep previous #dk-* as alias spans so old links still resolve. */
+  function promoteId(host, nativeId){
+    if(!host) return;
+    if(document.getElementById(nativeId) && document.getElementById(nativeId)!==host) return;
+    var prev=host.id||'';
+    if(host.id===nativeId) return;
+    if(prev && prev.indexOf('dk-')===0){
+      host.setAttribute('data-dk-id', prev);
+      var alias=document.createElement('span');
+      alias.id=prev; alias.setAttribute('data-dk-anchor','1'); alias.setAttribute('aria-hidden','true');
+      alias.style.cssText='position:relative;display:block;height:0;width:0;overflow:hidden;scroll-margin-top:72px';
+      host.insertBefore(alias, host.firstChild);
+    }
+    host.id=nativeId;
+    host.style.scrollMarginTop='72px';
   }
-  ensureAnchor('about', document.getElementById('dk-about'));
-  ensureAnchor('annai', document.getElementById('dk-facilities'));
-  ensureAnchor('taiken', document.getElementById('dk-services'));
-  ensureAnchor('omoi', document.getElementById('dk-philosophy'));
-  ensureAnchor('reserve', document.getElementById('dk-reserve'));
+  promoteId(document.getElementById('dk-about'), 'about');
+  promoteId(document.getElementById('dk-facilities'), 'annai');
+  promoteId(document.getElementById('dk-services'), 'taiken');
+  promoteId(document.getElementById('dk-philosophy'), 'omoi');
+  promoteId(document.getElementById('dk-reserve'), 'reserve');
   /* Booking hashes must land on the live Studio form, not a hidden block */
-  if(contact) ensureAnchor('yoyaku', contact);
+  if(contact && !document.getElementById('yoyaku')){
+    var y=document.createElement('span');
+    y.id='yoyaku'; y.setAttribute('data-dk-anchor','1'); y.setAttribute('aria-hidden','true');
+    y.style.cssText='position:relative;display:block;height:0;width:0;overflow:hidden;scroll-margin-top:72px';
+    contact.insertBefore(y, contact.firstChild);
+  }
   /* After IDs exist, honor current hash with native-friendly scroll */
   var h=location.hash||'';
   if(h && h.length>1){
