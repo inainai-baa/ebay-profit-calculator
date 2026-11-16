@@ -50,25 +50,86 @@ function wireSlideshow(root){
   if(next) next.addEventListener('click',function(){ show(i+1); });
   setInterval(function(){ show(i+1); }, 5000);
 }
+/* Studio Link click handlers ignore rewritten href and jump to hidden
+   legacy sections (#annai etc.). Resolve + capture-click to port IDs. */
+var NAV_HASH={
+  '#about':'#dk-about','#annai':'#dk-facilities','#taiken':'#dk-services','#omoi':'#dk-philosophy',
+  '#facilities':'#dk-facilities','#services':'#dk-services',
+  '#philosophy':'#dk-philosophy','#reserve':'#dk-reserve'
+};
+var NAV_TEXT={
+  'でてこいランドとは':'#dk-about','施設案内':'#dk-facilities','体験できること':'#dk-services',
+  'この場所の想い':'#dk-philosophy','予約・アクセス':'#dk-reserve'
+};
+function resolveNavTarget(a){
+  if(!a) return '';
+  var t=(a.textContent||'').replace(/\s+/g,' ').trim();
+  var h=a.getAttribute('href')||'';
+  if(t.indexOf('Web予約')===0 || t.indexOf('お問い合わせ')===0) return '#contact';
+  if(h==='#yoyaku' || h==='#contact' || h==='#reserve'){
+    /* booking CTAs → live Studio form */
+    if(t.indexOf('Web予約')===0 || t==='お問い合わせ' || h==='#yoyaku' || h==='#contact') return '#contact';
+  }
+  if(NAV_TEXT[t]) return NAV_TEXT[t];
+  if(NAV_HASH[h]) return NAV_HASH[h];
+  if(/^#dk-/.test(h)) return h;
+  return '';
+}
+function goSection(hash){
+  if(!hash) return;
+  var id=hash.slice(1);
+  var el=document.getElementById(id);
+  if(hash==='#contact' || hash==='#yoyaku'){
+    el=document.getElementById('contact')||document.querySelector('form[name="お問い合わせ_04"]')||el;
+  }
+  try{ history.pushState(null,'',hash==='#contact'?'#yoyaku':hash); }catch(e){}
+  if(el){
+    try{ el.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e2){
+      try{ window.scrollTo(0, el.getBoundingClientRect().top+window.scrollY-80); }catch(e3){}
+    }
+  }
+}
 function rewriteNav(){
-  /* Do NOT remap #yoyaku/#contact — those open the Studio booking form */
-  var map={
-    '#about':'#dk-about','#annai':'#dk-facilities','#taiken':'#dk-services','#omoi':'#dk-philosophy',
-    '#facilities':'#dk-facilities','#services':'#dk-services',
-    '#philosophy':'#dk-philosophy','#reserve':'#dk-reserve'
-  };
   document.querySelectorAll('a[href]').forEach(function(a){
-    var h=a.getAttribute('href')||'';
     var t=(a.textContent||'').replace(/\s+/g,' ').trim();
-    /* Web予約 CTAs must keep #yoyaku → form */
-    if(t.indexOf('Web予約')===0 || h==='#yoyaku' || h==='#contact') return;
-    if(map[h]) a.setAttribute('href', map[h]);
-    // text-based Studio nav → port sections (not the booking form)
-    if(t==='でてこいランドとは') a.setAttribute('href','#dk-about');
-    if(t==='施設案内') a.setAttribute('href','#dk-facilities');
-    if(t==='体験できること') a.setAttribute('href','#dk-services');
-    if(t==='この場所の想い') a.setAttribute('href','#dk-philosophy');
-    if(t==='予約・アクセス') a.setAttribute('href','#dk-reserve');
+    var h=a.getAttribute('href')||'';
+    if(t.indexOf('Web予約')===0){ a.setAttribute('href','#yoyaku'); return; }
+    if(t.indexOf('お問い合わせ')===0 && (h==='#'||h==='#contact'||h==='#yoyaku'||!h)){ a.setAttribute('href','/inquiry'); return; }
+    var target=resolveNavTarget(a);
+    if(target && target.indexOf('#dk-')===0) a.setAttribute('href', target);
+  });
+}
+function wireNavClicks(){
+  if(window.__DETEKOI_NAV_CLICK__) return;
+  window.__DETEKOI_NAV_CLICK__=1;
+  document.addEventListener('click', function(ev){
+    var a=ev.target && ev.target.closest && ev.target.closest('a');
+    if(!a) return;
+    var t=(a.textContent||'').replace(/\s+/g,' ').trim();
+    /* external / tel / mailto / real paths — leave alone */
+    var href=a.getAttribute('href')||'';
+    if(/^(https?:|mailto:|tel:)/i.test(href)) return;
+    if(href.indexOf('/inquiry')===0 || href.indexOf('/rule')===0) return;
+    var target=resolveNavTarget(a);
+    if(!target){
+      /* plain #dk-* already on href */
+      if(/^#dk-/.test(href)) target=href;
+      else return;
+    }
+    ev.preventDefault();
+    ev.stopPropagation();
+    if(typeof ev.stopImmediatePropagation==='function') ev.stopImmediatePropagation();
+    goSection(target);
+  }, true);
+  window.addEventListener('hashchange', function(){
+    var h=location.hash||'';
+    if(NAV_HASH[h]){
+      var t=NAV_HASH[h];
+      try{ history.replaceState(null,'',t); }catch(e){}
+      goSection(t);
+      return;
+    }
+    if(h==='#yoyaku' || h==='#contact' || h==='#reserve') goSection('#contact');
   });
 }
 function placePort(port){
@@ -85,6 +146,7 @@ function inject(){
   if(!onHome()) return;
   ensureFonts();
   document.body.classList.add('detekoi-port-on');
+  wireNavClicks();
   var existing=document.getElementById('detekoi-port');
   if(existing){
     placePort(existing);
@@ -98,6 +160,7 @@ function inject(){
   placePort(port);
   wireSlideshow(port);
   rewriteNav();
+  wireNavClicks();
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', inject);
 else inject();
