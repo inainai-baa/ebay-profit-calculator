@@ -20,7 +20,40 @@
     });
   }
 
-  // Variant B: Web予約 → #contact（メールフォーム）。料金表は pricing-data.js。
+  // Studio native form (お問い合わせ_04) on parent apex #contact.
+  // When this mockup is embedded as a fixed iframe, in-page #contact must
+  // break out so the parent hide script can uncover the Studio form.
+  const STUDIO_CONTACT = "https://detekoiland-nagasaki.jp/#contact";
+  const embedded = (() => {
+    try {
+      return window.self !== window.top;
+    } catch (_) {
+      return true;
+    }
+  })();
+
+  function escalateToStudioContact() {
+    try {
+      window.top.location.href = STUDIO_CONTACT;
+    } catch (_) {
+      window.location.href = STUDIO_CONTACT;
+    }
+  }
+
+  if (embedded) {
+    if ((location.hash || "") === "#contact") escalateToStudioContact();
+    window.addEventListener("hashchange", () => {
+      if ((location.hash || "") === "#contact") escalateToStudioContact();
+    });
+    document.querySelectorAll('a[href="#contact"]').forEach((a) => {
+      a.setAttribute("href", STUDIO_CONTACT);
+      a.setAttribute("target", "_top");
+      a.setAttribute("rel", "noopener");
+    });
+  } else {
+    const pagesForm = document.querySelector("[data-pages-only-form]");
+    if (pagesForm) pagesForm.hidden = false;
+  }
 
   // Daikanso-like hero settle → enable Ken Burns after soft text entrance
   const hero = document.querySelector(".hero");
@@ -214,9 +247,9 @@
     });
   }
 
-  // In-page contact form (Pages / iframe B) — keep users on Variant B
+  // Standalone Pages fallback only (hidden while embedded — see escalate above)
   const contactForm = document.querySelector("#contact-form");
-  if (contactForm) {
+  if (contactForm && !embedded) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(contactForm);
