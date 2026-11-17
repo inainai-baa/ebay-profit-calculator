@@ -630,7 +630,20 @@ body.detekoi-port-on #detekoi-port .dk-map__img{
   .dk-rules-grid{grid-template-columns:1fr;gap:.85rem}
   .dk-rule-card__head{padding:.75rem .9rem}
 }
-
+body.detekoi-sub-on #omoi.dk-rule-mount{
+  max-width:1080px;
+  margin:88px auto 48px;
+  padding:0 16px 32px;
+  box-sizing:border-box;
+}
+body.detekoi-sub-on .dk-rule-page__title{
+  text-align:center;
+  font-size:clamp(1.35rem,4.2vw,1.85rem)!important;
+  font-weight:700!important;
+  color:var(--dk-forest)!important;
+  margin:0 0 1.25rem!important;
+  line-height:1.45!important;
+}
 
 /* Subpages (/rule, /ryokin): widen content; collapse empty Studio spacers */
 body.detekoi-sub-on .StudioCanvas > .sd,
