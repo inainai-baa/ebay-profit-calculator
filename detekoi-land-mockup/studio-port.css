@@ -75,6 +75,28 @@ body.detekoi-port-on .StudioCanvas main{
   margin-top:0!important;
   padding-top:0!important;
 }
+/* Mobile: Studio keeps ~100px L/R pad → ~175px content column. Widen near full viewport. */
+@media (max-width:900px){
+  body.detekoi-port-on .StudioCanvas > .sd,
+  body.detekoi-port-on .StudioCanvas > div.sd{
+    padding-left:16px!important;
+    padding-right:16px!important;
+    box-sizing:border-box!important;
+  }
+  body.detekoi-port-on #detekoi-port .dk-wrap{
+    width:100%!important;
+    max-width:100%!important;
+    padding-left:0!important;
+    padding-right:0!important;
+    box-sizing:border-box!important;
+  }
+  body.detekoi-port-on #contact,
+  body.detekoi-port-on #omoi{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+}
 
 /* Oct 26 Mockup B hero — Daikanso soft fade: white→photo, text rise+fade */
 #detekoi-hero{
@@ -334,4 +356,66 @@ body.detekoi-port-on .StudioCanvas main{
 }
 @media (max-width:560px){
   #detekoi-port .dk-services{grid-template-columns:1fr}
+}
+
+/* /rule#omoi — numbered rules as readable 2-column cards */
+.dk-rules-grid{
+  --dk-forest:#1f3d32;--dk-moss:#4a6b58;--dk-ink:#1a2420;--dk-soft:#4a5750;--dk-sand:#ebe4d6;--dk-mist:#f3f1ec;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1rem 1.15rem;
+  width:min(1040px,92vw);
+  margin:1rem auto 1.5rem;
+  font-family:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;
+}
+.dk-rule-card{
+  background:#fff;
+  border:1px solid #d9d2c4;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(31,61,50,.06);
+  min-width:0;
+}
+.dk-rule-card__head{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.85rem 1rem;
+  background:linear-gradient(105deg,#1f3d32 0%,#2f5648 100%);
+  color:#fff!important;
+}
+.dk-rule-card__num{
+  flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:2rem;height:2rem;padding:0 .45rem;
+  border-radius:999px;
+  background:#ebe4d6;color:#1f3d32!important;
+  font-weight:800;font-size:.95rem;letter-spacing:.02em;
+  line-height:1;
+}
+.dk-rule-card__title{
+  margin:0;padding-top:.15rem;
+  font-family:"Shippori Mincho","Hiragino Mincho ProN",serif!important;
+  font-size:clamp(1.02rem,1.7vw,1.18rem)!important;
+  font-weight:700!important;line-height:1.45!important;letter-spacing:.04em;
+  color:#fff!important;
+}
+.dk-rule-card__body{
+  padding:.85rem 1rem 1.05rem;
+  color:var(--dk-ink);
+  font-size:.94rem;line-height:1.8;letter-spacing:.02em;
+}
+.dk-rule-card__body p{margin:0 0 .45rem;color:var(--dk-soft)!important;line-height:1.8!important}
+.dk-rule-card__body p:last-child{margin-bottom:0}
+.dk-rules-footer{
+  width:min(1040px,92vw);margin:0 auto 1.75rem;
+  color:#4a5750;font-size:.95rem;line-height:1.85;letter-spacing:.03em;
+}
+.dk-rules-footer p{margin:0 0 .55rem}
+#omoi [data-dk-pdf-hide="1"],
+#omoi a[href*=".pdf"],
+#omoi a[href*=".PDF"]{
+  display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;
+}
+@media (max-width:720px){
+  .dk-rules-grid{grid-template-columns:1fr;gap:.85rem}
+  .dk-rule-card__head{padding:.75rem .9rem}
 }
