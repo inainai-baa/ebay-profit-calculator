@@ -39,6 +39,13 @@ body.detekoi-port-on #yoyaku[data-dk-anchor]{
   display:block!important;
   position:relative!important;
 }
+/* When hash opens the booking form, don't vertically center it in 50vh */
+body.detekoi-contact-open #contact,
+body.detekoi-port-on.detekoi-contact-open #contact,
+#contact:target{
+  justify-content:flex-start!important;
+  min-height:0!important;
+}
 
 /* Oct 26 Mockup B hero — soft ふわっ fade (daikanso-like), no iframe */
 #detekoi-hero{
