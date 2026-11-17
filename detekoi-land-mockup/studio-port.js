@@ -104,30 +104,49 @@ function closeMobileMenu(){
     }
   }catch(e){}
 }
+function headerH(){
+  try{
+    var h=document.querySelector('header.fixed, header.sd, header');
+    if(h){
+      var hh=Math.round(h.getBoundingClientRect().height);
+      if(hh>0 && hh<160) return hh;
+    }
+  }catch(e){}
+  return window.innerWidth<=720?56:64;
+}
+function syncHeaderVar(){
+  try{
+    document.documentElement.style.setProperty('--dk-header-h', headerH()+'px');
+  }catch(e){}
+}
+function scrollToEl(el){
+  if(!el) return;
+  try{
+    var hh=headerH();
+    var y=el.getBoundingClientRect().top+window.scrollY-hh-6;
+    window.scrollTo(0, y<0?0:y);
+  }catch(e){}
+}
 function goSection(hash){
   if(!hash) return;
   closeMobileMenu();
+  syncHeaderVar();
   if(NAV_HASH[hash]) hash=NAV_HASH[hash];
   var el=null;
   if(hash==='#contact' || hash==='#yoyaku'){
-    el=document.getElementById('yoyaku')||document.getElementById('contact')||document.querySelector('form[name="お問い合わせ_04"]');
+    /* Prefer visible #contact form — zero-height #yoyaku + scroll-margin caused upward jumps */
+    el=document.getElementById('contact')||document.querySelector('form[name="お問い合わせ_04"]')||document.getElementById('yoyaku');
     hash='#yoyaku';
   } else {
     el=document.getElementById(hash.slice(1));
   }
   try{ history.pushState(null,'',hash); }catch(e){}
-  function scroll(){
-    if(!el) el=document.getElementById(hash.slice(1));
-    if(!el) return;
-    try{ el.scrollIntoView({behavior:'auto',block:'start'}); }catch(e2){}
-    try{
-      var y=el.getBoundingClientRect().top+window.scrollY-72;
-      window.scrollTo(0, y<0?0:y);
-    }catch(e3){}
-  }
+  /* Mark so custom-code sync skips a second scrollIntoView */
+  window.__DETEKOI_PORT_SCROLLED__=hash;
+  function scroll(){ scrollToEl(el || document.getElementById(hash.slice(1))); }
   scroll();
-  setTimeout(scroll, 50);
-  setTimeout(scroll, 300);
+  /* One layout retry only — avoid multi-pass scrollIntoView/scrollTo fighting */
+  setTimeout(scroll, 140);
 }
 function rewriteNav(){
   /* Prefer Studio-native legacy hashes that now resolve to visible anchors */
@@ -292,11 +311,11 @@ function adoptLegacyIds(port){
       host.setAttribute('data-dk-id', prev);
       var alias=document.createElement('span');
       alias.id=prev; alias.setAttribute('data-dk-anchor','1'); alias.setAttribute('aria-hidden','true');
-      alias.style.cssText='position:relative;display:block;height:0;width:0;overflow:hidden;scroll-margin-top:72px';
+      alias.style.cssText='position:relative;display:block;height:0;width:0;overflow:hidden;scroll-margin-top:0';
       host.insertBefore(alias, host.firstChild);
     }
     host.id=nativeId;
-    host.style.scrollMarginTop='72px';
+    host.style.scrollMarginTop='0';
   }
   promoteId(document.getElementById('dk-about'), 'about');
   promoteId(document.getElementById('dk-facilities'), 'annai');
@@ -313,7 +332,7 @@ function adoptLegacyIds(port){
       var val={position:'relative',display:'block',height:'0',width:'0','max-height':'0','min-height':'0',overflow:'hidden',padding:'0',margin:'0',background:'transparent',border:'0','font-size':'0','line-height':'0'}[prop];
       try{ el.style.setProperty(prop, val, 'important'); }catch(e){}
     });
-    try{ el.style.setProperty('scroll-margin-top','72px'); }catch(e2){}
+    try{ el.style.setProperty('scroll-margin-top','0'); }catch(e2){}
   }
   var yExist=document.getElementById('yoyaku');
   if(yExist && yExist.getAttribute('data-dk-anchor')==='1'){
@@ -327,20 +346,17 @@ function adoptLegacyIds(port){
     /* Studio-native #yoyaku that isn't our anchor — still collapse empty gap risk */
     zeroAnchor(yExist);
   }
-  /* After IDs exist, honor current hash with native-friendly scroll */
+  /* Honor landing hash once only — inject() retries must not keep re-scrolling */
   var h=location.hash||'';
-  if(h && h.length>1){
-    var el=document.getElementById(h.slice(1));
-    if(el){
-      setTimeout(function(){
-        try{ el.scrollIntoView({behavior:'auto',block:'start'}); }catch(e){}
-      }, 80);
-    }
+  if(h && h.length>1 && !window.__DETEKOI_HASH_HONORED__){
+    window.__DETEKOI_HASH_HONORED__=1;
+    setTimeout(function(){ goSection(h); }, 120);
   }
 }
 function inject(){
   if(!onHome()) return;
   ensureFonts();
+  syncHeaderVar();
   document.body.classList.add('detekoi-port-on');
   wireNavClicks();
   hideStudioHero();
@@ -356,6 +372,7 @@ function inject(){
     wireSlideshow(existing);
     hideStudioHero();
     rewriteNav();
+    syncHeaderVar();
     return;
   }
   var mount=document.createElement('div');
@@ -368,11 +385,13 @@ function inject(){
   hideStudioHero();
   rewriteNav();
   wireNavClicks();
+  syncHeaderVar();
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', inject);
 else inject();
 var n=0; var t=setInterval(function(){ inject(); if(++n>=40) clearInterval(t); }, 300);
 setTimeout(function(){ clearInterval(t); inject(); }, 12000);
+try{ window.addEventListener('resize', function(){ syncHeaderVar(); }, {passive:true}); }catch(e){ window.addEventListener('resize', syncHeaderVar); }
 try{ new MutationObserver(function(){ inject(); }).observe(document.documentElement,{childList:true,subtree:true}); }catch(e){}
 
 })();
