@@ -219,23 +219,19 @@ function placePort(port){
 }
 function placeHero(hero, port){
   if(!hero) return;
-  /* Prefer replacing Studio speech-bubble hero slot (under nav) */
-  var studio=document.querySelector('[data-dk-studio-hero="1"]');
-  if(studio && studio.parentNode){
-    if(hero.nextSibling!==studio) studio.parentNode.insertBefore(hero, studio);
-    return;
-  }
-  if(port && port.parentNode){
-    if(hero.nextSibling!==port) port.parentNode.insertBefore(hero, port);
-    return;
-  }
-  var contact=document.getElementById('contact');
-  if(contact&&contact.parentNode){
-    if(hero.nextSibling!==contact) contact.parentNode.insertBefore(hero, contact);
-    return;
-  }
+  /* Prefer first child of main so nothing can paint a cream/wave band above sky */
   var main=document.querySelector('main')||document.body;
-  if(hero.parentNode!==main) main.appendChild(hero);
+  if(hero.parentNode!==main || main.firstElementChild!==hero){
+    main.insertBefore(hero, main.firstElementChild || null);
+  }
+  collapseBeforeHero();
+  /* Keep port after hero when present */
+  if(port && port.parentNode && hero.nextSibling!==port){
+    /* only reorder if port is a sibling; don't pull contact forms around */
+    if(port.parentNode===hero.parentNode){
+      hero.parentNode.insertBefore(port, hero.nextSibling);
+    }
+  }
 }
 /* Hide Studio speech-bubble inset hero + empty spacers above the port.
    Do NOT touch #contact / forms / port / nav. */
@@ -248,11 +244,15 @@ function hideStudioHero(){
       var t=(sec.innerText||'').replace(/\s+/g,' ').trim();
       if(!t) return;
       if(t.indexOf('五感が喜ぶ')===-1 || t.indexOf('みんなの秘密基地')===-1) return;
-      /* Studio hero is short catch-only; port/about prose is longer */
-      if(t.length>60) return;
+      /* Studio catch may be polluted by injected <style> text (length >> 60).
+         Still mark section.section; skip long prose blocks outside .section. */
+      if(t.length>60 && !(sec.classList && sec.classList.contains('section'))) return;
       sec.setAttribute('data-dk-studio-hero','1');
       marked=1;
     });
+    /* Also collapse any in-flow main siblings before #detekoi-hero (cream band /
+       wavy leftover speech-bubble / spacer that can sit between header and sky). */
+    collapseBeforeHero();
     if(!marked) return;
     var hero=document.querySelector('[data-dk-studio-hero="1"]');
     if(!hero || !hero.parentNode) return;
@@ -270,6 +270,26 @@ function hideStudioHero(){
         el.setAttribute('data-dk-studio-gap','1');
       }
     });
+  }catch(e){}
+}
+/* Mark every main child that precedes #detekoi-hero so CSS can zero it.
+   Prevents intermittent cream/wave bands when Studio spacers briefly lay out. */
+function collapseBeforeHero(){
+  try{
+    var hero=document.getElementById('detekoi-hero');
+    if(!hero || !hero.parentNode) return;
+    var kids=[].slice.call(hero.parentNode.children);
+    for(var i=0;i<kids.length;i++){
+      var el=kids[i];
+      if(el===hero) break;
+      if(el.id==='detekoi-port' || el.id==='contact') continue;
+      if(el.querySelector && el.querySelector('#detekoi-port, #detekoi-hero, #contact, form')) continue;
+      el.setAttribute('data-dk-studio-gap','1');
+    }
+    /* Ensure soft-fade hero is the first in-flow child of main */
+    if(hero.parentNode.firstElementChild!==hero){
+      hero.parentNode.insertBefore(hero, hero.parentNode.firstElementChild);
+    }
   }catch(e){}
 }
 function buildHero(){
@@ -434,9 +454,11 @@ function buildPricingAccordion(root, pricing){
   var accordion=root.querySelector('[data-pricing-accordion]');
   if(!accordion) return;
   if(titleEl && pricing.title) titleEl.textContent=pricing.title;
+  /* Client: remove Reiwa / 反映日 line under 長崎でてこいランド料金表 */
   if(metaEl){
-    var bits=[pricing.asOf, pricing.syncedAt ? ('反映日 '+pricing.syncedAt) : ''].filter(Boolean).join(' · ');
-    metaEl.textContent=bits;
+    metaEl.textContent='';
+    metaEl.setAttribute('hidden','');
+    metaEl.setAttribute('aria-hidden','true');
   }
   accordion.innerHTML='';
   function facilityTable(rows){
