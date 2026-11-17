@@ -376,7 +376,7 @@ function inject(){
     return;
   }
   var mount=document.createElement('div');
-  mount.innerHTML="\n<div id=\"detekoi-port\">\n  <section class=\"dk-section\" id=\"dk-services\">\n    <div class=\"dk-wrap\">\n      <p class=\"dk-label\">EXPERIENCE</p>\n      <h2>体験できること</h2>\n      <div class=\"dk-services\">\n        <article>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/08-toys.jpg\" alt=\"でてこいランドのピアノ\" loading=\"lazy\" />\n          <h3>遊べるおもちゃたち</h3>\n          <p>遊具広場　ピアノ　ミニ図書館　ツリーハウスなど子供から大人まで楽しめる遊具が充実してます</p>\n        </article>\n        <article>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/09-campfire.jpg\" alt=\"長崎でてこいランドの焚き火・BBQキャンプ体験\" loading=\"lazy\" />\n          <h3>BBQやキャンプも</h3>\n          <p>自然の中でバーベキューやキャンプを楽しみ楽しい思い出作り</p>\n        </article>\n        <article>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/14-star-trails.jpg\" alt=\"諫早・本野町で眺める長崎の星空（星の軌跡）\" loading=\"lazy\" />\n          <h3>夜には満点の星たち</h3>\n          <p>季節の星座を親子で楽しむ星空観察も、「でてこいランド」で過ごす夜の楽しみのひとつです。</p>\n        </article>\n        <article>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/13-totoro-rocks.jpg\" alt=\"でてこいランド周辺の自然のなかで遊ぶ岩場\" loading=\"lazy\" />\n          <h3>自然のなかで遊ぶ</h3>\n          <p>森や広場で思いきり遊べる場所があります。子どもたちがそのままでいられる楽しさを。</p>\n        </article>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"dk-section dk-section--soft\" id=\"dk-facilities\">\n    <div class=\"dk-wrap\">\n      <p class=\"dk-label\">STAY / 施設案内</p>\n      <h2>施設案内</h2>\n      <figure class=\"dk-facility-overview\">\n        <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/facility-overview.jpg\" alt=\"長崎でてこいランドの広々としたコテージ内観\" loading=\"lazy\" />\n      </figure>\n      <div class=\"dk-stay\">\n        <div class=\"dk-stay__visual\">\n          <p class=\"dk-stay__catch\">ふっと深呼吸したくなる。</p>\n          <ul class=\"dk-cues\" aria-label=\"施設の雰囲気\">\n            <li><span>森林</span></li><li><span>焚き火</span></li><li><span>星空</span></li><li><span>休息</span></li>\n          </ul>\n          <div class=\"dk-slideshow\" data-dk-slideshow>\n            <div class=\"dk-slideshow__vp\"><img class=\"is-active\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-01-night-lodge.jpg\" alt=\"夜、あたたかな灯りがともるログハウス\"  /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-02-genkan.jpg\" alt=\"でてこいランドの玄関\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-03-deck.jpg\" alt=\"デッキとDETEKOIのサイン\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-05-desks.jpg\" alt=\"学校机と黒板のある木の部屋\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-06-bath.jpg\" alt=\"大浴場\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-07-washitsu.jpg\" alt=\"和室のお部屋\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-08-toys.jpg\" alt=\"おもちゃコーナー\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-09-field.jpg\" alt=\"大きな広場\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-10-entrance.jpg\" alt=\"施設へのアプローチ\" loading=\"lazy\" /></div>\n            <div class=\"dk-slideshow__dots\" data-dk-dots></div>\n            <button type=\"button\" class=\"dk-slideshow__btn dk-slideshow__btn--prev\" data-dk-prev aria-label=\"前の写真\">‹</button>\n            <button type=\"button\" class=\"dk-slideshow__btn dk-slideshow__btn--next\" data-dk-next aria-label=\"次の写真\">›</button>\n          </div>\n        </div>\n        <div class=\"dk-stay__copy\">\n          <h3>広々コテージは約50名収容</h3>\n          <p>でてこいランドには大きなコテージや広場があり、子供たちがそのままでいられることの楽しさを感じられるよう日々整えております。見守り人もすぐ見渡せるよう、開放的なつくりにしています。</p>\n          <ul class=\"dk-bullets\">\n            <li>テントもたてられる大きな広場</li>\n            <li>お風呂も大浴場があり、洗濯機なども完備</li>\n            <li>お部屋は和洋室、広さもいろいろ</li>\n            <li>夜には満点の星たち</li>\n          </ul>\n        </div>\n      </div>\n      <div class=\"dk-strip\">\n        <figure>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/04-facility-interior.jpg\" alt=\"円卓のある共用スペース\" loading=\"lazy\" />\n          <figcaption>円卓のある共用スペース</figcaption>\n        </figure>\n        <figure>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/07-bath.jpg\" alt=\"大浴場\" loading=\"lazy\" />\n          <figcaption>お風呂も大浴場があり、洗濯機なども完備</figcaption>\n        </figure>\n        <figure>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/06-guest-room.jpg\" alt=\"和室\" loading=\"lazy\" />\n          <figcaption>お部屋は和洋室、広さもいろいろ</figcaption>\n        </figure>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"dk-section\" id=\"dk-about\">\n    <div class=\"dk-wrap dk-split\">\n      <div>\n        <p class=\"dk-label\">ABOUT</p>\n        <h2>さあ、外へ出よう。</h2>\n        <div class=\"dk-prose\">\n          <p>思いきり走ってもいい。大きな声で笑ってもいい。火を起こしてもいい。</p>\n          <p>自然の中では、大人も子どもも等しく「自由」です。</p>\n          <p>「でも、うちの子はみんなと違うから」「みんなに迷惑がかかるから」——そんな思いから、一歩を踏み出せずにいる人へ。</p>\n          <p class=\"dk-em\">さあ外の世界へ、“でてこい！”</p>\n          <p>長崎でてこいランドという名前には、自然の中へ、人との出会いへ、まだ見ぬ感動へ飛び込もう。そんな願いが込められています。</p>\n        </div>\n      </div>\n      <figure>\n        <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/18-campsite-tents-field.jpg\" alt=\"長崎でてこいランドの広場に並ぶテントとキャンプサイト\" loading=\"lazy\" />\n      </figure>\n    </div>\n  </section>\n\n  <section class=\"dk-section\" id=\"dk-philosophy\">\n    <div class=\"dk-wrap\">\n      <p class=\"dk-label\" style=\"text-align:left\">PHILOSOPHY</p>\n      <h2 style=\"text-align:left\">この場所への想い</h2>\n      <p class=\"dk-lede\" style=\"text-align:left;margin-left:0\">この場所を守り続ける理由。</p>\n      <div class=\"dk-philo\">\n        <figure class=\"dk-portrait\">\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/17-director-illust.jpg\" alt=\"長崎でてこいランド 似顔ライター画\" loading=\"lazy\" />\n          <figcaption>長崎でてこいランド</figcaption>\n        </figure>\n        <div class=\"dk-prose\">\n          <p>長崎でてこいランドは、多くの人の想いが受け継がれながら歩んできた場所です。</p>\n          <p>廃業寸前だったこの場所を引き継いでから、少しずつ手を入れ、草を刈り、木を直し、花を植え、十年という歳月をかけて育んできました。</p>\n          <p>豪華な施設をつくりたかったわけではありません。子どもたちが季節の花に足を止め、火を囲み、星空に感動する。そんな「本物にふれる感動」を届けたかったのです。</p>\n          <p>私が大切にしているのは、「来てよかった」と心から思える瞬間。これからも、一人でも多くの人に感動を届け、みんなから愛される長崎でてこいランドを次世代に残し伝えてまいります。</p>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"dk-section dk-section--soft\" id=\"dk-reserve\">\n    <div class=\"dk-wrap\">\n      <p class=\"dk-label\">RESERVATION</p>\n      <h2>ご予約・アクセス</h2>\n      <p class=\"dk-lede\">ご予約は下の<strong>メールフォーム</strong>（Web予約）から。ご相談・空きの確認はお電話でも承ります。</p>\n      <div class=\"dk-reserve-grid\">\n        <div>\n          <div class=\"dk-map\">\n            <iframe title=\"長崎でてこいランドの地図\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"\n              src=\"https://maps.google.com/maps?q=%E9%95%B7%E5%B4%8E%E3%81%A7%E3%81%A6%E3%81%93%E3%81%84%E3%83%A9%E3%83%B3%E3%83%89+%E8%AB%A7%E6%97%A9%E5%B8%82%E6%9C%AC%E9%87%8E%E7%94%BA&z=15&output=embed&hl=ja\"></iframe>\n          </div>\n          <address class=\"dk-address\">〒854-0093 長崎県諫早市本野町１３０３<br />諫早駅から車で10分※無料駐車場あり</address>\n        </div>\n        <div class=\"dk-actions\">\n          <a class=\"dk-btn dk-btn--outline\" href=\"tel:09052907807\">電話・ご相談<br /><strong>☎ 090-5290-7807</strong></a>\n          <a class=\"dk-btn dk-btn--solid\" href=\"#yoyaku\">Web予約（メールフォーム）</a>\n          <p class=\"dk-note\">※毎週木曜・12/25〜1/7お休み</p>\n        </div>\n      </div>\n    </div>\n  </section>\n</div>\n".trim();
+  mount.innerHTML="\n<div id=\"detekoi-port\">\n  <section class=\"dk-section\" id=\"dk-services\">\n    <div class=\"dk-wrap\">\n      <p class=\"dk-label\">EXPERIENCE</p>\n      <h2>体験できること</h2>\n      <div class=\"dk-services\">\n        <article>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/08-toys.jpg\" alt=\"でてこいランドのピアノ\" loading=\"lazy\" />\n          <h3>遊べるおもちゃたち</h3>\n          <p>遊具広場　ピアノ　ミニ図書館　ツリーハウスなど子供から大人まで楽しめる遊具が充実してます</p>\n        </article>\n        <article>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/09-campfire.jpg\" alt=\"長崎でてこいランドの焚き火・BBQキャンプ体験\" loading=\"lazy\" />\n          <h3>BBQやキャンプも</h3>\n          <p>自然の中でバーベキューやキャンプを楽しみ楽しい思い出作り</p>\n        </article>\n        <article>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/14-star-trails.jpg\" alt=\"諫早・本野町で眺める長崎の星空（星の軌跡）\" loading=\"lazy\" />\n          <h3>夜には満点の星たち</h3>\n          <p>季節の星座を親子で楽しむ星空観察も、「でてこいランド」で過ごす夜の楽しみのひとつです。</p>\n        </article>\n        <article>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/13-totoro-rocks.jpg\" alt=\"でてこいランド周辺の自然のなかで遊ぶ岩場\" loading=\"lazy\" />\n          <h3>自然のなかで遊ぶ</h3>\n          <p>森や広場で思いきり遊べる場所があります。子どもたちがそのままでいられる楽しさを。</p>\n        </article>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"dk-section dk-section--soft\" id=\"dk-facilities\">\n    <div class=\"dk-wrap\">\n      <p class=\"dk-label\">STAY / 施設案内</p>\n      <h2>施設案内</h2>\n      <figure class=\"dk-facility-overview\">\n        <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/facility-overview.jpg\" alt=\"長崎でてこいランドの広々としたコテージ内観\" loading=\"lazy\" />\n      </figure>\n      <div class=\"dk-stay\">\n        <div class=\"dk-stay__visual\">\n          <p class=\"dk-stay__catch\">ふっと深呼吸したくなる。</p>\n          <ul class=\"dk-cues\" aria-label=\"施設の雰囲気\">\n            <li><span>森林</span></li><li><span>焚き火</span></li><li><span>星空</span></li><li><span>休息</span></li>\n          </ul>\n          <div class=\"dk-slideshow\" data-dk-slideshow>\n            <div class=\"dk-slideshow__vp\"><img class=\"is-active\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-01-night-lodge.jpg\" alt=\"夜、あたたかな灯りがともるログハウス\"  /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-02-genkan.jpg\" alt=\"でてこいランドの玄関\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-03-deck.jpg\" alt=\"デッキとDETEKOIのサイン\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-05-desks.jpg\" alt=\"学校机と黒板のある木の部屋\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-06-bath.jpg\" alt=\"大浴場\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-07-washitsu.jpg\" alt=\"和室のお部屋\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-08-toys.jpg\" alt=\"おもちゃコーナー\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-09-field.jpg\" alt=\"大きな広場\" loading=\"lazy\" /><img class=\"\" src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/slides/slide-10-entrance.jpg\" alt=\"施設へのアプローチ\" loading=\"lazy\" /></div>\n            <div class=\"dk-slideshow__dots\" data-dk-dots></div>\n            <button type=\"button\" class=\"dk-slideshow__btn dk-slideshow__btn--prev\" data-dk-prev aria-label=\"前の写真\">‹</button>\n            <button type=\"button\" class=\"dk-slideshow__btn dk-slideshow__btn--next\" data-dk-next aria-label=\"次の写真\">›</button>\n          </div>\n        </div>\n        <div class=\"dk-stay__copy\">\n          <h3>広々コテージは約50名収容</h3>\n          <p>でてこいランドには大きなコテージや広場があり、子供たちがそのままでいられることの楽しさを感じられるよう日々整えております。見守り人もすぐ見渡せるよう、開放的なつくりにしています。</p>\n          <ul class=\"dk-bullets\">\n            <li>テントもたてられる大きな広場</li>\n            <li>お風呂も大浴場があり、洗濯機なども完備</li>\n            <li>お部屋は和洋室、広さもいろいろ</li>\n            <li>夜には満点の星たち</li>\n          </ul>\n        </div>\n      </div>\n      <div class=\"dk-strip\">\n        <figure>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/04-facility-interior.jpg\" alt=\"円卓のある共用スペース\" loading=\"lazy\" />\n          <figcaption>円卓のある共用スペース</figcaption>\n        </figure>\n        <figure>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/07-bath.jpg\" alt=\"大浴場\" loading=\"lazy\" />\n          <figcaption>お風呂も大浴場があり、洗濯機なども完備</figcaption>\n        </figure>\n        <figure>\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/06-guest-room.jpg\" alt=\"和室\" loading=\"lazy\" />\n          <figcaption>お部屋は和洋室、広さもいろいろ</figcaption>\n        </figure>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"dk-section\" id=\"dk-about\">\n    <div class=\"dk-wrap dk-split\">\n      <div>\n        <p class=\"dk-label\">ABOUT</p>\n        <h2>さあ、外へ出よう。</h2>\n        <div class=\"dk-prose\">\n          <p>思いきり走ってもいい。大きな声で笑ってもいい。火を起こしてもいい。</p>\n          <p>自然の中では、大人も子どもも等しく「自由」です。</p>\n          <p>「でも、うちの子はみんなと違うから」「みんなに迷惑がかかるから」——そんな思いから、一歩を踏み出せずにいる人へ。</p>\n          <p class=\"dk-em\">さあ外の世界へ、“でてこい！”</p>\n          <p>長崎でてこいランドという名前には、自然の中へ、人との出会いへ、まだ見ぬ感動へ飛び込もう。そんな願いが込められています。</p>\n        </div>\n      </div>\n      <figure>\n        <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/18-campsite-tents-field.jpg\" alt=\"長崎でてこいランドの広場に並ぶテントとキャンプサイト\" loading=\"lazy\" />\n      </figure>\n    </div>\n  </section>\n\n  <section class=\"dk-section\" id=\"dk-philosophy\">\n    <div class=\"dk-wrap\">\n      <p class=\"dk-label\" style=\"text-align:left\">PHILOSOPHY</p>\n      <h2 style=\"text-align:left\">この場所への想い</h2>\n      <p class=\"dk-lede\" style=\"text-align:left;margin-left:0\">この場所を守り続ける理由。</p>\n      <div class=\"dk-philo\">\n        <figure class=\"dk-portrait\">\n          <img src=\"https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos/17-director-illust.jpg\" alt=\"長崎でてこいランド 似顔ライター画\" loading=\"lazy\" />\n          <figcaption>長崎でてこいランド</figcaption>\n        </figure>\n        <div class=\"dk-prose\">\n          <p>長崎でてこいランドは、多くの人の想いが受け継がれながら歩んできた場所です。</p>\n          <p>廃業寸前だったこの場所を引き継いでから、少しずつ手を入れ、草を刈り、木を直し、花を植え、十年という歳月をかけて育んできました。</p>\n          <p>豪華な施設をつくりたかったわけではありません。子どもたちが季節の花に足を止め、火を囲み、星空に感動する。そんな「本物にふれる感動」を届けたかったのです。</p>\n          <p>私が大切にしているのは、「来てよかった」と心から思える瞬間。これからも、一人でも多くの人に感動を届け、みんなから愛される長崎でてこいランドを次世代に残し伝えてまいります。</p>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"dk-section dk-section--soft\" id=\"dk-reserve\">\n    <div class=\"dk-wrap\">\n      <p class=\"dk-label\">RESERVATION</p>\n      <h2>ご予約・アクセス</h2>\n      <p class=\"dk-lede\">ご予約は下の<strong>メールフォーム</strong>（Web予約）から。ご相談・空きの確認はお電話でも。料金は下の表を開いてご確認ください。</p>\n      <div class=\"dk-reserve-grid\">\n        <div>\n          <div class=\"dk-map\">\n            <iframe title=\"長崎でてこいランドの地図\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"\n              src=\"https://maps.google.com/maps?q=%E9%95%B7%E5%B4%8E%E3%81%A7%E3%81%A6%E3%81%93%E3%81%84%E3%83%A9%E3%83%B3%E3%83%89+%E8%AB%A7%E6%97%A9%E5%B8%82%E6%9C%AC%E9%87%8E%E7%94%BA&z=15&output=embed&hl=ja\"></iframe>\n          </div>\n          <address class=\"dk-address\">〒854-0093 長崎県諫早市本野町１３０３<br />諫早駅から車で10分※無料駐車場あり</address>\n        </div>\n        <div class=\"dk-actions\">\n          <a class=\"dk-btn dk-btn--outline\" href=\"tel:09052907807\">電話・ご相談<br /><strong>☎ 090-5290-7807</strong></a>\n          <a class=\"dk-btn dk-btn--solid\" href=\"#yoyaku\">Web予約（メールフォーム）</a>\n          <p class=\"dk-note\">※毎週木曜・12/25〜1/7お休み</p>\n        </div>\n      </div>\n      <div class=\"pricing\" id=\"pricing\" data-pricing-root>\n        <div class=\"pricing__head\">\n          <h3 class=\"pricing__title\" data-pricing-title>料金表</h3>\n          <p class=\"pricing__meta\" data-pricing-meta></p>\n        </div>\n        <div class=\"pricing__accordion\" data-pricing-accordion id=\"booking\"></div>\n      </div>\n    </div>\n  </section>\n</div>\n".trim();
   var port=mount.firstElementChild;
   placePort(port);
   placeHero(hero, port);
@@ -386,7 +386,147 @@ function inject(){
   rewriteNav();
   wireNavClicks();
   syncHeaderVar();
+  mountPricing(port);
 }
+
+function pricingScriptUrl(){
+  try{
+    var cur=document.querySelector('script[src*="studio-port.js"]');
+    if(cur && cur.src) return cur.src.replace(/studio-port\.js(\?.*)?$/,'pricing-data.js$1');
+  }catch(e){}
+  return 'https://cdn.jsdelivr.net/gh/inainai-baa/ebay-profit-calculator@449b684257d479c17845237bb39bf1a631975c77/detekoi-land-mockup/pricing-data.js';
+}
+function loadPricingData(cb){
+  if(window.DETEKOI_PRICING){ cb(window.DETEKOI_PRICING); return; }
+  if(window.__DETEKOI_PRICING_LOADING__){
+    var n=0; var t=setInterval(function(){
+      if(window.DETEKOI_PRICING || ++n>40){ clearInterval(t); if(window.DETEKOI_PRICING) cb(window.DETEKOI_PRICING); }
+    },150);
+    return;
+  }
+  window.__DETEKOI_PRICING_LOADING__=1;
+  var s=document.createElement('script');
+  s.src=pricingScriptUrl();
+  s.async=true;
+  s.onload=function(){ window.__DETEKOI_PRICING_LOADING__=0; cb(window.DETEKOI_PRICING); };
+  s.onerror=function(){ window.__DETEKOI_PRICING_LOADING__=0; };
+  (document.head||document.documentElement).appendChild(s);
+}
+function escapeHtml(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function buildPricingAccordion(root, pricing){
+  if(!root || !pricing || root.getAttribute('data-dk-pricing')==='1') return;
+  var titleEl=root.querySelector('[data-pricing-title]');
+  var metaEl=root.querySelector('[data-pricing-meta]');
+  var accordion=root.querySelector('[data-pricing-accordion]');
+  if(!accordion) return;
+  if(titleEl && pricing.title) titleEl.textContent=pricing.title;
+  if(metaEl){
+    var bits=[pricing.asOf, pricing.syncedAt ? ('反映日 '+pricing.syncedAt) : ''].filter(Boolean).join(' · ');
+    metaEl.textContent=bits;
+  }
+  accordion.innerHTML='';
+  function facilityTable(rows){
+    var body=(rows||[]).map(function(r){
+      var label=[r.item,r.category].filter(Boolean).join(' / ');
+      return '<tr><th scope="row">'+escapeHtml(label)+(r.unit?'<span class="pricing__unit">'+escapeHtml(r.unit)+'</span>':'')+'</th><td class="pricing__yen">'+escapeHtml(r.green)+'</td><td class="pricing__yen">'+escapeHtml(r.yellow)+'</td></tr>';
+    }).join('');
+    return '<div class="pricing__table-wrap"><table class="pricing__table"><thead><tr><th scope="col">内容</th><th scope="col">通常価格</th><th scope="col">土日祝</th></tr></thead><tbody>'+body+'</tbody></table></div>';
+  }
+  function rentalTable(rows){
+    var body=(rows||[]).map(function(r){
+      return '<tr><th scope="row">'+escapeHtml(r.item)+(r.detail?'<span class="pricing__unit">'+escapeHtml(r.detail)+'</span>':'')+'</th><td class="pricing__yen">'+escapeHtml(r.price)+'</td></tr>';
+    }).join('');
+    return '<div class="pricing__table-wrap"><table class="pricing__table pricing__table--rental"><thead><tr><th scope="col">商品</th><th scope="col">レンタル価格</th></tr></thead><tbody>'+body+'</tbody></table></div>';
+  }
+  function notesList(items){
+    return '<ul class="pricing__notes">'+(items||[]).map(function(t){ return '<li>'+escapeHtml(t)+'</li>'; }).join('')+'</ul>';
+  }
+  (pricing.sections||[]).forEach(function(section,i){
+    var details=document.createElement('details');
+    details.className='pricing__panel';
+    details.open=i===0;
+    var summary=document.createElement('summary');
+    summary.className='pricing__summary';
+    summary.innerHTML='<span>'+escapeHtml(section.title)+'</span><span class="pricing__chevron" aria-hidden="true"></span>';
+    var body=document.createElement('div');
+    body.className='pricing__body';
+    if(section.kind==='facility') body.innerHTML=facilityTable(section.rows);
+    else if(section.kind==='rental') body.innerHTML=rentalTable(section.rows);
+    else if(section.kind==='notes') body.innerHTML=notesList(section.items);
+    details.appendChild(summary);
+    details.appendChild(body);
+    accordion.appendChild(details);
+  });
+  accordion.addEventListener('toggle', function(e){
+    var t=e.target;
+    if(!t || t.tagName!=='DETAILS' || !t.open) return;
+    accordion.querySelectorAll('details.pricing__panel').forEach(function(d){ if(d!==t) d.open=false; });
+  });
+  root.setAttribute('data-dk-pricing','1');
+}
+function mountPricing(scope){
+  var root=(scope||document).querySelector('[data-pricing-root]');
+  if(!root) return;
+  loadPricingData(function(pricing){ if(pricing) buildPricingAccordion(root, pricing); });
+}
+function onRyokinPage(){
+  var p=location.pathname||'/';
+  return p==='/ryokin' || p.indexOf('/ryokin')===0;
+}
+function hideStudioPricingMedia(root){
+  if(!root) return;
+  root.querySelectorAll('a[href*=".pdf"],a[href*=".PDF"]').forEach(function(a){
+    a.setAttribute('data-dk-pdf-hide','1');
+    a.style.setProperty('display','none','important');
+    a.setAttribute('aria-hidden','true');
+  });
+  root.querySelectorAll('.image').forEach(function(img){
+    img.setAttribute('data-dk-pdf-hide','1');
+    img.style.setProperty('display','none','important');
+    img.setAttribute('aria-hidden','true');
+  });
+}
+function enhanceRyokinPage(){
+  if(!onRyokinPage()) return;
+  ensureFonts();
+  document.body.classList.add('detekoi-sub-on');
+  var omoi=document.getElementById('omoi');
+  if(!omoi) return;
+  if(document.getElementById('dk-ryokin-pricing')){
+    hideStudioPricingMedia(omoi);
+    return;
+  }
+  var host=document.createElement('div');
+  host.id='dk-ryokin-pricing';
+  host.className='pricing pricing--ryokin';
+  host.setAttribute('data-pricing-root','');
+  host.innerHTML='<div class="pricing__head"><h3 class="pricing__title" data-pricing-title>料金表</h3><p class="pricing__meta" data-pricing-meta></p></div><div class="pricing__accordion" data-pricing-accordion></div><p class="note pricing__foot">※グリーン＝通常／イエロー＝土日祝・連休。最新情報はお気軽にお問い合わせください。</p>';
+  // insert after intro text block, before studio image
+  var img=omoi.querySelector('.image');
+  if(img && img.parentElement){
+    img.parentElement.insertBefore(host, img);
+  } else {
+    omoi.appendChild(host);
+  }
+  hideStudioPricingMedia(omoi);
+  loadPricingData(function(pricing){ if(pricing) buildPricingAccordion(host, pricing); });
+}
+function collapseEmptyStudioSections(){
+  if(!(onHome() || onRyokinPage() || onRulePage())) return;
+  document.querySelectorAll('.StudioCanvas .section.sd, .StudioCanvas .section-inner.sd').forEach(function(el){
+    if(el.closest('#detekoi-port,#detekoi-hero,#contact,#omoi,#dk-rules-grid,#dk-ryokin-pricing')) return;
+    if(el.getAttribute('data-dk-studio-gap')==='1') return;
+    var r=el.getBoundingClientRect();
+    if(r.height<500) return;
+    var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+    if(t.length>40) return;
+    if(el.querySelector('img,iframe,video,form,input,textarea,table,details')) return;
+    el.setAttribute('data-dk-studio-gap','1');
+  });
+}
+
 function onRulePage(){
   var p=location.pathname||'/';
   return p==='/rule' || p.indexOf('/rule')===0;
@@ -503,6 +643,9 @@ function enhanceRulePage(){
 function bootAll(){
   if(onHome()) inject();
   if(onRulePage()) enhanceRulePage();
+  if(onRyokinPage()) enhanceRyokinPage();
+  collapseEmptyStudioSections();
+  if(onRulePage() || onRyokinPage()) document.body.classList.add("detekoi-sub-on");
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', bootAll);
 else bootAll();

@@ -599,6 +599,12 @@ body.nav-open { overflow: hidden; }
   color: var(--soft);
   font-weight: 700;
   border-bottom-color: rgba(31, 61, 50, 0.2);
+  white-space: nowrap;
+}
+.pricing__table--rental thead th:last-child {
+  white-space: nowrap;
+  min-width: 6.75em;
+  letter-spacing: 0.02em;
 }
 .pricing__table tbody th {
   font-weight: 500;
@@ -796,6 +802,13 @@ body.nav-open { overflow: hidden; }
   .pricing__table { font-size: 0.84rem; min-width: 0; }
   .pricing__table th,
   .pricing__table td { padding: 0.65rem 0.4rem; }
+  .pricing__table thead th { letter-spacing: 0.03em; }
+  .pricing__table--rental thead th:last-child {
+    white-space: nowrap;
+    min-width: 7em;
+    letter-spacing: 0;
+    word-break: keep-all;
+  }
   .stay-panel { grid-template-columns: 1fr; }
   .facility-strip { grid-template-columns: 1fr; }
   .stay-cues { grid-template-columns: repeat(2, minmax(0, 1fr)); }
