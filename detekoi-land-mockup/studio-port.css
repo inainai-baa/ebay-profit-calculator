@@ -4,7 +4,8 @@
    Scoped to await-port so /inquiry and other Studio pages stay intact. */
 html.detekoi-await-port main{
   min-height:calc(100svh - 4.5rem);
-  background:#fff;
+  /* Match header cream so no white band flashes before the port hero photo */
+  background:#fcfaf2;
 }
 html.detekoi-await-port main > section.section:not(#detekoi-hero),
 html.detekoi-await-port main > #about,
@@ -82,6 +83,16 @@ header.fixed,
 header.fixed.sd{
   background-color:#fcfaf2!important;
   z-index:11000!important;
+  /* Clip Studio wave/mask shapes that can sit under the nav bar */
+  overflow:hidden!important;
+  padding-bottom:0!important;
+  margin-bottom:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+html.detekoi-await-port header.fixed,
+html.detekoi-await-port header.fixed.sd{
+  overflow:hidden!important;
 }
 /* Hide mockup iframes + scrubbed code-leak nodes (also enforced in contact JS) */
 .frame.fixed.sd:has(iframe[src*="detekoi-land-mockup"]),
@@ -204,6 +215,23 @@ html.detekoi-await-port main > [data-dk-studio-gap="1"]{
   pointer-events:none!important;
   border:0!important;
 }
+/* Studio native hero (loop-box carousel + grey scroll pill) — zero paint under fixed header */
+body.detekoi-port-on main > section.section,
+html.detekoi-await-port main > section.section:not(#detekoi-hero){
+  clip-path:inset(0 0 100% 0)!important;
+  contain:strict!important;
+}
+body.detekoi-port-on loop-box,
+body.detekoi-port-on .loop-box,
+html.detekoi-await-port loop-box,
+html.detekoi-await-port .loop-box{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
 /* Mobile: Studio keeps ~100px L/R pad → ~175px content column. Widen near full viewport. */
 @media (max-width:900px){
   body.detekoi-port-on .StudioCanvas > .sd,
@@ -251,16 +279,16 @@ html.detekoi-await-port main > [data-dk-studio-gap="1"]{
   color:var(--dk-white)!important;
   overflow:hidden;
   font-family:var(--dk-body);
-  /* White plane so the photo fades in FROM WHITE (daikanso soft open) */
-  background:#fff;
+  /* Cream plane matches header — daikanso fade without a white seam under the nav */
+  background:#fcfaf2;
   border-radius:0!important;
   box-shadow:none!important;
   z-index:2;
 }
 #detekoi-hero *{box-sizing:border-box}
-#detekoi-hero .dk-hero__media{position:absolute;inset:0;background:#fff}
+#detekoi-hero .dk-hero__media{position:absolute;inset:0;background:#fcfaf2}
 #detekoi-hero .dk-hero__photo{
-  width:100%;height:100%;object-fit:cover;object-position:center 42%;
+  width:100%;height:100%;object-fit:cover;object-position:center 36%;
   transform:scale(1.06);opacity:0;
   border-radius:0!important;
   /* Daikanso #image-box: delay ~500ms, fade ~1500ms */
