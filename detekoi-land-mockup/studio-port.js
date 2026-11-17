@@ -253,6 +253,16 @@ function hideStudioHero(){
     /* Also collapse any in-flow main siblings before #detekoi-hero (cream band /
        wavy leftover speech-bubble / spacer that can sit between header and sky). */
     collapseBeforeHero();
+    /* Studio native hero uses loop-box; its scrollbar pill can flash under the fixed header */
+    try{
+      document.querySelectorAll('loop-box, .loop-box').forEach(function(el){
+        if(el.closest && el.closest('#detekoi-port, #detekoi-hero, #contact')) return;
+        el.style.setProperty('display','none','important');
+        el.style.setProperty('visibility','hidden','important');
+        el.style.setProperty('height','0','important');
+        el.style.setProperty('overflow','hidden','important');
+      });
+    }catch(e){}
     if(!marked) return;
     var hero=document.querySelector('[data-dk-studio-hero="1"]');
     if(!hero || !hero.parentNode) return;
