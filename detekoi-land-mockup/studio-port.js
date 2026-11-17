@@ -631,6 +631,102 @@ function onRulePage(){
   var p=location.pathname||'/';
   return p==='/rule' || p.indexOf('/rule')===0;
 }
+function stayRulesScriptUrl(){
+  try{
+    var cur=document.querySelector('script[src*="studio-port.js"]');
+    if(cur && cur.src) return cur.src.replace(/studio-port\.js(\?.*)?$/,'stay-rules-data.js$1');
+  }catch(e){}
+  return 'https://cdn.jsdelivr.net/gh/inainai-baa/ebay-profit-calculator@292938b/detekoi-land-mockup/stay-rules-data.js';
+}
+function loadStayRulesData(cb){
+  if(window.DETEKOI_STAY_RULES){ cb(window.DETEKOI_STAY_RULES); return; }
+  if(window.__DETEKOI_STAY_RULES_LOADING__){
+    var n=0; var t=setInterval(function(){
+      if(window.DETEKOI_STAY_RULES || ++n>40){ clearInterval(t); if(window.DETEKOI_STAY_RULES) cb(window.DETEKOI_STAY_RULES); }
+    },150);
+    return;
+  }
+  window.__DETEKOI_STAY_RULES_LOADING__=1;
+  var s=document.createElement('script');
+  s.src=stayRulesScriptUrl();
+  s.async=true;
+  s.onload=function(){ window.__DETEKOI_STAY_RULES_LOADING__=0; cb(window.DETEKOI_STAY_RULES); };
+  s.onerror=function(){ window.__DETEKOI_STAY_RULES_LOADING__=0; cb(null); };
+  (document.head||document.documentElement).appendChild(s);
+}
+function ensureRuleOmoiHost(){
+  var omoi=document.getElementById('omoi');
+  if(omoi) return omoi;
+  var host=document.querySelector('main') || document.querySelector('.StudioCanvas') || document.getElementById('__nuxt');
+  if(!host) return null;
+  omoi=document.createElement('section');
+  omoi.id='omoi';
+  omoi.className='section sd appear dk-rule-mount';
+  host.appendChild(omoi);
+  return omoi;
+}
+function ensureRulePageTitle(omoi, title){
+  if(!omoi) return;
+  var h2=omoi.querySelector('h2.dk-rule-page__title, h2.text');
+  if(!h2){
+    h2=document.createElement('h2');
+    h2.className='text dk-rule-page__title';
+    omoi.insertBefore(h2, omoi.firstChild);
+  }
+  if(title) h2.textContent=title;
+}
+function mountRulesGrid(omoi, rules, footer, sourceEl){
+  if(!omoi || !rules || !rules.length || document.getElementById('dk-rules-grid')) return;
+  var grid=document.createElement('div');
+  grid.id='dk-rules-grid';
+  grid.className='dk-rules-grid';
+  rules.forEach(function(rule){
+    var card=document.createElement('article');
+    card.className='dk-rule-card';
+    var head=document.createElement('div');
+    head.className='dk-rule-card__head';
+    var num=document.createElement('span');
+    num.className='dk-rule-card__num';
+    num.textContent=rule.num;
+    var title=document.createElement('h3');
+    title.className='dk-rule-card__title';
+    title.textContent=rule.title;
+    head.appendChild(num);
+    head.appendChild(title);
+    card.appendChild(head);
+    if(rule.body && rule.body.length){
+      var body=document.createElement('div');
+      body.className='dk-rule-card__body';
+      rule.body.forEach(function(line){
+        var row=document.createElement('p');
+        row.textContent=line;
+        body.appendChild(row);
+      });
+      card.appendChild(body);
+    }
+    grid.appendChild(card);
+  });
+  if(sourceEl && sourceEl.parentElement){
+    sourceEl.parentElement.insertBefore(grid, sourceEl);
+    sourceEl.style.setProperty('display','none','important');
+    sourceEl.setAttribute('aria-hidden','true');
+    sourceEl.setAttribute('data-dk-rules','1');
+  } else {
+    omoi.appendChild(grid);
+    omoi.setAttribute('data-dk-rules','1');
+  }
+  if(footer && footer.length){
+    var foot=document.createElement('div');
+    foot.className='dk-rules-footer';
+    footer.forEach(function(line){
+      var fp=document.createElement('p');
+      fp.textContent=line;
+      foot.appendChild(fp);
+    });
+    grid.parentNode.insertBefore(foot, grid.nextSibling);
+  }
+  hideRulePdfs(omoi);
+}
 function hideRulePdfs(root){
   if(!root) return;
   root.querySelectorAll('a[href*=".pdf"],a[href*=".PDF"]').forEach(function(a){
@@ -662,83 +758,45 @@ function hideRulePdfs(root){
 function enhanceRulePage(){
   if(!onRulePage()) return;
   ensureFonts();
-  var omoi=document.getElementById('omoi');
+  var omoi=ensureRuleOmoiHost();
   if(!omoi) return;
   hideRulePdfs(omoi);
   if(document.getElementById('dk-rules-grid')) return;
   var p=omoi.querySelector('p.text');
-  if(!p || p.getAttribute('data-dk-rules')==='1') return;
-  var lines=[];
-  p.childNodes.forEach(function(n){
-    if(n.nodeType===3){
-      var t=String(n.textContent||'').replace(/\u00a0/g,' ').trim();
-      if(t) lines.push(t);
-    }
-  });
-  if(!lines.length) return;
-  var rules=[], footer=[], cur=null;
-  lines.forEach(function(line){
-    var m=line.match(/^(\d+)\.\s*(.*)$/);
-    if(m){
-      cur={num:m[1], title:m[2], body:[]};
-      rules.push(cur);
-    } else if(cur){
-      cur.body.push(line);
-    } else {
-      footer.push(line);
-    }
-  });
-  if(!rules.length) return;
-  var grid=document.createElement('div');
-  grid.id='dk-rules-grid';
-  grid.className='dk-rules-grid';
-  rules.forEach(function(rule){
-    var card=document.createElement('article');
-    card.className='dk-rule-card';
-    var head=document.createElement('div');
-    head.className='dk-rule-card__head';
-    var num=document.createElement('span');
-    num.className='dk-rule-card__num';
-    num.textContent=rule.num;
-    var title=document.createElement('h3');
-    title.className='dk-rule-card__title';
-    title.textContent=rule.title;
-    head.appendChild(num);
-    head.appendChild(title);
-    card.appendChild(head);
-    if(rule.body.length){
-      var body=document.createElement('div');
-      body.className='dk-rule-card__body';
-      rule.body.forEach(function(line){
-        var row=document.createElement('p');
-        row.textContent=line;
-        body.appendChild(row);
-      });
-      card.appendChild(body);
-    }
-    grid.appendChild(card);
-  });
-  var wrap=p.parentElement;
-  if(wrap && wrap.parentElement){
-    wrap.parentElement.insertBefore(grid, wrap);
-    wrap.style.setProperty('display','none','important');
-    wrap.setAttribute('aria-hidden','true');
-  } else {
-    p.parentNode.insertBefore(grid, p);
-    p.style.setProperty('display','none','important');
-  }
-  if(footer.length){
-    var foot=document.createElement('div');
-    foot.className='dk-rules-footer';
-    footer.forEach(function(line){
-      var fp=document.createElement('p');
-      fp.textContent=line;
-      foot.appendChild(fp);
+  if(p && p.getAttribute('data-dk-rules')!=='1'){
+    var lines=[];
+    p.childNodes.forEach(function(n){
+      if(n.nodeType===3){
+        var t=String(n.textContent||'').replace(/\u00a0/g,' ').trim();
+        if(t) lines.push(t);
+      }
     });
-    grid.parentNode.insertBefore(foot, grid.nextSibling);
+  if(lines.length){
+    var rules=[], footer=[], cur=null;
+    lines.forEach(function(line){
+      var m=line.match(/^(\d+)\.\s*(.*)$/);
+      if(m){
+        cur={num:m[1], title:m[2], body:[]};
+        rules.push(cur);
+      } else if(cur){
+        cur.body.push(line);
+      } else {
+        footer.push(line);
+      }
+    });
+    if(rules.length){
+      ensureRulePageTitle(omoi, 'でてこいランド過ごし方ルール');
+      mountRulesGrid(omoi, rules, footer, p);
+      return;
+    }
   }
-  p.setAttribute('data-dk-rules','1');
-  hideRulePdfs(omoi);
+  }
+  ensureRulePageTitle(omoi, 'でてこいランド過ごし方ルール');
+  loadStayRulesData(function(data){
+    if(!data || !data.rules || !data.rules.length) return;
+    ensureRulePageTitle(omoi, data.title || 'でてこいランド過ごし方ルール');
+    mountRulesGrid(omoi, data.rules, data.footer || [], null);
+  });
 }
 function bootAll(){
   if(onHome()) inject();
