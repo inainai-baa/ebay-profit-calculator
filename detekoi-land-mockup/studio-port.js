@@ -303,12 +303,29 @@ function adoptLegacyIds(port){
   promoteId(document.getElementById('dk-services'), 'taiken');
   promoteId(document.getElementById('dk-philosophy'), 'omoi');
   promoteId(document.getElementById('dk-reserve'), 'reserve');
-  /* Booking hashes must land on the live Studio form, not a hidden block */
-  if(contact && !document.getElementById('yoyaku')){
+  /* Booking hashes must land on the live Studio form, not a hidden block.
+     Keep the anchor zero-size — contact-open CSS used to force min-height:50vh on #yoyaku. */
+  function zeroAnchor(el){
+    if(!el) return;
+    el.setAttribute('data-dk-anchor','1');
+    el.setAttribute('aria-hidden','true');
+    ['position','display','height','width','max-height','min-height','overflow','padding','margin','background','border','font-size','line-height'].forEach(function(prop){
+      var val={position:'relative',display:'block',height:'0',width:'0','max-height':'0','min-height':'0',overflow:'hidden',padding:'0',margin:'0',background:'transparent',border:'0','font-size':'0','line-height':'0'}[prop];
+      try{ el.style.setProperty(prop, val, 'important'); }catch(e){}
+    });
+    try{ el.style.setProperty('scroll-margin-top','72px'); }catch(e2){}
+  }
+  var yExist=document.getElementById('yoyaku');
+  if(yExist && yExist.getAttribute('data-dk-anchor')==='1'){
+    zeroAnchor(yExist);
+  } else if(contact && !yExist){
     var y=document.createElement('span');
-    y.id='yoyaku'; y.setAttribute('data-dk-anchor','1'); y.setAttribute('aria-hidden','true');
-    y.style.cssText='position:relative;display:block;height:0;width:0;overflow:hidden;scroll-margin-top:72px';
+    y.id='yoyaku';
+    zeroAnchor(y);
     contact.insertBefore(y, contact.firstChild);
+  } else if(yExist){
+    /* Studio-native #yoyaku that isn't our anchor — still collapse empty gap risk */
+    zeroAnchor(yExist);
   }
   /* After IDs exist, honor current hash with native-friendly scroll */
   var h=location.hash||'';

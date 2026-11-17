@@ -18,6 +18,27 @@ body.detekoi-port-on [data-dk-studio-gap="1"]{
   pointer-events:none!important;
   border:0!important;
 }
+/* #yoyaku is a zero-height hash anchor inside #contact — never inherit
+   contact-open min-height:50vh / padding (that caused the blank gap above 予約). */
+#yoyaku[data-dk-anchor],
+span#yoyaku[data-dk-anchor],
+#yoyaku[data-dk-anchor]:target,
+body.detekoi-contact-open #yoyaku[data-dk-anchor],
+body.detekoi-port-on #yoyaku[data-dk-anchor]{
+  min-height:0!important;
+  height:0!important;
+  max-height:0!important;
+  width:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  border:0!important;
+  font-size:0!important;
+  line-height:0!important;
+  display:block!important;
+  position:relative!important;
+}
 
 /* Oct 26 Mockup B hero — soft ふわっ fade (daikanso-like), no iframe */
 #detekoi-hero{
