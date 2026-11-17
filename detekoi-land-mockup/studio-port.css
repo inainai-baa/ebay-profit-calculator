@@ -1,4 +1,35 @@
-/* Hide ONLY renamed legacy Studio blocks (IDs moved onto visible port/form) */
+/* FOUC lock (homepage): Studio-native hero/IA paints before deferred
+   studio-port.js. Critical head CSS + html.detekoi-await-port hide those
+   layers immediately; soft-fade still starts from white via main bg.
+   Scoped to await-port so /inquiry and other Studio pages stay intact. */
+html.detekoi-await-port main{
+  min-height:calc(100svh - 4.5rem);
+  background:#fff;
+}
+html.detekoi-await-port main > section.section:not(#detekoi-hero),
+html.detekoi-await-port main > #about,
+html.detekoi-await-port main > #annai,
+html.detekoi-await-port main > #taiken,
+html.detekoi-await-port main > #omoi,
+html.detekoi-await-port main > #reserve,
+html.detekoi-await-port main > #yoyaku,
+html.detekoi-await-port main > [id$="-legacy"],
+html.detekoi-await-port main > [data-dk-studio-hero="1"],
+html.detekoi-await-port main > [data-dk-studio-gap="1"]{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+  border:0!important;
+}
+/* Hide ONLY renamed legacy Studio blocks (IDs moved onto visible port/form).
+   Also keep Studio speech-bubble section.section hidden after port boots
+   (do not wait solely on data-dk-studio-hero marking). */
 body.detekoi-port-on #about-legacy,
 body.detekoi-port-on #annai-legacy,
 body.detekoi-port-on #taiken-legacy,
@@ -6,7 +37,8 @@ body.detekoi-port-on #omoi-legacy,
 body.detekoi-port-on #yoyaku-legacy,
 body.detekoi-port-on #reserve-legacy,
 body.detekoi-port-on [data-dk-studio-hero="1"],
-body.detekoi-port-on [data-dk-studio-gap="1"]{
+body.detekoi-port-on [data-dk-studio-gap="1"],
+body.detekoi-port-on main > section.section:not(#detekoi-hero){
   display:none!important;
   visibility:hidden!important;
   height:0!important;
