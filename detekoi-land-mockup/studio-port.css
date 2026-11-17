@@ -65,8 +65,10 @@ header.fixed.sd{
 }
 /* When hash opens the booking form, don't vertically center it in 50vh;
    keep panel below the opaque header (z-index 5 << header 11000). */
-body.detekoi-contact-open #contact,
-body.detekoi-port-on.detekoi-contact-open #contact,
+html body.detekoi-contact-open div#contact,
+html body.detekoi-port-on.detekoi-contact-open div#contact,
+html body.detekoi-contact-open #contact.sd,
+html body.detekoi-contact-open #contact.sd.appear,
 body.detekoi-contact-open #inquiry,
 #contact:target,
 #inquiry:target{
