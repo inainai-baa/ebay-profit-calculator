@@ -45,6 +45,18 @@ body.detekoi-port-on.detekoi-contact-open #contact,
 #contact:target{
   justify-content:flex-start!important;
   min-height:0!important;
+  margin-top:0!important;
+}
+
+/* Studio clears the fixed header twice (.sd pad-top ~100px + main margin-top ~100px
+   ≈ 200px white band above the hero). Collapse both; hero clears header once via --dk-header-h. */
+body.detekoi-port-on .StudioCanvas > .sd{
+  padding-top:0!important;
+}
+body.detekoi-port-on main.sd,
+body.detekoi-port-on .StudioCanvas main{
+  margin-top:0!important;
+  padding-top:0!important;
 }
 
 /* Oct 26 Mockup B hero — Daikanso soft fade: white→photo, text rise+fade */
@@ -61,8 +73,10 @@ body.detekoi-port-on.detekoi-contact-open #contact,
   max-width:100vw;
   margin-left:calc(50% - 50vw);
   margin-right:calc(50% - 50vw);
+  /* Sit flush under fixed Studio header (measured in JS → --dk-header-h) */
+  margin-top:var(--dk-header-h, 64px);
   left:0;
-  min-height:calc(100svh - 72px);
+  min-height:calc(100svh - var(--dk-header-h, 64px));
   display:grid;
   place-items:center;
   color:var(--dk-white)!important;
@@ -163,7 +177,7 @@ body.detekoi-port-on.detekoi-contact-open #contact,
   }
 }
 @media (max-width:720px){
-  #detekoi-hero{min-height:calc(100svh - 64px)}
+  #detekoi-hero{min-height:calc(100svh - var(--dk-header-h, 56px))}
   #detekoi-hero .dk-hero__content{padding:3rem 1rem 4rem}
   #detekoi-hero .dk-hero__actions{flex-direction:column;align-items:stretch}
   #detekoi-hero .dk-hero__btn{width:100%}
