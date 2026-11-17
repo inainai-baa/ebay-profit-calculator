@@ -39,13 +39,49 @@ body.detekoi-port-on #yoyaku[data-dk-anchor]{
   display:block!important;
   position:relative!important;
 }
-/* When hash opens the booking form, don't vertically center it in 50vh */
+/* Opaque fixed header — Studio default is transparent; date selects / fields
+   must not paint through the nav when #yoyaku scrolls under it. Keep header
+   above the contact panel (custom-code z-index:10050 previously inverted this). */
+header.fixed,
+header.fixed.sd{
+  background-color:#fcfaf2!important;
+  z-index:11000!important;
+}
+/* Hide mockup iframes + scrubbed code-leak nodes (also enforced in contact JS) */
+.frame.fixed.sd:has(iframe[src*="detekoi-land-mockup"]),
+.frame.fixed.sd:has(iframe[src*="ebay-profit-calculator"]),
+.frame.sd:has(iframe[src*="detekoi-land-mockup"]),
+.frame.sd:has(iframe[src*="ebay-profit-calculator"]){
+  display:none!important;visibility:hidden!important;pointer-events:none!important;
+  height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;
+}
+.detekoi-code-leak{
+  display:none!important;visibility:hidden!important;height:0!important;
+  overflow:hidden!important;margin:0!important;padding:0!important;font-size:0!important;
+}
+/* When hash opens the booking form, don't vertically center it in 50vh;
+   keep panel below the opaque header (z-index 5 << header 11000). */
 body.detekoi-contact-open #contact,
 body.detekoi-port-on.detekoi-contact-open #contact,
-#contact:target{
+body.detekoi-contact-open #inquiry,
+#contact:target,
+#inquiry:target{
+  position:relative!important;
+  z-index:5!important;
+  isolation:isolate;
+  background:#fcfaf2;
   justify-content:flex-start!important;
+  align-items:center!important;
   min-height:0!important;
   margin-top:0!important;
+  padding-top:8px!important;
+  padding-bottom:48px!important;
+}
+body.detekoi-contact-open #contact form,
+body.detekoi-contact-open #inquiry form,
+body.detekoi-contact-open form[name="お問い合わせ_04"]{
+  position:relative;
+  z-index:6;
 }
 /* Studio .text h2 for「予約」was ~12px — readable section title */
 #contact h1,
