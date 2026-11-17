@@ -105,26 +105,26 @@ body.detekoi-port-on.detekoi-contact-open #contact,
   box-shadow:none!important;
 }
 #detekoi-hero .dk-hero__brand-ja{
-  font-family:var(--dk-display);font-size:clamp(1.75rem,3.8vw,2.7rem);
+  font-family:var(--dk-display);font-size:clamp(1.55rem,3.3vw,2.35rem);
   font-weight:700;letter-spacing:.14em;line-height:1.35
 }
-#detekoi-hero .dk-hero__en{font-size:.78rem;letter-spacing:.34em;opacity:.86}
+#detekoi-hero .dk-hero__en{font-size:.72rem;letter-spacing:.34em;opacity:.84}
 #detekoi-hero .dk-hero__catch{
   margin:0;font-family:var(--dk-display);font-weight:600;
-  font-size:clamp(2.4rem,6.2vw,4rem);line-height:1.32;letter-spacing:.06em
+  font-size:clamp(2.05rem,5.4vw,3.35rem);line-height:1.35;letter-spacing:.06em
 }
-#detekoi-hero .dk-hero__catch + .dk-hero__catch{margin-top:.18em}
+#detekoi-hero .dk-hero__catch + .dk-hero__catch{margin-top:.15em}
 #detekoi-hero .dk-hero__support{
-  margin:1.45rem auto 0;max-width:32rem;opacity:.94;
-  font-size:clamp(1.02rem,1.85vw,1.18rem);line-height:1.9;letter-spacing:.04em
+  margin:1.35rem auto 0;max-width:30rem;opacity:.92;
+  font-size:clamp(.95rem,1.6vw,1.05rem);line-height:1.9;letter-spacing:.04em
 }
 #detekoi-hero .dk-hero__actions{
-  margin-top:2rem;display:flex;flex-wrap:wrap;gap:.85rem;justify-content:center;text-shadow:none
+  margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;text-shadow:none
 }
 #detekoi-hero .dk-hero__btn{
   display:inline-flex;align-items:center;justify-content:center;
-  min-height:3rem;padding:.75rem 1.45rem;border-radius:999px;
-  font-weight:700;font-size:1rem;letter-spacing:.06em;text-decoration:none;border:2px solid transparent
+  min-height:2.85rem;padding:.7rem 1.35rem;border-radius:999px;
+  font-weight:700;font-size:.95rem;letter-spacing:.06em;text-decoration:none;border:2px solid transparent
 }
 #detekoi-hero .dk-hero__btn--solid{
   background:var(--dk-forest);color:#fff!important;border-color:var(--dk-forest);
