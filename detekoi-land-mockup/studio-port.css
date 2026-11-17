@@ -37,7 +37,11 @@ body.detekoi-port-on #yoyaku[data-dk-anchor]{
   font-size:0!important;
   line-height:0!important;
   display:block!important;
-  position:relative!important;
+  /* absolute so Studio #contact flex gap (100px) does not open space above 予約 */
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  pointer-events:none!important;
 }
 /* Opaque fixed header — Studio default is transparent; date selects / fields
    must not paint through the nav when #yoyaku scrolls under it. Keep header
@@ -61,8 +65,10 @@ header.fixed.sd{
 }
 /* When hash opens the booking form, don't vertically center it in 50vh;
    keep panel below the opaque header (z-index 5 << header 11000). */
-body.detekoi-contact-open #contact,
-body.detekoi-port-on.detekoi-contact-open #contact,
+html body.detekoi-contact-open div#contact,
+html body.detekoi-port-on.detekoi-contact-open div#contact,
+html body.detekoi-contact-open #contact.sd,
+html body.detekoi-contact-open #contact.sd.appear,
 body.detekoi-contact-open #inquiry,
 #contact:target,
 #inquiry:target{
@@ -76,6 +82,10 @@ body.detekoi-contact-open #inquiry,
   margin-top:0!important;
   padding-top:8px!important;
   padding-bottom:48px!important;
+  /* Studio form stack defaults to gap:100px — collapses space above 予約 */
+  gap:0!important;
+  row-gap:0!important;
+  column-gap:0!important;
 }
 body.detekoi-contact-open #contact form,
 body.detekoi-contact-open #inquiry form,
