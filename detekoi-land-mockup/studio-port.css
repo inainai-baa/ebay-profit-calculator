@@ -47,6 +47,23 @@ body.detekoi-port-on.detekoi-contact-open #contact,
   min-height:0!important;
   margin-top:0!important;
 }
+/* Studio .text h2 for「予約」was ~12px — readable section title */
+#contact h1,
+#contact h2,
+#contact h1.text,
+#contact h2.text,
+body.detekoi-contact-open #contact h1,
+body.detekoi-contact-open #contact h2,
+body.detekoi-port-on #contact h1,
+body.detekoi-port-on #contact h2{
+  font-family:"Shippori Mincho","Hiragino Mincho ProN",serif!important;
+  font-size:clamp(1.65rem,3.8vw,2.05rem)!important;
+  font-weight:700!important;
+  line-height:1.35!important;
+  letter-spacing:.08em!important;
+  color:#1a2420!important;
+  margin:0 0 .75rem!important;
+}
 
 /* Studio clears the fixed header twice (.sd pad-top ~100px + main margin-top ~100px
    ≈ 200px white band above the hero). Collapse both; hero clears header once via --dk-header-h. */
