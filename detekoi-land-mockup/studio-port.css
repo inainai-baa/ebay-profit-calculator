@@ -38,7 +38,7 @@ body.detekoi-port-on #omoi-legacy,
 body.detekoi-port-on #yoyaku-legacy,
 body.detekoi-port-on #reserve-legacy,
 body.detekoi-port-on main > [data-dk-studio-legacy="1"],
-body.detekoi-port-on [data-dk-studio-legacy="1"]:not(#contact):not(#contact *),
+body.detekoi-port-on main [data-dk-studio-legacy="1"],
 body.detekoi-port-on [data-dk-studio-hero="1"],
 body.detekoi-port-on [data-dk-studio-gap="1"],
 body.detekoi-port-on main > section.section:not(#detekoi-hero){
