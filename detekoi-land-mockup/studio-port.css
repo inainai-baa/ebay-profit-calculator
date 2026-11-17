@@ -37,6 +37,8 @@ body.detekoi-port-on #taiken-legacy,
 body.detekoi-port-on #omoi-legacy,
 body.detekoi-port-on #yoyaku-legacy,
 body.detekoi-port-on #reserve-legacy,
+body.detekoi-port-on main > [data-dk-studio-legacy="1"],
+body.detekoi-port-on [data-dk-studio-legacy="1"]:not(#contact):not(#contact *),
 body.detekoi-port-on [data-dk-studio-hero="1"],
 body.detekoi-port-on [data-dk-studio-gap="1"],
 body.detekoi-port-on main > section.section:not(#detekoi-hero){
@@ -495,7 +497,20 @@ html.detekoi-await-port .loop-box{
 #detekoi-port .dk-portrait img{width:100%}
 #detekoi-port .dk-portrait figcaption{padding:.6rem .8rem;text-align:center;font-size:.9rem;color:var(--dk-soft)}
 #detekoi-port .dk-reserve-grid{margin-top:2rem;display:grid;grid-template-columns:1.2fr .8fr;gap:1.4rem}
-#detekoi-port .dk-map iframe{width:100%;min-height:280px;border:0;border-radius:16px}
+#detekoi-port .dk-map,
+body.detekoi-port-on #detekoi-port .dk-map iframe{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+}
+#detekoi-port .dk-map iframe{
+  width:100%!important;
+  min-height:260px!important;
+  height:min(320px,55vw)!important;
+  border:0!important;
+  border-radius:16px!important;
+}
 #detekoi-port .dk-address{margin:.8rem 0 0;font-style:normal;color:var(--dk-soft);font-size:.95rem;line-height:1.8!important;letter-spacing:.03em}
 #detekoi-port .dk-actions{display:grid;gap:.8rem;align-content:start}
 #detekoi-port .dk-btn{

@@ -253,6 +253,11 @@ function hideStudioHero(){
     /* Also collapse any in-flow main siblings before #detekoi-hero (cream band /
        wavy leftover speech-bubble / spacer that can sit between header and sky). */
     collapseBeforeHero();
+    var port=document.getElementById('detekoi-port');
+    if(port){
+      stompStudioNativeIds(port);
+      hideStudioMainTail(port);
+    }
     /* Studio native hero uses loop-box; its scrollbar pill can flash under the fixed header */
     try{
       document.querySelectorAll('loop-box, .loop-box').forEach(function(el){
@@ -328,17 +333,42 @@ function buildHero(){
 }
 /* Move Studio legacy IDs onto VISIBLE port/form so native hash links work
    without depending on the click interceptor (Studio-native friendly). */
-function adoptLegacyIds(port){
+function stompStudioNativeIds(port){
   if(!port) return;
   var contact=document.getElementById('contact');
   ['about','annai','taiken','omoi','yoyaku','reserve'].forEach(function(id){
-    var el=document.getElementById(id);
-    if(!el) return;
-    if(port.contains(el)) return;
-    if(contact && contact.contains(el)) return;
-    if(el.getAttribute('data-dk-anchor')==='1') return;
-    el.id=id+'-legacy';
+    try{
+      document.querySelectorAll('[id="'+id+'"]').forEach(function(el){
+        if(port.contains(el)) return;
+        if(contact && contact.contains(el)) return;
+        if(el.getAttribute('data-dk-anchor')==='1') return;
+        if(el.id===id) el.id=id+'-legacy';
+        el.setAttribute('data-dk-studio-legacy','1');
+      });
+    }catch(e){}
   });
+}
+/* Studio re-hydration can re-insert native IA after #detekoi-port (duplicate
+   さあ外へ / 施設 / 体験 / 想い blocks before the real #contact form). */
+function hideStudioMainTail(port){
+  if(!port || !port.parentNode) return;
+  var past=false;
+  try{
+    [].slice.call(port.parentNode.children).forEach(function(el){
+      if(el===port){ past=true; return; }
+      if(!past) return;
+      if(el.id==='contact') return;
+      if(el.id==='detekoi-hero') return;
+      if(el.contains && el.contains(contact)) return;
+      if(el.querySelector && el.querySelector('#contact form, form[name="お問い合わせ_04"]')) return;
+      el.setAttribute('data-dk-studio-legacy','1');
+    });
+  }catch(e){}
+}
+function adoptLegacyIds(port){
+  if(!port) return;
+  stompStudioNativeIds(port);
+  var contact=document.getElementById('contact');
   /* Prefer putting Studio-native IDs on the section hosts themselves.
      Keep previous #dk-* as alias spans so old links still resolve. */
   function promoteId(host, nativeId){
@@ -361,6 +391,8 @@ function adoptLegacyIds(port){
   promoteId(document.getElementById('dk-services'), 'taiken');
   promoteId(document.getElementById('dk-philosophy'), 'omoi');
   promoteId(document.getElementById('dk-reserve'), 'reserve');
+  stompStudioNativeIds(port);
+  hideStudioMainTail(port);
   /* Booking hashes must land on the live Studio form, not a hidden block.
      Keep the anchor zero-size — contact-open CSS used to force min-height:50vh on #yoyaku. */
   function zeroAnchor(el){
