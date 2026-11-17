@@ -647,11 +647,33 @@ function bootAll(){
   collapseEmptyStudioSections();
   if(onRulePage() || onRyokinPage()) document.body.classList.add("detekoi-sub-on");
 }
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', bootAll);
-else bootAll();
-var n=0; var t=setInterval(function(){ bootAll(); if(++n>=40) clearInterval(t); }, 300);
-setTimeout(function(){ clearInterval(t); bootAll(); }, 12000);
+/* Guard bootAll against MutationObserver feedback: inject/scrub-style DOM
+   writes must not re-enter bootAll synchronously (freezes the tab). */
+var bootBusy=0, bootMo=null, bootTimer=0;
+function runBoot(){
+  if(bootBusy) return;
+  bootBusy=1;
+  try{
+    if(bootMo) bootMo.disconnect();
+    bootAll();
+  }finally{
+    bootBusy=0;
+    try{ if(bootMo) bootMo.observe(document.documentElement,{childList:true,subtree:true}); }catch(e0){}
+  }
+}
+function scheduleBoot(){
+  if(bootBusy) return;
+  clearTimeout(bootTimer);
+  bootTimer=setTimeout(runBoot, 80);
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', runBoot);
+else runBoot();
+var n=0; var t=setInterval(function(){ runBoot(); if(++n>=40) clearInterval(t); }, 300);
+setTimeout(function(){ clearInterval(t); runBoot(); }, 12000);
 try{ window.addEventListener('resize', function(){ syncHeaderVar(); }, {passive:true}); }catch(e){ window.addEventListener('resize', syncHeaderVar); }
-try{ new MutationObserver(function(){ bootAll(); }).observe(document.documentElement,{childList:true,subtree:true}); }catch(e){}
+try{
+  bootMo=new MutationObserver(scheduleBoot);
+  bootMo.observe(document.documentElement,{childList:true,subtree:true});
+}catch(e){}
 
 })();
