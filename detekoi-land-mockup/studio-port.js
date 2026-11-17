@@ -328,8 +328,9 @@ function adoptLegacyIds(port){
     if(!el) return;
     el.setAttribute('data-dk-anchor','1');
     el.setAttribute('aria-hidden','true');
-    ['position','display','height','width','max-height','min-height','overflow','padding','margin','background','border','font-size','line-height'].forEach(function(prop){
-      var val={position:'relative',display:'block',height:'0',width:'0','max-height':'0','min-height':'0',overflow:'hidden',padding:'0',margin:'0',background:'transparent',border:'0','font-size':'0','line-height':'0'}[prop];
+    /* position:absolute — stay out of #contact flex gap (Studio uses gap:100px) */
+    ['position','left','top','display','height','width','max-height','min-height','overflow','padding','margin','background','border','font-size','line-height','pointer-events'].forEach(function(prop){
+      var val={position:'absolute',left:'0',top:'0',display:'block',height:'0',width:'0','max-height':'0','min-height':'0',overflow:'hidden',padding:'0',margin:'0',background:'transparent',border:'0','font-size':'0','line-height':'0','pointer-events':'none'}[prop];
       try{ el.style.setProperty(prop, val, 'important'); }catch(e){}
     });
     try{ el.style.setProperty('scroll-margin-top','0'); }catch(e2){}
