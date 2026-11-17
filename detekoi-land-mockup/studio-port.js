@@ -7,7 +7,16 @@ if (cssHref && !document.getElementById('detekoi-port-css-link')) {
   link.id = 'detekoi-port-css-link';
   link.rel = 'stylesheet';
   link.href = cssHref;
-  document.head.appendChild(link);
+  /* Prefer early head so FOUC lock CSS applies before late paint when possible */
+  var head=document.head||document.documentElement;
+  if(head.firstChild) head.insertBefore(link, head.firstChild);
+  else head.appendChild(link);
+}
+function markPortReady(){
+  try{
+    document.documentElement.classList.add('detekoi-port-ready');
+    document.documentElement.classList.remove('detekoi-await-port');
+  }catch(e){}
 }
 
 var ASSET="https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos";
@@ -374,6 +383,7 @@ function inject(){
     hideStudioHero();
     rewriteNav();
     syncHeaderVar();
+    markPortReady();
     return;
   }
   var mount=document.createElement('div');
@@ -388,6 +398,7 @@ function inject(){
   wireNavClicks();
   syncHeaderVar();
   mountPricing(port);
+  markPortReady();
 }
 
 function pricingScriptUrl(){
