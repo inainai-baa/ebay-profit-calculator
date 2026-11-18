@@ -926,6 +926,31 @@ function enhanceRulePage(){
     mountRulesGrid(omoi, data.rules, data.footer || [], null);
   });
 }
+function isCanvasCodeLeak(t){
+  if(!t)return 0;
+  t=String(t).replace(/\u00a0/g,' ').trim().slice(0,400);
+  if(!t)return 0;
+  if(/querySelector|setProperty|removeProperty|addEventListener|classList\.|wrap\.style|wrap\.querySelector|hashchange|popstate|detekoi-land-mockup|detekoi-contact|detekoi-contact-css|jsdelivr|display:none!important|pointer-events|!important|setTimeout|setInterval|clearInterval|MutationObserver|detekoi-port-fonts|frame\.fixed\.sd|function isLeak|function scrub|function sync\b/.test(t))return 1;
+  if(/^(function\s|var\s|const\s|let\s|return\s|if\(|try\{|catch\(|\}else\{|\}\);?|\}\(\);?|\(function)/.test(t))return 1;
+  if(/^[A-Za-z_$][\w$]*=/.test(t))return 1;
+  if(t==='}'||t==='});'||t==='})();'||t==='}else{'||t==='{'||t==='strip();')return 1;
+  if(t.indexOf('<style')!==-1||t.indexOf('<script')!==-1||t.indexOf('detekoi-contact-css')!==-1)return 1;
+  return 0;
+}
+function scrubCanvasCodeLeaks(){
+  try{
+    document.querySelectorAll('p,div.text,pre,span.text').forEach(function(el){
+      if(el.closest('#detekoi-port,script,style,head,#detekoi-form-hint,form,label,input,textarea,select,button'))return;
+      if(el.classList.contains('detekoi-req')||el.classList.contains('detekoi-opt'))return;
+      if(el.querySelector('form,input,textarea,select,button,a[href]'))return;
+      var t=(el.innerText||el.textContent||'').replace(/\u00a0/g,' ').trim();
+      if(!isCanvasCodeLeak(t))return;
+      el.classList.add('detekoi-code-leak');
+      el.style.setProperty('display','none','important');
+      el.setAttribute('aria-hidden','true');
+    });
+  }catch(e){}
+}
 function ensureDateRow(){
   try{
     document.querySelectorAll('#contact form label, form[name="お問い合わせ_04"] label').forEach(function(lab){
@@ -1014,6 +1039,7 @@ function tightenDesktopDateRow(){
   }catch(e){}
 }
 function bootAll(){
+  scrubCanvasCodeLeaks();
   injectMobileHeroCtaFix();
   tightenDesktopDateRow();
   applyPricingVisibility();
