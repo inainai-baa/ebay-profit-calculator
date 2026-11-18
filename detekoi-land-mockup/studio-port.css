@@ -688,6 +688,12 @@ body.detekoi-hide-pricing #dk-ryokin-pricing,
 html.detekoi-hide-pricing #dk-ryokin-pricing,
 body.detekoi-hide-pricing #pricing,
 html.detekoi-hide-pricing #pricing,
+body.detekoi-hide-pricing #detekoi-port .pricing,
+html.detekoi-hide-pricing #detekoi-port .pricing,
+body.detekoi-hide-pricing #detekoi-port #pricing,
+html.detekoi-hide-pricing #detekoi-port #pricing,
+body.detekoi-hide-pricing [data-dk-pricing-hidden="1"],
+html.detekoi-hide-pricing [data-dk-pricing-hidden="1"],
 body.detekoi-hide-pricing #booking,
 html.detekoi-hide-pricing #booking{
   display:none!important;

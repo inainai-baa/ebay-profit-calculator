@@ -29,6 +29,23 @@ function applyPricingVisibility(){
     if(document.body) document.body.classList.toggle('detekoi-hide-pricing', !on);
   }catch(e){}
 }
+function applyPricingHide(scope){
+  if(pricingEnabled()) return;
+  applyPricingVisibility();
+  var root=scope||document;
+  root.querySelectorAll('[data-pricing-root], #detekoi-port .pricing, #detekoi-port #pricing').forEach(function(el){
+    el.setAttribute('data-dk-pricing-hidden','1');
+    el.setAttribute('aria-hidden','true');
+    el.style.setProperty('display','none','important');
+    el.style.setProperty('visibility','hidden','important');
+    el.style.setProperty('height','0','important');
+    el.style.setProperty('max-height','0','important');
+    el.style.setProperty('margin','0','important');
+    el.style.setProperty('padding','0','important');
+    el.style.setProperty('overflow','hidden','important');
+    el.style.setProperty('border','0','important');
+  });
+}
 
 var ASSET="https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos";
 function onHome(){
@@ -578,7 +595,7 @@ function buildPricingAccordion(root, pricing){
   root.setAttribute('data-dk-pricing','1');
 }
 function mountPricing(scope){
-  applyPricingVisibility();
+  applyPricingHide(scope);
   if(!pricingEnabled()) return;
   var root=(scope||document).querySelector('[data-pricing-root]');
   if(!root) return;
