@@ -930,8 +930,8 @@ function isCanvasCodeLeak(t){
   if(!t)return 0;
   t=String(t).replace(/\u00a0/g,' ').trim().slice(0,400);
   if(!t)return 0;
-  if(/querySelector|setProperty|removeProperty|addEventListener|classList\.|wrap\.style|wrap\.querySelector|hashchange|popstate|detekoi-land-mockup|detekoi-contact|detekoi-contact-css|jsdelivr|display:none!important|pointer-events|!important|setTimeout|setInterval|clearInterval|MutationObserver|detekoi-port-fonts|frame\.fixed\.sd|function isLeak|function scrub|function sync\b/.test(t))return 1;
-  if(/^(function\s|var\s|const\s|let\s|return\s|if\(|try\{|catch\(|\}else\{|\}\);?|\}\(\);?|\(function)/.test(t))return 1;
+  if(/querySelector|setProperty|removeProperty|addEventListener|classList\.|wrap\.style|wrap\.querySelector|hashchange|popstate|detekoi-land-mockup|detekoi-contact|detekoi-contact-css|jsdelivr|display:none!important|pointer-events|!important|setTimeout|setInterval|clearInterval|MutationObserver|tickMo\.observe|tickBusy|childList:true|detekoi-port-fonts|frame\.fixed\.sd|function isLeak|function scrub|function sync\b/.test(t))return 1;
+  if(/^(function\s|var\s|const\s|let\s|return\s|if\(|try\{|catch\(|finally\{|\}else\{|\}\);?|\}\(\);?|\(function)/.test(t))return 1;
   if(/^[A-Za-z_$][\w$]*=/.test(t))return 1;
   if(t==='}'||t==='});'||t==='})();'||t==='}else{'||t==='{'||t==='strip();')return 1;
   if(t.indexOf('<style')!==-1||t.indexOf('<script')!==-1||t.indexOf('detekoi-contact-css')!==-1)return 1;
