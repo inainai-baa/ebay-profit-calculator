@@ -19,6 +19,17 @@ function markPortReady(){
   }catch(e){}
 }
 
+/* Client toggle: set true when pricing accordion may be shown again. */
+var SHOW_PRICING=false;
+function pricingEnabled(){ return !!SHOW_PRICING; }
+function applyPricingVisibility(){
+  try{
+    var on=pricingEnabled();
+    document.documentElement.classList.toggle('detekoi-hide-pricing', !on);
+    if(document.body) document.body.classList.toggle('detekoi-hide-pricing', !on);
+  }catch(e){}
+}
+
 var ASSET="https://inainai-baa.github.io/ebay-profit-calculator/detekoi-land-mockup/assets/photos";
 function onHome(){
   var p=location.pathname||'/';
@@ -567,6 +578,8 @@ function buildPricingAccordion(root, pricing){
   root.setAttribute('data-dk-pricing','1');
 }
 function mountPricing(scope){
+  applyPricingVisibility();
+  if(!pricingEnabled()) return;
   var root=(scope||document).querySelector('[data-pricing-root]');
   if(!root) return;
   loadPricingData(function(pricing){ if(pricing) buildPricingAccordion(root, pricing); });
@@ -592,12 +605,14 @@ function enhanceRyokinPage(){
   if(!onRyokinPage()) return;
   ensureFonts();
   document.body.classList.add('detekoi-sub-on');
+  applyPricingVisibility();
   var omoi=document.getElementById('omoi');
   if(!omoi) return;
   if(document.getElementById('dk-ryokin-pricing')){
     hideStudioPricingMedia(omoi);
     return;
   }
+  if(!pricingEnabled()){ hideStudioPricingMedia(omoi); return; }
   var host=document.createElement('div');
   host.id='dk-ryokin-pricing';
   host.className='pricing pricing--ryokin';
@@ -799,6 +814,7 @@ function enhanceRulePage(){
   });
 }
 function bootAll(){
+  applyPricingVisibility();
   if(onHome()) inject();
   if(onRulePage()) enhanceRulePage();
   if(onRyokinPage()) enhanceRyokinPage();

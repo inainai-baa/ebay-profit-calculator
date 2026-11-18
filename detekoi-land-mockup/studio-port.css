@@ -679,7 +679,28 @@ body.detekoi-port-on [data-dk-studio-gap="1"]{
   max-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;
 }
 
-/* Pricing accordion (home + /ryokin) */
+/* Pricing accordion (home + /ryokin) — hidden when body.detekoi-hide-pricing (SHOW_PRICING=false) */
+body.detekoi-hide-pricing .pricing,
+html.detekoi-hide-pricing .pricing,
+body.detekoi-hide-pricing [data-pricing-root],
+html.detekoi-hide-pricing [data-pricing-root],
+body.detekoi-hide-pricing #dk-ryokin-pricing,
+html.detekoi-hide-pricing #dk-ryokin-pricing,
+body.detekoi-hide-pricing #pricing,
+html.detekoi-hide-pricing #pricing,
+body.detekoi-hide-pricing #booking,
+html.detekoi-hide-pricing #booking{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+  border:0!important;
+}
 .pricing{
   margin:2.2rem 0 0;padding:1.35rem 0 0;
   border-top:1px solid rgba(31,61,50,.12);
