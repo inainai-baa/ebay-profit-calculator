@@ -496,6 +496,7 @@ function inject(){
     hideStudioHero();
     rewriteNav();
     syncHeaderVar();
+    mountPricing(existing);
     markPortReady();
     return;
   }
@@ -832,6 +833,7 @@ function enhanceRulePage(){
 }
 function bootAll(){
   applyPricingVisibility();
+  if(!pricingEnabled()) applyPricingHide(document);
   if(onHome()) inject();
   if(onRulePage()) enhanceRulePage();
   if(onRyokinPage()) enhanceRyokinPage();
