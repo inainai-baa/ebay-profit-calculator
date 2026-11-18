@@ -1,6 +1,17 @@
 (function(){
-if (window.__DETEKOI_PORT_BOOT__) return;
-window.__DETEKOI_PORT_BOOT__ = 1;
+var bootScript=document.currentScript;
+var isCode2Loader=bootScript&&bootScript.id==='detekoi-port-loader';
+if(window.__DETEKOI_PORT_BOOT__&&!isCode2Loader) return;
+if(window.__DETEKOI_PORT_BOOT__&&isCode2Loader){
+  try{
+    document.querySelectorAll('script[src*="studio-port.js"]').forEach(function(s){
+      if(s===bootScript) return;
+      if(s.id==='detekoi-port-loader') return;
+      if((s.getAttribute('src')||'').indexOf('ebay-profit-calculator@')!==-1) s.remove();
+    });
+  }catch(e){}
+}
+window.__DETEKOI_PORT_BOOT__=1;
 var cssHref = (document.currentScript && document.currentScript.getAttribute('data-css')) || '';
 function ensurePortCss(href){
   if(!href) return;
