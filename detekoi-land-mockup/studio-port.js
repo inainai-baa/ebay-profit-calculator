@@ -57,6 +57,14 @@ function applyPricingCopyAdjustments(scope){
     '料金は下の表を開いてご確認いただけます。',
     '料金はカテゴリを開いてご確認いただけます。'
   ];
+  if(root.querySelector('#detekoi-port #dk-reserve')){
+    root.querySelectorAll('#reserve p, #reserve .text, #reserve [class*="text"]').forEach(function(el){
+      if(el.closest('#detekoi-port')) return;
+      el.setAttribute('data-dk-pricing-copy-hidden','1');
+      el.setAttribute('aria-hidden','true');
+      el.style.setProperty('display','none','important');
+    });
+  }
   root.querySelectorAll('#reserve p, #reserve .dk-lede, #dk-reserve p, #dk-reserve .dk-lede, #detekoi-port #dk-reserve p, #detekoi-port #dk-reserve .dk-lede').forEach(function(el){
     if(el.closest('[data-dk-pricing-hidden="1"],.pricing,[data-pricing-root],#pricing')) return;
     var text=el.textContent||'';
