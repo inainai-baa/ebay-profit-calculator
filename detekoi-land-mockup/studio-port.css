@@ -385,17 +385,22 @@ html.detekoi-await-port .loop-box{
     align-items:center;
     place-items:unset;
   }
-  #detekoi-hero .dk-hero__photo{object-position:center 32%}
+  #detekoi-hero .dk-hero__photo{object-position:center 30%}
   #detekoi-hero .dk-hero__content{
     width:100%;
     max-width:24rem;
-    padding:4.5rem 1rem 2.35rem;
+    flex:1 1 auto;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    min-height:calc(100svh - 3.25rem);
+    padding:4.25rem 1rem 1.35rem;
   }
-  #detekoi-hero .dk-hero__brand{margin-bottom:.75rem}
-  #detekoi-hero .dk-hero__catch{font-size:clamp(1.65rem,8.2vw,2.35rem)}
-  #detekoi-hero .dk-hero__support{margin-top:.85rem;font-size:.92rem;line-height:1.75}
+  #detekoi-hero .dk-hero__brand{margin-bottom:.6rem}
+  #detekoi-hero .dk-hero__catch{font-size:clamp(1.55rem,7.8vw,2.2rem)}
+  #detekoi-hero .dk-hero__support{margin-top:.65rem;font-size:.9rem;line-height:1.7}
   #detekoi-hero .dk-hero__actions{
-    margin-top:1.15rem;
+    margin-top:1rem;
     flex-direction:column;
     align-items:stretch;
   }
