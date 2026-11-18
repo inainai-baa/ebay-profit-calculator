@@ -169,6 +169,49 @@ form[name="お問い合わせ_04"] label:has(select[name="月"]) > :not(:first-c
     box-sizing:border-box!important;
   }
 }
+/* Desktop/Web: keep month + day + slash tight (gap), not space-between across the field */
+@media (min-width:901px){
+  #contact form label:has(select[name="月"]),
+  form[name="お問い合わせ_04"] label:has(select[name="月"]){
+    justify-content:flex-start!important;
+    align-items:center!important;
+  }
+  .detekoi-date-row,
+  [data-dk-date-row="1"],
+  #contact form label:has(select[name="月"]) > :not(:first-child),
+  form[name="お問い合わせ_04"] label:has(select[name="月"]) > :not(:first-child){
+    display:inline-flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:0.25rem!important;
+    width:auto!important;
+    max-width:none!important;
+    flex:0 0 auto!important;
+  }
+  .detekoi-date-row .detekoi-date-slash,
+  [data-dk-date-row="1"] .detekoi-date-slash,
+  .detekoi-date-row > span:not(:has(select)){
+    flex:0 0 auto!important;
+    width:auto!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    line-height:1!important;
+  }
+  .detekoi-date-row select,
+  [data-dk-date-row="1"] select,
+  #contact form label:has(select[name="月"]) select[name="月"],
+  #contact form label:has(select[name="月"]) select[name="日にち"],
+  form[name="お問い合わせ_04"] label:has(select[name="月"]) select[name="月"],
+  form[name="お問い合わせ_04"] label:has(select[name="月"]) select[name="日にち"]{
+    flex:0 0 auto!important;
+    width:auto!important;
+    min-width:0!important;
+    max-width:11rem!important;
+  }
+}
 /* Studio .text h2 for「予約」was ~12px — readable section title */
 #contact h1,
 #contact h2,
@@ -376,9 +419,34 @@ html.detekoi-await-port .loop-box{
   }
 }
 @media (max-width:720px){
-  #detekoi-hero{min-height:100svh}
-  #detekoi-hero .dk-hero__content{padding:3rem 1rem 4rem}
-  #detekoi-hero .dk-hero__actions{flex-direction:column;align-items:stretch}
+  /* Copy: original centered hero block; CTAs: low on art, centered as a pair */
+  #detekoi-hero{
+    min-height:100svh;
+    display:grid;
+    place-items:center;
+  }
+  #detekoi-hero .dk-hero__photo{object-position:center 32%}
+  #detekoi-hero .dk-hero__content{
+    width:100%;
+    max-width:48rem;
+    padding:3rem 1rem 4rem;
+    text-align:center;
+    position:static;
+  }
+  #detekoi-hero .dk-hero__actions{
+    position:absolute;
+    left:50%;
+    right:auto;
+    transform:translateX(-50%);
+    bottom:max(1.35rem, env(safe-area-inset-bottom, 0px));
+    width:min(22rem, calc(100vw - 2rem));
+    margin-top:0;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:.8rem;
+    z-index:2;
+  }
   #detekoi-hero .dk-hero__btn{width:100%}
 }
 
@@ -679,7 +747,34 @@ body.detekoi-port-on [data-dk-studio-gap="1"]{
   max-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;
 }
 
-/* Pricing accordion (home + /ryokin) */
+/* Pricing accordion (home + /ryokin) — hidden when body.detekoi-hide-pricing (SHOW_PRICING=false) */
+body.detekoi-hide-pricing .pricing,
+html.detekoi-hide-pricing .pricing,
+body.detekoi-hide-pricing [data-pricing-root],
+html.detekoi-hide-pricing [data-pricing-root],
+body.detekoi-hide-pricing #dk-ryokin-pricing,
+html.detekoi-hide-pricing #dk-ryokin-pricing,
+body.detekoi-hide-pricing #pricing,
+html.detekoi-hide-pricing #pricing,
+body.detekoi-hide-pricing #detekoi-port .pricing,
+html.detekoi-hide-pricing #detekoi-port .pricing,
+body.detekoi-hide-pricing #detekoi-port #pricing,
+html.detekoi-hide-pricing #detekoi-port #pricing,
+body.detekoi-hide-pricing [data-dk-pricing-hidden="1"],
+html.detekoi-hide-pricing [data-dk-pricing-hidden="1"],
+body.detekoi-hide-pricing #booking,
+html.detekoi-hide-pricing #booking{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+  border:0!important;
+}
 .pricing{
   margin:2.2rem 0 0;padding:1.35rem 0 0;
   border-top:1px solid rgba(31,61,50,.12);
