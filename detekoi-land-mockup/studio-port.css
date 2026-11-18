@@ -376,9 +376,29 @@ html.detekoi-await-port .loop-box{
   }
 }
 @media (max-width:720px){
-  #detekoi-hero{min-height:100svh}
-  #detekoi-hero .dk-hero__content{padding:3rem 1rem 4rem}
-  #detekoi-hero .dk-hero__actions{flex-direction:column;align-items:stretch}
+  /* Anchor copy+CTAs toward the foot so buttons sit over lawn/wheelbarrows, not faces */
+  #detekoi-hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+    place-items:unset;
+  }
+  #detekoi-hero .dk-hero__photo{object-position:center 32%}
+  #detekoi-hero .dk-hero__content{
+    width:100%;
+    max-width:24rem;
+    padding:4.5rem 1rem 2.35rem;
+  }
+  #detekoi-hero .dk-hero__brand{margin-bottom:.75rem}
+  #detekoi-hero .dk-hero__catch{font-size:clamp(1.65rem,8.2vw,2.35rem)}
+  #detekoi-hero .dk-hero__support{margin-top:.85rem;font-size:.92rem;line-height:1.75}
+  #detekoi-hero .dk-hero__actions{
+    margin-top:1.15rem;
+    flex-direction:column;
+    align-items:stretch;
+  }
   #detekoi-hero .dk-hero__btn{width:100%}
 }
 
