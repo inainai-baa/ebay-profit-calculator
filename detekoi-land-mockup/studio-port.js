@@ -45,7 +45,7 @@ function injectMobileHeroCtaFix(){
   if(document.getElementById('dk-mobile-hero-cta-fix')) return;
   var st=document.createElement('style');
   st.id='dk-mobile-hero-cta-fix';
-  st.textContent='@media (max-width:720px){#detekoi-hero{min-height:100svh;display:grid!important;place-items:center!important}#detekoi-hero .dk-hero__photo{object-position:center 32%!important}#detekoi-hero .dk-hero__content{width:100%;max-width:48rem;padding:3rem 1rem 4rem!important;text-align:center!important}#detekoi-hero .dk-hero__actions{position:absolute!important;left:50%!important;transform:translateX(-50%)!important;bottom:max(1.35rem,env(safe-area-inset-bottom,0px))!important;width:min(22rem,calc(100vw - 2rem))!important;margin-top:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:.8rem!important;z-index:2!important}#detekoi-hero .dk-hero__btn{width:100%!important}}';
+  st.textContent='@media (max-width:720px){#detekoi-hero{min-height:100svh;display:grid!important;place-items:center!important}#detekoi-hero .dk-hero__photo{object-position:center 32%!important}#detekoi-hero .dk-hero__content{width:100%;max-width:48rem;padding:3rem 1rem 4rem!important;text-align:center!important;position:static!important}#detekoi-hero .dk-hero__actions{position:absolute!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;bottom:max(1.35rem,env(safe-area-inset-bottom,0px))!important;width:min(22rem,calc(100vw - 2rem))!important;margin-top:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:.8rem!important;z-index:2!important}#detekoi-hero .dk-hero__btn{width:100%!important}}';
   document.head.appendChild(st);
 }
 function markPortReady(){
