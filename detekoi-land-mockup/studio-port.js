@@ -926,8 +926,27 @@ function enhanceRulePage(){
     mountRulesGrid(omoi, data.rules, data.footer || [], null);
   });
 }
+function ensureDateRow(){
+  try{
+    document.querySelectorAll('#contact form label, form[name="お問い合わせ_04"] label').forEach(function(lab){
+      var m=lab.querySelector('select[name="月"]'), d=lab.querySelector('select[name="日にち"]');
+      if(!m||!d) return;
+      if(!lab.querySelector('.detekoi-date-row,[data-dk-date-row="1"]')){
+        var kids=[].slice.call(lab.children);
+        if(kids.length<3) return;
+        var row=document.createElement('div');
+        row.className='detekoi-date-row';
+        row.setAttribute('data-dk-date-row','1');
+        kids.slice(1).forEach(function(ch){ row.appendChild(ch); });
+        lab.appendChild(row);
+      }
+      lab.setAttribute('data-dk-date','1');
+    });
+  }catch(e){}
+}
 function tightenDesktopDateRow(){
   try{
+    ensureDateRow();
     if(window.matchMedia('(max-width:900px)').matches) return;
     document.querySelectorAll('.detekoi-date-row,[data-dk-date-row="1"]').forEach(function(row){
       row.style.setProperty('display','inline-flex','important');
