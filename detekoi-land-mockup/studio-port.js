@@ -2,16 +2,25 @@
 if (window.__DETEKOI_PORT_BOOT__) return;
 window.__DETEKOI_PORT_BOOT__ = 1;
 var cssHref = (document.currentScript && document.currentScript.getAttribute('data-css')) || '';
-if (cssHref && !document.getElementById('detekoi-port-css-link')) {
-  var link = document.createElement('link');
-  link.id = 'detekoi-port-css-link';
-  link.rel = 'stylesheet';
-  link.href = cssHref;
-  /* Prefer early head so FOUC lock CSS applies before late paint when possible */
+function ensurePortCss(href){
+  if(!href) return;
   var head=document.head||document.documentElement;
-  if(head.firstChild) head.insertBefore(link, head.firstChild);
-  else head.appendChild(link);
+  var link=document.getElementById('detekoi-port-css-link');
+  if(!link){
+    link=document.createElement('link');
+    link.id='detekoi-port-css-link';
+    link.rel='stylesheet';
+    head.insertBefore(link, head.firstChild||null);
+  }
+  if(link.getAttribute('href')!==href) link.setAttribute('href', href);
+  try{
+    document.querySelectorAll('link[href*="studio-port.css"]').forEach(function(el){
+      if(el===link) return;
+      if((el.getAttribute('href')||'').indexOf('ebay-profit-calculator@')!==-1) el.remove();
+    });
+  }catch(e){}
 }
+ensurePortCss(cssHref);
 function markPortReady(){
   try{
     document.documentElement.classList.add('detekoi-port-ready');
