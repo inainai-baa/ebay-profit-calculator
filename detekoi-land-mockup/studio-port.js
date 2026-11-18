@@ -944,27 +944,66 @@ function ensureDateRow(){
     });
   }catch(e){}
 }
+function flattenDateRow(row){
+  if(!row||row.getAttribute('data-dk-date-flat')==='1') return;
+  var m=row.querySelector('select[name="月"]');
+  var d=row.querySelector('select[name="日にち"]');
+  if(!m||!d) return;
+  var slash=null;
+  row.querySelectorAll('span,p,div').forEach(function(el){
+    if(el===row) return;
+    if(el.contains(m)||el.contains(d)) return;
+    var t=(el.textContent||'').replace(/\s+/g,'').trim();
+    if(t==='/'||t==='／') slash=el;
+  });
+  var nodes=[m];
+  if(slash) nodes.push(slash);
+  else{
+    var sp=document.createElement('span');
+    sp.className='detekoi-date-slash';
+    sp.textContent='/';
+    nodes.push(sp);
+  }
+  nodes.push(d);
+  while(row.firstChild) row.removeChild(row.firstChild);
+  nodes.forEach(function(n){ row.appendChild(n); });
+  row.setAttribute('data-dk-date-flat','1');
+}
 function tightenDesktopDateRow(){
   try{
     ensureDateRow();
     if(window.matchMedia('(max-width:900px)').matches) return;
+    document.querySelectorAll('#contact form label:has(select[name="月"]), form[name="お問い合わせ_04"] label:has(select[name="月"])').forEach(function(lab){
+      lab.style.setProperty('justify-content','flex-start','important');
+      lab.style.setProperty('align-items','center','important');
+    });
     document.querySelectorAll('.detekoi-date-row,[data-dk-date-row="1"]').forEach(function(row){
+      flattenDateRow(row);
       row.style.setProperty('display','inline-flex','important');
+      row.style.setProperty('flex-direction','row','important');
+      row.style.setProperty('flex-wrap','nowrap','important');
+      row.style.setProperty('align-items','center','important');
       row.style.setProperty('justify-content','flex-start','important');
-      row.style.setProperty('gap','8px','important');
+      row.style.setProperty('gap','0.5rem','important');
       row.style.setProperty('width','auto','important');
       row.style.setProperty('max-width','100%','important');
+      row.style.setProperty('flex','0 0 auto','important');
       row.querySelectorAll('select').forEach(function(s){
         s.style.setProperty('flex','0 0 auto','important');
         s.style.setProperty('width','auto','important');
-        s.style.setProperty('min-width','5.25rem','important');
-        s.style.setProperty('max-width','7.25rem','important');
+        s.style.setProperty('min-width','0','important');
+        s.style.setProperty('max-width','11rem','important');
+        s.style.removeProperty('flex-grow');
+        s.style.removeProperty('flex-shrink');
       });
-      row.querySelectorAll('div,span,p').forEach(function(el){
+      row.querySelectorAll('.detekoi-date-slash,span,p').forEach(function(el){
         if(el.querySelector('select')) return;
+        var t=(el.textContent||'').replace(/\s+/g,'').trim();
+        if(t!=='/'&&t!=='／') return;
         el.style.setProperty('flex','0 0 auto','important');
         el.style.setProperty('width','auto','important');
-        el.style.setProperty('justify-content','flex-start','important');
+        el.style.setProperty('margin','0','important');
+        el.style.setProperty('padding','0','important');
       });
     });
   }catch(e){}
