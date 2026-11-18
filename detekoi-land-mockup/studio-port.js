@@ -926,8 +926,33 @@ function enhanceRulePage(){
     mountRulesGrid(omoi, data.rules, data.footer || [], null);
   });
 }
+function tightenDesktopDateRow(){
+  try{
+    if(window.matchMedia('(max-width:900px)').matches) return;
+    document.querySelectorAll('.detekoi-date-row,[data-dk-date-row="1"]').forEach(function(row){
+      row.style.setProperty('display','inline-flex','important');
+      row.style.setProperty('justify-content','flex-start','important');
+      row.style.setProperty('gap','8px','important');
+      row.style.setProperty('width','auto','important');
+      row.style.setProperty('max-width','100%','important');
+      row.querySelectorAll('select').forEach(function(s){
+        s.style.setProperty('flex','0 0 auto','important');
+        s.style.setProperty('width','auto','important');
+        s.style.setProperty('min-width','5.25rem','important');
+        s.style.setProperty('max-width','7.25rem','important');
+      });
+      row.querySelectorAll('div,span,p').forEach(function(el){
+        if(el.querySelector('select')) return;
+        el.style.setProperty('flex','0 0 auto','important');
+        el.style.setProperty('width','auto','important');
+        el.style.setProperty('justify-content','flex-start','important');
+      });
+    });
+  }catch(e){}
+}
 function bootAll(){
   injectMobileHeroCtaFix();
+  tightenDesktopDateRow();
   applyPricingVisibility();
   if(!pricingEnabled()) applyPricingHide(document);
   if(onHome()) inject();

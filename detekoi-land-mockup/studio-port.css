@@ -169,6 +169,43 @@ form[name="お問い合わせ_04"] label:has(select[name="月"]) > :not(:first-c
     box-sizing:border-box!important;
   }
 }
+/* Desktop/Web: keep month + day + slash tight (gap), not space-between across the field */
+@media (min-width:901px){
+  .detekoi-date-row,
+  [data-dk-date-row="1"],
+  #contact form label:has(select[name="月"]) > :not(:first-child),
+  form[name="お問い合わせ_04"] label:has(select[name="月"]) > :not(:first-child){
+    display:inline-flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:8px!important;
+    width:auto!important;
+    max-width:100%!important;
+    flex:0 1 auto!important;
+  }
+  .detekoi-date-row > *,
+  [data-dk-date-row="1"] > *,
+  #contact form label:has(select[name="月"]) > :not(:first-child) > *,
+  form[name="お問い合わせ_04"] label:has(select[name="月"]) > :not(:first-child) > *{
+    flex:0 0 auto!important;
+    width:auto!important;
+    max-width:none!important;
+    justify-content:flex-start!important;
+  }
+  .detekoi-date-row select,
+  [data-dk-date-row="1"] select,
+  #contact form label:has(select[name="月"]) select[name="月"],
+  #contact form label:has(select[name="月"]) select[name="日にち"],
+  form[name="お問い合わせ_04"] label:has(select[name="月"]) select[name="月"],
+  form[name="お問い合わせ_04"] label:has(select[name="月"]) select[name="日にち"]{
+    flex:0 0 auto!important;
+    width:auto!important;
+    min-width:5.25rem!important;
+    max-width:7.25rem!important;
+  }
+}
 /* Studio .text h2 for「予約」was ~12px — readable section title */
 #contact h1,
 #contact h2,
