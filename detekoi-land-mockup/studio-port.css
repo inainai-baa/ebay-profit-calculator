@@ -185,17 +185,19 @@ form[name="お問い合わせ_04"] label:has(select[name="月"]) > :not(:first-c
     flex-wrap:nowrap!important;
     align-items:center!important;
     justify-content:flex-start!important;
-    gap:0.5rem!important;
+    gap:0.25rem!important;
     width:auto!important;
-    max-width:100%!important;
+    max-width:none!important;
     flex:0 0 auto!important;
   }
   .detekoi-date-row .detekoi-date-slash,
-  [data-dk-date-row="1"] .detekoi-date-slash{
+  [data-dk-date-row="1"] .detekoi-date-slash,
+  .detekoi-date-row > span:not(:has(select)){
     flex:0 0 auto!important;
     width:auto!important;
+    min-width:0!important;
     margin:0!important;
-    padding:0 .1rem!important;
+    padding:0!important;
     line-height:1!important;
   }
   .detekoi-date-row select,

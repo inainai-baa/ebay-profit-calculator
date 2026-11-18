@@ -954,7 +954,10 @@ function flattenDateRow(row){
     if(el===row) return;
     if(el.contains(m)||el.contains(d)) return;
     var t=(el.textContent||'').replace(/\s+/g,'').trim();
-    if(t==='/'||t==='／') slash=el;
+    if(t==='/'||t==='／'){
+      slash=el;
+      slash.classList.add('detekoi-date-slash');
+    }
   });
   var nodes=[m];
   if(slash) nodes.push(slash);
@@ -984,8 +987,10 @@ function tightenDesktopDateRow(){
       row.style.setProperty('flex-wrap','nowrap','important');
       row.style.setProperty('align-items','center','important');
       row.style.setProperty('justify-content','flex-start','important');
-      row.style.setProperty('gap','0.5rem','important');
+      row.style.setProperty('gap','0.25rem','important');
       row.style.setProperty('width','auto','important');
+      row.style.removeProperty('flex-grow');
+      row.style.removeProperty('flex-shrink');
       row.style.setProperty('max-width','100%','important');
       row.style.setProperty('flex','0 0 auto','important');
       row.querySelectorAll('select').forEach(function(s){
