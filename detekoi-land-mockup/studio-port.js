@@ -1,17 +1,25 @@
 (function(){
 var bootScript=document.currentScript;
-var isCode2Loader=bootScript&&bootScript.id==='detekoi-port-loader';
-if(window.__DETEKOI_PORT_BOOT__&&!isCode2Loader) return;
-if(window.__DETEKOI_PORT_BOOT__&&isCode2Loader){
-  try{
-    document.querySelectorAll('script[src*="studio-port.js"]').forEach(function(s){
-      if(s===bootScript) return;
-      if(s.id==='detekoi-port-loader') return;
-      if((s.getAttribute('src')||'').indexOf('ebay-profit-calculator@')!==-1) s.remove();
-    });
-  }catch(e){}
+var mySrc=bootScript?bootScript.getAttribute('src')||'':'';
+function portPin(src){
+  var m=(src||'').match(/ebay-profit-calculator@([0-9a-f]+)\//);
+  return m?m[1]:'';
 }
+var myPin=portPin(mySrc);
+if(!myPin&&!window.__DETEKOI_PORT_BOOT__) window.__DETEKOI_PORT_BOOT__=1;
+if(window.__DETEKOI_PORT_ACTIVE_PIN__){
+  if(window.__DETEKOI_PORT_ACTIVE_PIN__===myPin) return;
+  if(myPin==='d3982e1'||myPin.length<7) return;
+}
+if(window.__DETEKOI_PORT_BOOT__&&!myPin) return;
+window.__DETEKOI_PORT_ACTIVE_PIN__=myPin||window.__DETEKOI_PORT_ACTIVE_PIN__;
 window.__DETEKOI_PORT_BOOT__=1;
+try{
+  document.querySelectorAll('script[src*="studio-port.js"]').forEach(function(s){
+    if(s===bootScript) return;
+  if(portPin(s.getAttribute('src')||'')==='d3982e1') s.remove();
+  });
+}catch(e){}
 var cssHref = (document.currentScript && document.currentScript.getAttribute('data-css')) || '';
 function ensurePortCss(href){
   if(!href) return;
